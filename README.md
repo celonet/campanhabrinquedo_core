@@ -1,0 +1,1 @@
+# campanhabrinquedo_core
