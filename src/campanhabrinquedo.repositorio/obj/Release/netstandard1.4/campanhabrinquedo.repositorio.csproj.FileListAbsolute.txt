@@ -1,0 +1,8 @@
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\bin\Release\netstandard1.4\campanhabrinquedo.repositorio.deps.json
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\bin\Release\netstandard1.4\campanhabrinquedo.repositorio.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\bin\Release\netstandard1.4\campanhabrinquedo.repositorio.pdb
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\bin\Release\netstandard1.4\campanhabrinquedo.domain.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\bin\Release\netstandard1.4\campanhabrinquedo.domain.pdb
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\obj\Release\netstandard1.4\campanhabrinquedo.repositorio.AssemblyInfo.cs
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\obj\Release\netstandard1.4\campanhabrinquedo.repositorio.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.repositorio\obj\Release\netstandard1.4\campanhabrinquedo.repositorio.pdb

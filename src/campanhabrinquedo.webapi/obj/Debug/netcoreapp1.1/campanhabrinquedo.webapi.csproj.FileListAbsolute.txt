@@ -1,0 +1,12 @@
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.webapi.deps.json
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.webapi.runtimeconfig.json
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.webapi.runtimeconfig.dev.json
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.webapi.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.webapi.pdb
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.domain.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.repositorio.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.domain.pdb
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\bin\Debug\netcoreapp1.1\campanhabrinquedo.repositorio.pdb
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\obj\Debug\netcoreapp1.1\campanhabrinquedo.webapi.AssemblyInfo.cs
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\obj\Debug\netcoreapp1.1\campanhabrinquedo.webapi.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.webapi\obj\Debug\netcoreapp1.1\campanhabrinquedo.webapi.pdb

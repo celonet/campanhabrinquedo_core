@@ -1,0 +1,6 @@
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.domain\bin\Debug\netstandard1.4\campanhabrinquedo.domain.deps.json
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.domain\obj\Debug\netstandard1.4\campanhabrinquedo.domain.AssemblyInfo.cs
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.domain\bin\Debug\netstandard1.4\campanhabrinquedo.domain.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.domain\bin\Debug\netstandard1.4\campanhabrinquedo.domain.pdb
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.domain\obj\Debug\netstandard1.4\campanhabrinquedo.domain.dll
+D:\Marcelo\Projetos\campanhabrinquedo_core\src\campanhabrinquedo.domain\obj\Debug\netstandard1.4\campanhabrinquedo.domain.pdb
