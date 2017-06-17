@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using campanhabrinquedo.domain.Entities;
+using campanhabrinquedo.domain.Entidades;
 using System;
 using System.Linq;
 

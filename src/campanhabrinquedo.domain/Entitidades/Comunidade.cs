@@ -1,6 +1,6 @@
 using System;
 
-namespace campanhabrinquedo.domain.Entities
+namespace campanhabrinquedo.domain.Entidades
 {
     public class Comunidade
     {
