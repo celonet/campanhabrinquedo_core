@@ -15,5 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\campanhabrinquedo.domain\campanhabrinquedo.domain.csproj" />
     <ProjectReference Include="..\campanhabrinquedo.repositorio\campanhabrinquedo.repositorio.csproj" />
+    <ProjectReference Include="..\campanhabrinquedo.service\campanhabrinquedo.service.csproj" />
   </ItemGroup>
 </Project>

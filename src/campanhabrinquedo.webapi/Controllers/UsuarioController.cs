@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using campanhabrinquedo.domain.Entidades;
 using campanhabrinquedo.domain.Services;
 using campanhabrinquedo.repositorio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace campanhabrinquedo.webapi.Controllers
 {
     [Route("api/[controller]")]
-    public class UsuarioController : Controller 
+    public class UsuarioController : Controller
     {
         private readonly IUsuarioService _service;
 
@@ -24,10 +26,16 @@ namespace campanhabrinquedo.webapi.Controllers
             return _service.RetornaPerfil(id);
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public void Post([FromBody]Usuario usuario)
+        public ObjectResult Post([FromBody]Usuario usuario)
         {
+            if (_service.UsuarioExiste(usuario))
+                return BadRequest("Usuario já existe");
+            
             _service.RegistraUsuario(usuario);
+            
+            return Ok("Ok");
         }
 
         [HttpPut("{id}")]
@@ -41,5 +49,5 @@ namespace campanhabrinquedo.webapi.Controllers
         {
             _service.DeletaUsuario(id);
         }
-    }    
+    }
 }

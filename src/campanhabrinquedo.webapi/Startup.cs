@@ -9,8 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using campanhabrinquedo.repositorio;
 using Microsoft.EntityFrameworkCore;
-using campanhabrinquedo.domain.Repositorios;
-using campanhabrinquedo.repositorio.Repositorios;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
 using System.Text;
@@ -18,6 +16,12 @@ using CustomTokenAuthProvider;
 using System.Security.Claims;
 using System.Security.Principal;
 using Microsoft.Extensions.Options;
+using campanhabrinquedo.service.Services;
+using campanhabrinquedo.domain.Repositorios;
+using campanhabrinquedo.repositorio.Repositorios;
+using campanhabrinquedo.domain.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace campanhabrinquedo.webapi
 {
@@ -41,14 +45,28 @@ namespace campanhabrinquedo.webapi
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            RegisterService(services);
+
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+        }
+
+        private static void RegisterService(IServiceCollection services)
+        {
             services
+                //repositorios
                 .AddTransient<IUsuarioRepositorio, UsuarioRepositorio>()
                 .AddTransient<IComunidadeRepositorio, ComunidadeRepositorio>()
                 .AddTransient<ICriancaRepositorio, CriancaRepositorio>()
                 .AddTransient<IPadrinhoRepositorio, PadrinhoRepositorio>()
-                .AddTransient<IResponsavelRepositorio, ResponsavelRepositorio>();
-
-            services.AddMvc();
+                .AddTransient<IResponsavelRepositorio, ResponsavelRepositorio>()
+                //services
+                .AddTransient<IUsuarioService, UsuarioService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CampanhaBrinquedoContext context)
@@ -57,10 +75,11 @@ namespace campanhabrinquedo.webapi
             loggerFactory.AddDebug();
 
             ConfigureAuth(app);
-            
+
             app.UseMvc();
 
             DbInitializer.Initialize(context);
         }
     }
 }
+

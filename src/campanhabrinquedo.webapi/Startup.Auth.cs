@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
 using CustomTokenAuthProvider;
 using Microsoft.Extensions.Options;
+using campanhabrinquedo.service.Services;
+using campanhabrinquedo.domain.Services;
 
 namespace campanhabrinquedo.webapi
 {
@@ -50,12 +52,12 @@ namespace campanhabrinquedo.webapi
                 SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
                 IdentityResolver = GetIdentity
             };
-
             app.UseMiddleware<TokenProviderMiddleware>(Options.Create(tokenProviderOptions));
         }
-        private Task<ClaimsIdentity> GetIdentity(string username, string password)
+
+        private Task<ClaimsIdentity> GetIdentity(string username, string password, IUsuarioService usuarioService)
         {
-            if (username == "TEST" && password == "TEST123")
+            if (usuarioService.LogarUsuario(username, password))
                 return Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }));
 
             return Task.FromResult<ClaimsIdentity>(null);

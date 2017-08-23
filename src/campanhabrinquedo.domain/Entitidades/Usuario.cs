@@ -15,6 +15,7 @@ namespace campanhabrinquedo.domain.Entidades
         {
 
         }
+        
         public Usuario(string nome, string email, string senha)
         {
             if (!NomeEValido(nome))

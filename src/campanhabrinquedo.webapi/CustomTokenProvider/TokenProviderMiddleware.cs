@@ -2,6 +2,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using campanhabrinquedo.domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -13,12 +14,14 @@ namespace CustomTokenAuthProvider
         private readonly RequestDelegate _next;
         private readonly TokenProviderOptions _options;
         private readonly JsonSerializerSettings _serializerSettings;
-
-        public TokenProviderMiddleware(RequestDelegate next, IOptions<TokenProviderOptions> options)
+        private readonly IUsuarioService _usuarioService;
+        
+        public TokenProviderMiddleware(RequestDelegate next, IOptions<TokenProviderOptions> options, IUsuarioService usuarioService)
         {
             _next = next;
 
             _options = options.Value;
+            _usuarioService = usuarioService;
             ThrowIfInvalidOptions(_options);
 
             _serializerSettings = new JsonSerializerSettings
@@ -46,7 +49,7 @@ namespace CustomTokenAuthProvider
             var username = context.Request.Form["username"];
             var password = context.Request.Form["password"];
 
-            var identity = await _options.IdentityResolver(username, password);
+            var identity = await _options.IdentityResolver(username, password, _usuarioService);
             if (identity == null)
             {
                 context.Response.StatusCode = 400;

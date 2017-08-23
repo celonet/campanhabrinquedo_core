@@ -3,5 +3,5 @@ using campanhabrinquedo.domain.Repositorios.Base;
 
 namespace campanhabrinquedo.domain.Repositorios
 {
-    public interface IUsuarioRepositorio : Search<Usuario> { }
+    public interface IUsuarioRepositorio : Insert<Usuario>, Update<Usuario>, Delete<Usuario>, Search<Usuario> { }
 }

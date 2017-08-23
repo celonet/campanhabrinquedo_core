@@ -11,13 +11,15 @@ namespace campanhabrinquedo.repositorio
         {
             context.Database.EnsureCreated();
 
-            if(context.Usuario.Any()){
-                var usuario = new Usuario {
+            if (context.Usuario.Any())
+            {
+                var usuario = new Usuario
+                {
                     UsuarioId = Guid.NewGuid(),
-                    Nome= "Marcelo Lopes da Silva",
-                    Email= "marcelo.lopesdasilva@gmail.com",
-                    Senha= "123456",
-                    DataCadastro= DateTime.Now
+                    Nome = "Marcelo Lopes da Silva",
+                    Email = "marcelo.lopesdasilva@gmail.com",
+                    Senha = "123456",
+                    DataCadastro = DateTime.Now
                 };
 
                 context.Usuario.Add(usuario);

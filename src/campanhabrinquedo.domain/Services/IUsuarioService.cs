@@ -10,5 +10,6 @@ namespace campanhabrinquedo.domain.Services
         void RegistraUsuario(Usuario usuario);
         void AlteraUsuario(Usuario usuario);
         void DeletaUsuario(Guid id);
+        bool UsuarioExiste(Usuario usuario);
     }
 }

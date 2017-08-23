@@ -16,6 +16,15 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context = context;
         }
 
+        void Delete<Usuario>.Delete(Guid entidadeId)
+        {
+            var usuario = _context.Usuario.FirstOrDefault(_ => _.UsuarioId == entidadeId);
+            if(usuario != null) {
+                _context.Usuario.Remove(usuario);
+                _context.SaveChanges();
+            }
+        }
+
         Usuario Search<Usuario>.FindByExpression(Func<Usuario, bool> expression)
         {
             return _context.Usuario.FirstOrDefault(expression);
@@ -26,6 +35,12 @@ namespace campanhabrinquedo.repositorio.Repositorios
             return _context.Usuario.FirstOrDefault(_ => _.UsuarioId == entidadeId);
         }
 
+        void Insert<Usuario>.Insert(Usuario entidade)
+        {
+            _context.Usuario.Add(entidade);
+            _context.SaveChanges();
+        }
+
         IEnumerable<Usuario> Search<Usuario>.List()
         {
             return _context.Usuario.ToList();
@@ -34,6 +49,11 @@ namespace campanhabrinquedo.repositorio.Repositorios
         IEnumerable<Usuario> Search<Usuario>.List(Func<Usuario, bool> expression)
         {
             return _context.Usuario.Where(expression);
+        }
+
+        void Update<Usuario>.Update(Usuario entidade)
+        {
+            _context.Usuario.Update(entidade);
         }
     }
 }

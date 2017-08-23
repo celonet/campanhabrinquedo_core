@@ -1,6 +1,8 @@
 using System;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using campanhabrinquedo.domain.Services;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CustomTokenAuthProvider
@@ -37,7 +39,7 @@ namespace CustomTokenAuthProvider
         /// <summary>
         /// Resolves a user identity given a username and password.
         /// </summary>
-        public Func<string, string, Task<ClaimsIdentity>> IdentityResolver { get; set; }
+        public Func<string, string, IUsuarioService, Task<ClaimsIdentity>> IdentityResolver { get; set; }
 
         /// <summary>
         /// Generates a random value (nonce) for each generated token.
