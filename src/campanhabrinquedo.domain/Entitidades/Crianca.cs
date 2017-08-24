@@ -4,7 +4,7 @@ namespace campanhabrinquedo.domain.Entidades
 {
     public class Crianca
     {
-        public Guid CriancaId { get; set; }
+        public Guid CriancaId { get; private set; }
         public string Nome { get; set; }
         public string Idade  { get; set; }
         public Sexo Sexo { get; set; }

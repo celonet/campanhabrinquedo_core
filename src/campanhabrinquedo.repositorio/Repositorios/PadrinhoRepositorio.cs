@@ -10,9 +10,15 @@ namespace campanhabrinquedo.repositorio.Repositorios
     {
         private CampanhaBrinquedoContext _context;
 
+        public PadrinhoRepositorio(CampanhaBrinquedoContext context)
+        {
+            _context = context;
+        }
+
         void Insert<Padrinho>.Insert(Padrinho entidade)
         {
-            throw new NotImplementedException();
+            _context.Padrinho.Add(entidade);
+            _context.SaveChanges();
         }
     }
 }

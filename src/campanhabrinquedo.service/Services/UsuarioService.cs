@@ -31,7 +31,7 @@ namespace campanhabrinquedo.service.Services
 
         void IUsuarioService.RegistraUsuario(Usuario usuario)
         {
-            usuario.DataCadastro = DateTime.Now;
+            usuario.IncluiDataCadastro();
             _repositorio.Insert(usuario);
         }
 

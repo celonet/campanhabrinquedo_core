@@ -9,6 +9,11 @@ namespace campanhabrinquedo.repositorio.Repositorios
     {
         private CampanhaBrinquedoContext _context;
 
+        public CriancaRepositorio(CampanhaBrinquedoContext context)
+        {
+            _context = context;
+        }
+
         void Insert<Crianca>.Insert(Crianca entidade)
         {
             _context.Crianca.Add(entidade);

@@ -8,6 +8,11 @@ namespace campanhabrinquedo.repositorio.Repositorios
     {
         private CampanhaBrinquedoContext _context;
 
+        public ComunidadeRepositorio(CampanhaBrinquedoContext context)
+        {
+            _context = context;
+        }
+
         void Insert<Comunidade>.Insert(Comunidade entidade)
         {
             _context.Comunidade.Add(entidade);

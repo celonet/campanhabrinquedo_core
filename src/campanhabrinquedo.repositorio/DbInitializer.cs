@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using campanhabrinquedo.domain.Entidades;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace campanhabrinquedo.repositorio
 {
@@ -11,21 +12,30 @@ namespace campanhabrinquedo.repositorio
         {
             context.Database.EnsureCreated();
 
-            if (context.Usuario.Any())
+            if (!context.Usuario.Any())
             {
-                var usuario = new Usuario
-                {
-                    UsuarioId = Guid.NewGuid(),
-                    Nome = "Marcelo Lopes da Silva",
-                    Email = "marcelo.lopesdasilva@gmail.com",
-                    Senha = "123456",
-                    DataCadastro = DateTime.Now
-                };
-
+                var usuario = new Usuario("Marcelo Lopes da Silva", "marcelo.lopesdasilva@gmail.com", "123456");
                 context.Usuario.Add(usuario);
-
-                context.SaveChanges();
             }
+
+            if (!context.Comunidade.Any())
+            {
+                var comunidades = new List<Comunidade> {
+                    new Comunidade("Nossa Senhora Aparecida","Finco"),
+                    new Comunidade("Nossa Senhora das Graças","Vila Pelé, Pq. Rio Grande"),
+                    new Comunidade("Nossa Senhora Fatima","Tupã"),
+                    new Comunidade("Sta. Terezinha","Estoril"),
+                    new Comunidade("Santo Antonio","Boa Vista"),
+                    new Comunidade("São João Batista","Riacho Grande"),
+                    new Comunidade("São Jose","Jussara"),
+                    new Comunidade("São Francisco de Assis","Capelinha"),
+                    new Comunidade("Sem Comunidade","")
+                };
+                context.Comunidade.AddRange(comunidades.ToArray());
+            };
+
+            context.SaveChanges();
+
         }
     }
 }

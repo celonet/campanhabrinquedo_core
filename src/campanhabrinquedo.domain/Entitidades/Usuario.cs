@@ -5,17 +5,12 @@ namespace campanhabrinquedo.domain.Entidades
 
     public class Usuario
     {
-        public Guid UsuarioId { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public DateTime DataCadastro { get; set; }
+        public Guid UsuarioId { get; private set; }
+        public string Nome { get; private set; }
+        public string Email { get; private set; }
+        public string Senha { get; private set; }
+        public DateTime DataCadastro { get; private set; }
 
-        public Usuario()
-        {
-
-        }
-        
         public Usuario(string nome, string email, string senha)
         {
             if (!NomeEValido(nome))
@@ -27,24 +22,46 @@ namespace campanhabrinquedo.domain.Entidades
             if (!SenhaEValida(senha))
                 throw new Exception("Senha inválida");
 
+            this.UsuarioId = Guid.NewGuid();
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
         }
 
-        public bool EmailEValido(string email)
+        public Usuario(Guid id, string nome, string email, string senha)
+        {
+            if (!NomeEValido(nome))
+                throw new Exception("Nome é inválido");
+
+            if (!EmailEValido(email))
+                throw new Exception("Email inválido");
+
+            if (!SenhaEValida(senha))
+                throw new Exception("Senha inválida");
+
+            this.UsuarioId = id;
+            this.Nome = nome;
+            this.Email = email;
+            this.Senha = senha;
+        }
+
+        private bool EmailEValido(string email)
         {
             return !string.IsNullOrWhiteSpace(email) && new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(email).Success;
         }
 
-        public bool SenhaEValida(string senha)
+        private bool SenhaEValida(string senha)
         {
             return !string.IsNullOrWhiteSpace(senha) && senha.Length >= 6;
         }
-
-        public bool NomeEValido(string nome)
+        private bool NomeEValido(string nome)
         {
             return !string.IsNullOrWhiteSpace(nome) && nome.Length > 3;
+        }
+
+        public void IncluiDataCadastro()
+        {
+            this.DataCadastro = DateTime.Now;
         }
     }
 }
