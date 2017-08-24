@@ -1,5 +1,5 @@
 using System;
-using campanhabrinquedo.domain.Entities;
+using campanhabrinquedo.domain.Entidades;
 using Xunit;
 
 namespace campanhabrinquedo.tests

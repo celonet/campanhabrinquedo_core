@@ -22,7 +22,7 @@ namespace campanhabrinquedo.domain.Entidades
                 throw new Exception("Nome é inválido");
 
             if (!EmailEValido(email))
-                throw new Exception("Emai");
+                throw new Exception("Email inválido");
 
             if (!SenhaEValida(senha))
                 throw new Exception("Senha inválida");
@@ -34,7 +34,7 @@ namespace campanhabrinquedo.domain.Entidades
 
         public bool EmailEValido(string email)
         {
-            return string.IsNullOrWhiteSpace(email) && new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(email).Success;
+            return !string.IsNullOrWhiteSpace(email) && new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(email).Success;
         }
 
         public bool SenhaEValida(string senha)

@@ -1,6 +1,6 @@
 namespace campanhabrinquedo.tests
 {       
-    using campanhabrinquedo.domain.Entities;
+    using campanhabrinquedo.domain.Entidades;
     using Xunit;
 
     public class UsuarioUnitTests
@@ -47,7 +47,7 @@ namespace campanhabrinquedo.tests
         public void EmailEValido_QuandoPassadoUmEmailValido_DeveRetornarVerdadeiro()
         {
             var usuario = new Usuario();
-            Assert.Equal(false, usuario.EmailEValido("fulano@detal.com"));
+            Assert.Equal(true, usuario.EmailEValido("fulano@detal.com"));
         }
 
         [Fact]
