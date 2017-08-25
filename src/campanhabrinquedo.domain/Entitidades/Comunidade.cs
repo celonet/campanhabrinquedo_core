@@ -11,15 +11,17 @@ namespace campanhabrinquedo.domain.Entidades
         public Comunidade(string nome, string bairro)
         {
             this.ComunidadeId = Guid.NewGuid();
-
-            if (string.IsNullOrWhiteSpace(nome))
-                throw new Exception("Nome não pode ser em branco!");
-
-            if (string.IsNullOrWhiteSpace(bairro))
-                throw new Exception("Bairro não pode ser em branco!");
-
             this.Nome = nome;
             this.Bairro = bairro;
+        }
+
+        public void Validar()
+        {
+            if (string.IsNullOrWhiteSpace(this.Nome))
+                throw new Exception("Nome não pode ser em branco!");
+
+            if (string.IsNullOrWhiteSpace(this.Bairro))
+                throw new Exception("Bairro não pode ser em branco!");
         }
     }
 }
