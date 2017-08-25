@@ -10,13 +10,7 @@ namespace campanhabrinquedo.domain.Entidades
         public int QtdeCriancas { get; private set; }
 
         public Campanha(int ano, string descricao, int qtdeCriancas)
-        {
-            if (!ValidaAno(ano))
-                throw new Exception("Ano não pode ser menor que o primeiro ano da campanha ou maior que o ano vigente!");
-
-            if (string.IsNullOrWhiteSpace(descricao))
-                throw new Exception("Descrição não pode ser em branco!");
-
+        {            
             this.Ano = ano;
             this.Descricao = descricao;
             this.QtdeCriancas = qtdeCriancas;
@@ -25,11 +19,6 @@ namespace campanhabrinquedo.domain.Entidades
         public void IncrementaQuantidadeCriancas()
         {
             this.QtdeCriancas++;
-        }
-
-        private bool ValidaAno(int ano)
-        {
-            return ano > 2005 && ano < DateTime.Now.AddYears(1).Year;
         }
     }
 }

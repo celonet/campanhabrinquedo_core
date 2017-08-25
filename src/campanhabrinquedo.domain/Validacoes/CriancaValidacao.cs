@@ -4,7 +4,7 @@ namespace campanhabrinquedo.domain.Validacoes
     using FluentValidation;
     using System;
     
-    public class CriancaValidacao : ValidacaoBase<Crianca>
+    public class CriancaValidacao : AbstractValidator<Crianca>
     {
         
     }
