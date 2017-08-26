@@ -16,8 +16,12 @@
  dotnet add [Project.csproj] reference [Project Reference.csproj]
 ```
 
+#add package to project
+```
+dotnet add package [PackageName]
+```
+
 #add project to solution
 ```
  dotnet sln [solutionname.sln] add [project.csproj]
 ```
-

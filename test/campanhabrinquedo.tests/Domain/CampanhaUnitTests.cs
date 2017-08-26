@@ -1,6 +1,7 @@
 using campanhabrinquedo.domain.Entidades;
 using System;
 using Xunit;
+using FluentAssertions;
 
 namespace campanhabrinquedo.tests
 {
@@ -12,9 +13,10 @@ namespace campanhabrinquedo.tests
             var ano = 2017;
             var descricao = "";
             var qdteCrianca = 0;
+            var msg = "Descrição não pode ser em branco!";
             
             Exception ex = Assert.Throws<Exception>(() => new Campanha(ano, descricao, qdteCrianca));        
-            Assert.Equal("Descrição não pode ser em branco!", ex.Message);            
+            ex.Message.Should().Be(msg);
         }
 
         [Fact]
@@ -44,8 +46,7 @@ namespace campanhabrinquedo.tests
         {
             var campanha = new Campanha(DateTime.Now.Year, "Teste", 0);
             campanha.IncrementaQuantidadeCriancas();
-            Assert.Equal(1,campanha.QtdeCriancas);
-
+            campanha.QtdeCriancas.Should().Be(1);
         }
     }
 }

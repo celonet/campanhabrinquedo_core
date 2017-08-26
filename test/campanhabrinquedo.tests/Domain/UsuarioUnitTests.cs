@@ -1,9 +1,10 @@
 namespace campanhabrinquedo.tests
 {       
     using campanhabrinquedo.domain.Entidades;
+    using FluentAssertions;
     using System;
     using Xunit;
-
+    
     public class UsuarioUnitTests
     {
         [Fact]
