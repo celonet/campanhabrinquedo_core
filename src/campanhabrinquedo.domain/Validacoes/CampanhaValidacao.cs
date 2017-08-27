@@ -6,7 +6,7 @@ namespace campanhabrinquedo.domain.Validacoes
 
     public class CampanhaValidacao : AbstractValidator<Campanha>
     {
-        public void ValidaAno()
+        public CampanhaValidacao()
         {
             RuleFor(c => c.Ano)
                 .GreaterThan(2005).WithMessage("Ano não pode ser menor que o primeiro ano da campanha ou maior que o ano vigente!")

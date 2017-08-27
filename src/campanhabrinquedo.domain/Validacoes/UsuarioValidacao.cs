@@ -6,23 +6,15 @@ namespace campanhabrinquedo.domain.Validacoes
 
     public class UsuarioValidacao : AbstractValidator<Usuario>
     {
-        public void ValidaNome()
+        public UsuarioValidacao()
         {
-            RuleFor(c => c.Nome)
+            RuleFor(usuario => usuario.Nome)
                 .NotEmpty().WithMessage("Nome é obrigatorio!")
                 .MinimumLength(3).WithMessage("Minimo de 3 caracteres!");
-        }
-
-        public void ValidaEmail()
-        {
-            RuleFor(c => c.Email)
+            RuleFor(usuario => usuario.Email)
                 .NotEmpty().WithMessage("Email é obrigatorio!")
                 .EmailAddress().WithMessage("Email inválido!");
-        }
-
-        public void ValidaSenha()
-        {
-            RuleFor(c => c.Senha)
+            RuleFor(usuario => usuario.Senha)
                 .NotEmpty().WithMessage("Senha é obrigatoria")
                 .MinimumLength(6).WithMessage("Minimo de 6 caracteres!");
         }
