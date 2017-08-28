@@ -4,7 +4,14 @@ namespace campanhabrinquedo.domain.Entidades
     public class Responsavel
     {
         public Guid ResponsavelId { get; private set; }
-        public string Nome { get; set; }
-        public string RG { get; set; }
+        public string Nome { get; private set; }
+        public string RG { get; private set; }
+
+        public Responsavel(string nome, string rg)
+        {
+            this.ResponsavelId = Guid.NewGuid();
+            this.Nome = nome;
+            this.RG = rg;
+        }
     }
 }

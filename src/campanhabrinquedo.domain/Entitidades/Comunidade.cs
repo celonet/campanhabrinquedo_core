@@ -14,14 +14,5 @@ namespace campanhabrinquedo.domain.Entidades
             this.Nome = nome;
             this.Bairro = bairro;
         }
-
-        public void Validar()
-        {
-            if (string.IsNullOrWhiteSpace(this.Nome))
-                throw new Exception("Nome não pode ser em branco!");
-
-            if (string.IsNullOrWhiteSpace(this.Bairro))
-                throw new Exception("Bairro não pode ser em branco!");
-        }
     }
 }
