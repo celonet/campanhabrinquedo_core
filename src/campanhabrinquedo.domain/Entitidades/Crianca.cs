@@ -25,18 +25,6 @@ namespace campanhabrinquedo.domain.Entidades
             this.Especial = especial;
         }
 
-        public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool impresso, bool especial)
-        {
-            this.CriancaId = Guid.NewGuid();
-            this.Nome = nome;
-            this.Idade = idade;
-            this.Sexo = sexo;
-            this.Comunidade = comunidade;
-            this.Responsavel = responsavel;
-            this.Impresso = impresso;
-            this.Especial = especial;
-        }
-
         public void Imprimir()
         {
             this.Impresso = true;

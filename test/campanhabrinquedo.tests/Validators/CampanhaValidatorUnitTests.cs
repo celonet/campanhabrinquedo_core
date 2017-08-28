@@ -1,8 +1,8 @@
-namespace campanhabrinquedo.tests.Validacoes
+namespace campanhabrinquedo.tests.Validators
 {
     using Xunit;
     using campanhabrinquedo.domain.Entidades;
-    using campanhabrinquedo.domain.Validacoes;
+    using campanhabrinquedo.domain.Validators;
     using FluentValidation;
     using FluentValidation.TestHelper;    
 
@@ -16,7 +16,14 @@ namespace campanhabrinquedo.tests.Validacoes
         }    
 
          [Fact]
-         public void Should_have_error_when_Name_is_null()
+         public void DeveRetornarErro_QuandoAnoForInvalido()
+         {
+             var campanha = new Campanha(2005,"", 0);
+             validator.ShouldHaveValidationErrorFor(c => c.Ano, campanha); 
+         }
+
+         [Fact]
+         public void DeveRetornarErro_QuandoDescricaoForVazia()
          {
              var campanha = new Campanha(0,"", 0);
              validator.ShouldHaveValidationErrorFor(c => c.Descricao, campanha); 

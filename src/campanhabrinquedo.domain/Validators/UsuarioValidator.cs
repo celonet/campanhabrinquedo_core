@@ -1,12 +1,12 @@
-namespace campanhabrinquedo.domain.Validacoes
+namespace campanhabrinquedo.domain.Validators
 {
     using campanhabrinquedo.domain.Entidades;
     using FluentValidation;
     using System;
 
-    public class UsuarioValidacao : AbstractValidator<Usuario>
+    public class UsuarioValidator : AbstractValidator<Usuario>
     {
-        public UsuarioValidacao()
+        public UsuarioValidator()
         {
             RuleFor(usuario => usuario.Nome)
                 .NotEmpty().WithMessage("Nome é obrigatorio!")

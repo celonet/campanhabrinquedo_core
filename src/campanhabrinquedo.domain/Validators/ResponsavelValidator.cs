@@ -1,12 +1,12 @@
-namespace campanhabrinquedo.domain.Validacoes
+namespace campanhabrinquedo.domain.Validators
 {
     using campanhabrinquedo.domain.Entidades;
     using FluentValidation;
     using System;
     
-    public class ResponsavelValidacao : AbstractValidator<Responsavel>
+    public class ResponsavelValidator : AbstractValidator<Responsavel>
     {
-        public ResponsavelValidacao()
+        public ResponsavelValidator()
         {
             RuleFor(responsavel => responsavel.Nome)
                 .NotEmpty().WithMessage("Nome Obrigatório");

@@ -1,12 +1,12 @@
-namespace campanhabrinquedo.domain.Validacoes
+namespace campanhabrinquedo.domain.Validators
 {
     using System;
     using campanhabrinquedo.domain.Entidades;
     using FluentValidation;
 
-    public class ComunidadeValidacao : AbstractValidator<Comunidade>
+    public class ComunidadeValidator : AbstractValidator<Comunidade>
     {
-        public ComunidadeValidacao()
+        public ComunidadeValidator()
         {
             RuleFor(c => c.Nome)
                 .NotEmpty().WithMessage("Nome não pode ser em branco!")

@@ -1,17 +1,17 @@
-namespace campanhabrinquedo.domain.Validacoes
+namespace campanhabrinquedo.domain.Validators
 {
     using campanhabrinquedo.domain.Entidades;
     using FluentValidation;
     using System;
     
-    public class PadrinhoValidacao : AbstractValidator<Padrinho>
+    public class PadrinhoValidator : AbstractValidator<Padrinho>
     {
-        public PadrinhoValidacao()
+        public PadrinhoValidator()
         {
             RuleFor(padrinho => padrinho.Nome)
                 .NotEmpty().WithMessage("Nome Obrigatório");
             RuleFor(padrinho => padrinho.Comunidade)
-                .SetValidator(new ComunidadeValidacao());
+                .SetValidator(new ComunidadeValidator());
             RuleFor(padrinho => padrinho.Telefone)
                 .NotEmpty().WithMessage("Telefone é obrigatório");
         }

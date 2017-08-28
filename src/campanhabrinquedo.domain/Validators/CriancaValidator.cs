@@ -1,21 +1,21 @@
-namespace campanhabrinquedo.domain.Validacoes
+namespace campanhabrinquedo.domain.Validators
 {
     using campanhabrinquedo.domain.Entidades;
     using FluentValidation;
     using System;
     
-    public class CriancaValidacao : AbstractValidator<Crianca>
+    public class CriancaValidator : AbstractValidator<Crianca>
     {
-        public CriancaValidacao()
+        public CriancaValidator()
         {
             RuleFor(crianca => crianca.Nome)
                 .NotEmpty().WithMessage("Nome obrigatório!");
             RuleFor(crianca => crianca.Idade)
                 .NotEmpty().WithMessage("Idade Obrigatória!");
             RuleFor(crianca => crianca.Comunidade)
-                .SetValidator(new ComunidadeValidacao());
+                .SetValidator(new ComunidadeValidator());
             RuleFor(crianca => crianca.Responsavel)
-                .SetValidator(new ResponsavelValidacao());
+                .SetValidator(new ResponsavelValidator());
         }
     }
 }
