@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/src/campanhabrinquedo.webapi/bin/Debug/netcoreapp1.1/campanhabrinquedo.webapi.dll",
+            "program": "${workspaceRoot}/src/campanhabrinquedo.webapi/bin/Debug/netcoreapp2.0/campanhabrinquedo.webapi.dll",
             "args": [],
             "cwd": "${workspaceRoot}/src/campanhabrinquedo.webapi",
             "stopAtEntry": false,
