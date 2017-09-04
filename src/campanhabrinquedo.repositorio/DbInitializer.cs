@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
 using campanhabrinquedo.domain.Entidades;
-using System;
 using System.Linq;
 using System.Collections.Generic;
 

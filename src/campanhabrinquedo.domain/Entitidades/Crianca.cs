@@ -13,6 +13,11 @@ namespace campanhabrinquedo.domain.Entidades
         public bool Impresso { get; private set; }
         public bool Especial { get; private set; }
 
+        public Crianca()
+        {
+
+        }
+
         public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool Impresso, bool especial)
         {
             this.CriancaId = Guid.NewGuid();

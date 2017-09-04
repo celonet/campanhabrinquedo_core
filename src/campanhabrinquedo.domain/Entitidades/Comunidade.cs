@@ -8,6 +8,11 @@ namespace campanhabrinquedo.domain.Entidades
         public string Nome { get; private set; }
         public string Bairro { get; private set; }
 
+        public Comunidade()
+        {
+
+        }
+
         public Comunidade(string nome, string bairro)
         {
             this.ComunidadeId = Guid.NewGuid();

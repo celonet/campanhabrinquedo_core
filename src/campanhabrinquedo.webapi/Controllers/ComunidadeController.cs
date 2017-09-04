@@ -1,4 +1,3 @@
-using System;
 using campanhabrinquedo.domain.Services;
 using Microsoft.AspNetCore.Mvc;
 

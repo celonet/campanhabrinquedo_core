@@ -8,11 +8,11 @@ namespace campanhabrinquedo.domain.Validators
     {
         public CampanhaValidator()
         {
-            RuleFor(c => c.Ano)
+            RuleFor(campanha => campanha.Ano)
                 .GreaterThan(2005).WithMessage("Ano não pode ser menor que o primeiro ano da campanha ou maior que o ano vigente!")
                 .LessThanOrEqualTo(DateTime.Now.AddYears(1).Year).WithMessage("Descrição não pode ser em branco!");
                 
-            RuleFor(c => c.Descricao)
+            RuleFor(campanha => campanha.Descricao)
                 .NotEmpty().WithMessage("Descrição não pode ser em branco!");
         }
     }

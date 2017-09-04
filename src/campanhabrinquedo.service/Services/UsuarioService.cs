@@ -24,9 +24,9 @@ namespace campanhabrinquedo.service.Services
             _repositorio.Delete(id);
         }
 
-        bool IUsuarioService.LogarUsuario(string usuario, string senha)
+        bool IUsuarioService.LogarUsuario(string login, string senha)
         {
-            return _repositorio.FindByExpression(_ => _.Email == usuario && _.Senha == senha) != null;
+            return _repositorio.FindByExpression(usuario => usuario.Email == login && usuario.Senha == senha) != null;
         }
 
         void IUsuarioService.RegistraUsuario(Usuario usuario)

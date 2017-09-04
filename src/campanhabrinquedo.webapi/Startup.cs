@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using campanhabrinquedo.repositorio;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication;
-using System.Text;
-using CustomTokenAuthProvider;
-using System.Security.Claims;
-using System.Security.Principal;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using campanhabrinquedo.repositorio;
 using campanhabrinquedo.service.Services;
 using campanhabrinquedo.domain.Repositorios;
 using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace campanhabrinquedo.webapi
 {
@@ -41,9 +31,20 @@ namespace campanhabrinquedo.webapi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CampanhaBrinquedoContext>(options =>
+            services
+                .AddEntityFrameworkSqlServer()
+                .AddDbContext<CampanhaBrinquedoContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
+
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = "";
+                    options.Audience = Configuration.GetSection("TokenAuthentication:Audience").Value;
+                    options.RequireHttpsMetadata = false;
+                });
 
             RegisterService(services);
 
@@ -66,7 +67,7 @@ namespace campanhabrinquedo.webapi
                 .AddTransient<IPadrinhoRepositorio, PadrinhoRepositorio>()
                 .AddTransient<IResponsavelRepositorio, ResponsavelRepositorio>()
                 //services
-                .AddTransient<IUsuarioService, UsuarioService>();
+                .AddTransient<IUsuarioService, UsuarioService>(); 
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CampanhaBrinquedoContext context)
@@ -74,7 +75,7 @@ namespace campanhabrinquedo.webapi
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            ConfigureAuth(app);
+            //ConfigureAuth(app);
 
             app.UseMvc();
 

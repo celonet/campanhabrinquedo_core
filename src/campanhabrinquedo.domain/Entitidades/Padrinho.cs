@@ -9,6 +9,11 @@ namespace campanhabrinquedo.domain.Entidades
         public string Telefone { get; private set; }
         public string Celular { get; private set; }
 
+        public Padrinho()
+        {
+
+        }
+
         public Padrinho(string nome, Comunidade comunidade, string telefone, string celular)
         {
             this.PadrinhoId = Guid.NewGuid();

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  campanhabrinquedo.webapi:
+    image: campanhabrinquedo.webapi
+    build:
+      context: ./campanhabrinquedo.webapi
+      dockerfile: Dockerfile
+    depends_on:
+      - campanhabrinquedo.database
+  campanhabrinquedo.database:
+    image: "microsoft/mssql-server-linux"
+    ports: 
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "yourStrong(!)Password"
+      ACCEPT_EULA: "Y"       

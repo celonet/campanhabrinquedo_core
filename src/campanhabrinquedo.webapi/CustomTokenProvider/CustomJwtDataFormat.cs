@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.IdentityModel.Tokens;
 
-
 namespace CustomTokenAuthProvider
 {
     public class CustomJwtDataFormat : ISecureDataFormat<AuthenticationTicket>
@@ -49,7 +48,7 @@ namespace CustomTokenAuthProvider
             }
 
             // VALIDATION PASSED
-            return new AuthenticationTicket(principal, new AuthenticationProperties(), "Cookie");
+            return new AuthenticationTicket(principal, new Microsoft.AspNetCore.Authentication.AuthenticationProperties(), "Cookie");
         }
 
         public string Protect(AuthenticationTicket data)

@@ -9,6 +9,11 @@ namespace campanhabrinquedo.domain.Entidades
         public string Descricao { get; private set; }
         public int QtdeCriancas { get; private set; }
 
+        public Campanha()
+        {
+
+        }
+
         public Campanha(int ano, string descricao, int qtdeCriancas)
         {            
             this.Ano = ano;
