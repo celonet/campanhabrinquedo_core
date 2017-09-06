@@ -12,6 +12,8 @@ using campanhabrinquedo.service.Services;
 using campanhabrinquedo.domain.Repositorios;
 using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace campanhabrinquedo.webapi
 {
@@ -31,22 +33,11 @@ namespace campanhabrinquedo.webapi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddEntityFrameworkSqlServer()
-                .AddDbContext<CampanhaBrinquedoContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-            );
-
-            services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = "";
-                    options.Audience = Configuration.GetSection("TokenAuthentication:Audience").Value;
-                    options.RequireHttpsMetadata = false;
-                });
+            ConfigureOrm(services);
 
             RegisterService(services);
+
+            ConfigureAuthentication(services);
 
             services.AddMvc(config =>
             {
@@ -55,6 +46,43 @@ namespace campanhabrinquedo.webapi
                     .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CampanhaBrinquedoContext context)
+        {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            app.UseAuthentication();
+            app.UseMvc();
+
+            DbInitializer.Initialize(context);
+        }
+
+        private void ConfigureAuthentication(IServiceCollection services)
+        {
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = Configuration["TokenAuthentication:Issuer"],
+                        ValidAudience = Configuration["TokenAuthentication:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenAuthentication:SecretKey"]))
+                    };
+                });
+        }
+
+        private void ConfigureOrm(IServiceCollection services)
+        {
+            services
+                .AddEntityFrameworkSqlServer()
+                .AddDbContext<CampanhaBrinquedoContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                );
         }
 
         private static void RegisterService(IServiceCollection services)
@@ -67,19 +95,7 @@ namespace campanhabrinquedo.webapi
                 .AddTransient<IPadrinhoRepositorio, PadrinhoRepositorio>()
                 .AddTransient<IResponsavelRepositorio, ResponsavelRepositorio>()
                 //services
-                .AddTransient<IUsuarioService, UsuarioService>(); 
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CampanhaBrinquedoContext context)
-        {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
-            //ConfigureAuth(app);
-
-            app.UseMvc();
-
-            DbInitializer.Initialize(context);
+                .AddTransient<IUsuarioService, UsuarioService>();
         }
     }
 }

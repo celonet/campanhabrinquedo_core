@@ -1,7 +1,7 @@
+using System;
+
 namespace campanhabrinquedo.domain.Entidades
 {
-    using System;
-
     public class Campanha
     {
         public Guid CampanhaId { get; private set; }
