@@ -7,25 +7,25 @@ namespace campanhabrinquedo.tests.Validators
 
     public class CampanhaValidatorUnitTests
     {   
-        private CampanhaValidator validator;
+        private CampanhaValidator _validator;
+        private Campanha _campanha;
 
         public CampanhaValidatorUnitTests()
         {
-             validator = new CampanhaValidator();
+             _validator = new CampanhaValidator();
+            _campanha = new Campanha(2005, "", 0);
         }    
 
          [Fact]
          public void DeveRetornarErro_QuandoAnoForInvalido()
          {
-             var campanha = new Campanha(2005,"", 0);
-             validator.ShouldHaveValidationErrorFor(c => c.Ano, campanha); 
+             _validator.ShouldHaveValidationErrorFor(c => c.Ano, _campanha); 
          }
 
          [Fact]
          public void DeveRetornarErro_QuandoDescricaoForVazia()
          {
-             var campanha = new Campanha(0,"", 0);
-             validator.ShouldHaveValidationErrorFor(c => c.Descricao, campanha); 
+             _validator.ShouldHaveValidationErrorFor(c => c.Descricao, _campanha); 
          }
      }
  }

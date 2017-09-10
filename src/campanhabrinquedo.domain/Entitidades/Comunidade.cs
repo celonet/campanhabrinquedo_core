@@ -8,10 +8,7 @@ namespace campanhabrinquedo.domain.Entidades
         public string Nome { get; private set; }
         public string Bairro { get; private set; }
 
-        public Comunidade()
-        {
-
-        }
+        protected Comunidade() { }
 
         public Comunidade(string nome, string bairro)
         {

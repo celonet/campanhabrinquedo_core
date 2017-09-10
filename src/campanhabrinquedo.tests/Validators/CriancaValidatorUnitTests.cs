@@ -3,42 +3,41 @@ namespace campanhabrinquedo.tests.Validators
     using Xunit;
     using campanhabrinquedo.domain.Entidades;
     using campanhabrinquedo.domain.Validators;
-    using FluentValidation;
-    using FluentValidation.TestHelper;    
+    using FluentValidation.TestHelper;
 
     public class CriancaValidatorUnitTests
     {   
-        private CriancaValidator validator;
-        private Crianca crianca;
+        private CriancaValidator _validator;
+        private Crianca _crianca;
 
         public CriancaValidatorUnitTests()
         {
-             validator = new CriancaValidator();
-             crianca = new Crianca("", "", Sexo.Masculino, null, null, false,false);
+             _validator = new CriancaValidator();
+             _crianca = new Crianca("", "", Sexo.Masculino, null, null, false,false);
         }    
 
         [Fact]
         public void DeveRetornarErro_QuandoNomeForInvalido()
         {
-            validator.ShouldHaveValidationErrorFor(c => c.Nome, crianca); 
+            _validator.ShouldHaveValidationErrorFor(c => c.Nome, _crianca); 
         }
 
         [Fact]
         public void DeveRetornarErro_QuandoIdadeForVazia()
         {
-            validator.ShouldHaveValidationErrorFor(c => c.Idade, crianca); 
+            _validator.ShouldHaveValidationErrorFor(c => c.Idade, _crianca); 
         }
 
         [Fact]
         public void DeveRetornarErro_QuandoComunidadeForVazia()
         {
-            validator.ShouldHaveChildValidator(x => x.Comunidade, typeof(ComunidadeValidator));
+            _validator.ShouldHaveChildValidator(x => x.Comunidade, typeof(ComunidadeValidator));
         }
 
         [Fact]
         public void DeveRetornarErro_QuandoResponsavelForVazia()
         {
-            validator.ShouldHaveChildValidator(x => x.Responsavel, typeof(ResponsavelValidator));
+            _validator.ShouldHaveChildValidator(x => x.Responsavel, typeof(ResponsavelValidator));
         }
      }
  }

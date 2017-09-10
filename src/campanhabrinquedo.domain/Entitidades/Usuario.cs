@@ -10,10 +10,7 @@ namespace campanhabrinquedo.domain.Entidades
         public string Senha { get; private set; }
         public DateTime DataCadastro { get; private set; }
 
-        public Usuario()
-        {
-
-        }
+        protected Usuario() { }
 
         public Usuario(string nome, string email, string senha)
         {

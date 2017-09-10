@@ -4,6 +4,7 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <DebugType>Full</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="4.19.4" />

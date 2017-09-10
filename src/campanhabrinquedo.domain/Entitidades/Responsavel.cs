@@ -7,10 +7,7 @@ namespace campanhabrinquedo.domain.Entidades
         public string Nome { get; private set; }
         public string RG { get; private set; }
 
-        public Responsavel()
-        {
-
-        }
+        protected Responsavel() { }
 
         public Responsavel(string nome, string rg)
         {
