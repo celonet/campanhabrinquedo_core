@@ -12,6 +12,8 @@ using campanhabrinquedo.service.Services;
 using campanhabrinquedo.domain.Repositorios;
 using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -19,10 +21,14 @@ namespace campanhabrinquedo.webapi
 {
     public partial class Startup
     {
+        public IHostingEnvironment Environment { get; set; }
+
         public IConfigurationRoot Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
+            Environment = env;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -48,7 +54,7 @@ namespace campanhabrinquedo.webapi
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CampanhaBrinquedoContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CampanhaBrinquedoContext dbContext)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -56,7 +62,20 @@ namespace campanhabrinquedo.webapi
             app.UseAuthentication();
             app.UseMvc();
 
-            DbInitializer.Initialize(context);
+            // [Authorize] would usually handle this
+            app.Use(async (context, next) =>
+            {
+                // Use this if there are multiple authentication schemes
+                // var user = await context.Authentication.AuthenticateAsync(JwtBearerDefaults.AuthenticationScheme);
+
+                var user = context.User; // We can do this because of there's only a single authentication scheme
+                if (user?.Identity?.IsAuthenticated ?? false)
+                    await next();
+                else
+                    await context.ChallengeAsync();
+            });
+
+            DbInitializer.Initialize(dbContext);
         }
 
         private void ConfigureAuthentication(IServiceCollection services)
@@ -69,10 +88,34 @@ namespace campanhabrinquedo.webapi
                     options.SaveToken = true;
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        ValidIssuer = Configuration["TokenAuthentication:Issuer"],
-                        ValidAudience = Configuration["TokenAuthentication:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenAuthentication:SecretKey"]))
+                        ValidIssuer = Configuration["Tokens:Issuer"],
+                        ValidAudience = Configuration["Tokens:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
                     };
+                    //options.Events = new JwtBearerEvents
+                    //{
+                    //    OnAuthenticationFailed = c =>
+                    //    {
+                    //        c.NoResult();
+                    //        c.Response.StatusCode = 500;
+                    //        c.Response.ContentType = "text/plain";
+                    //        if (Environment.IsDevelopment())
+                    //            return c.Response.WriteAsync(c.Exception.ToString());
+                    //        return c.Response.WriteAsync("An error occurred processing your authentication.");
+                    //    },
+                    //    OnMessageReceived = c =>
+                    //    {
+                    //        return c.Response.WriteAsync("");
+                    //    },
+                    //    OnChallenge = c =>
+                    //    {
+                    //        return c.Response.WriteAsync("");
+                    //    },
+                    //    OnTokenValidated = c =>
+                    //    {
+                    //        return c.Response.WriteAsync("");
+                    //    }
+                    //};
                 });
         }
 
