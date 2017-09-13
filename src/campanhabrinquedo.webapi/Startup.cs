@@ -12,10 +12,10 @@ using campanhabrinquedo.service.Services;
 using campanhabrinquedo.domain.Repositorios;
 using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System;
 
 namespace campanhabrinquedo.webapi
 {
@@ -82,6 +82,7 @@ namespace campanhabrinquedo.webapi
         {
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddCookie(options => options.SlidingExpiration = true)
                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
@@ -90,32 +91,10 @@ namespace campanhabrinquedo.webapi
                     {
                         ValidIssuer = Configuration["Tokens:Issuer"],
                         ValidAudience = Configuration["Tokens:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero
                     };
-                    //options.Events = new JwtBearerEvents
-                    //{
-                    //    OnAuthenticationFailed = c =>
-                    //    {
-                    //        c.NoResult();
-                    //        c.Response.StatusCode = 500;
-                    //        c.Response.ContentType = "text/plain";
-                    //        if (Environment.IsDevelopment())
-                    //            return c.Response.WriteAsync(c.Exception.ToString());
-                    //        return c.Response.WriteAsync("An error occurred processing your authentication.");
-                    //    },
-                    //    OnMessageReceived = c =>
-                    //    {
-                    //        return c.Response.WriteAsync("");
-                    //    },
-                    //    OnChallenge = c =>
-                    //    {
-                    //        return c.Response.WriteAsync("");
-                    //    },
-                    //    OnTokenValidated = c =>
-                    //    {
-                    //        return c.Response.WriteAsync("");
-                    //    }
-                    //};
                 });
         }
 
