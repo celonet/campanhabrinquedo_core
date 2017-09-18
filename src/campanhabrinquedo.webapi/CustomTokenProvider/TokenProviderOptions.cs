@@ -1,6 +1,5 @@
 using System;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using campanhabrinquedo.domain.Services;
 using Microsoft.IdentityModel.Tokens;

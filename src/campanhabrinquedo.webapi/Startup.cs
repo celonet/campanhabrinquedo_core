@@ -20,7 +20,7 @@ using System;
 namespace campanhabrinquedo.webapi
 {
     public partial class Startup
-    {
+    { 
         public IHostingEnvironment Environment { get; set; }
 
         public IConfigurationRoot Configuration { get; }
@@ -61,19 +61,6 @@ namespace campanhabrinquedo.webapi
 
             app.UseAuthentication();
             app.UseMvc();
-
-            // [Authorize] would usually handle this
-            app.Use(async (context, next) =>
-            {
-                // Use this if there are multiple authentication schemes
-                // var user = await context.Authentication.AuthenticateAsync(JwtBearerDefaults.AuthenticationScheme);
-
-                var user = context.User; // We can do this because of there's only a single authentication scheme
-                if (user?.Identity?.IsAuthenticated ?? false)
-                    await next();
-                else
-                    await context.ChallengeAsync();
-            });
 
             DbInitializer.Initialize(dbContext);
         }
