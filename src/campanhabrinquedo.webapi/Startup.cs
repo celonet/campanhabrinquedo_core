@@ -12,15 +12,21 @@ using campanhabrinquedo.service.Services;
 using campanhabrinquedo.domain.Repositorios;
 using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
+using campanhabrinquedo.webapi.Middleware;
+using Microsoft.Extensions.Options;
 
 namespace campanhabrinquedo.webapi
 {
     public partial class Startup
-    { 
+    {
+        private string _secretKey;
+        private string _issuer;
+        private string _audience;
+        private SymmetricSecurityKey _signingKey;
+
         public IHostingEnvironment Environment { get; set; }
 
         public IConfigurationRoot Configuration { get; }
@@ -35,6 +41,11 @@ namespace campanhabrinquedo.webapi
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            _secretKey = Configuration["TokenAuthentication:SecretKey"];
+            _audience = Configuration["TokenAuthentication:Audience"];
+            _issuer = Configuration["TokenAuthentication:Issuer"];
+            _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secretKey));
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -60,6 +71,13 @@ namespace campanhabrinquedo.webapi
             loggerFactory.AddDebug();
 
             app.UseAuthentication();
+
+            app.UseJWTTokenProviderMiddleware(Options.Create(new TokenProviderOptions
+            {
+                Audience = _audience,
+                Issuer = _issuer,
+                SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256)
+            }));
             app.UseMvc();
 
             DbInitializer.Initialize(dbContext);
@@ -76,9 +94,15 @@ namespace campanhabrinquedo.webapi
                     options.SaveToken = true;
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        ValidIssuer = Configuration["Tokens:Issuer"],
-                        ValidAudience = Configuration["Tokens:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey)),
+
+                        ValidateIssuer = true,
+                        ValidIssuer = _issuer,
+
+                        ValidateAudience = true,
+                        ValidAudience = _audience,
+
                         ValidateLifetime = true,
                         ClockSkew = TimeSpan.Zero
                     };
