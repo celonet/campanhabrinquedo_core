@@ -25,45 +25,51 @@ namespace campanhabrinquedo.webapi.Middleware
         {
             if (!context.Request.Path.Equals(_options.Path, StringComparison.Ordinal))
                 return _next(context);
+
             if (!context.Request.Method.Equals("POST") || !context.Request.HasFormContentType)
             {
                 context.Response.StatusCode = 400;
                 return context.Response.WriteAsync("Bad Request");
             }
+
             return GenerateToken(context);
         }
 
         private async Task GenerateToken(HttpContext context)
         {
-            string username = context.Request.Form["username"];
-            string password = context.Request.Form["password"];
+            var request = context.Request.Form;
+            string username = request["username"];
+            string password = request["password"];
 
             var result = _usuarioService.LogarUsuario(username, password);
-            if (result == false)
+            if (result)
+            {
+                var now = DateTime.UtcNow;
+
+                var jwt = new JwtSecurityToken(
+                    issuer: _options.Issuer,
+                    audience: _options.Audience,
+                    notBefore: now,
+                    expires: now.Add(_options.Expiration),
+                    signingCredentials: _options.SigningCredentials);
+
+                var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+                var response = new
+                {
+                    access_token = encodedJwt,
+                    expires_in = (int)_options.Expiration.TotalSeconds
+                };
+
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+            }
+            else
             {
                 context.Response.StatusCode = 400;
                 await context.Response.WriteAsync("Invalid username or password");
                 return;
             }
-            var now = DateTime.UtcNow;
-
-            var jwt = new JwtSecurityToken(
-                issuer: _options.Issuer,
-                audience: _options.Audience,
-                notBefore: now,
-                expires: now.Add(_options.Expiration),
-                signingCredentials: _options.SigningCredentials);
-
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            var response = new
-            {
-                access_token = encodedJwt,
-                expires_in = (int)_options.Expiration.TotalSeconds
-            };
-
-            context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
         }
     }
 }

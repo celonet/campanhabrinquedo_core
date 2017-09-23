@@ -128,7 +128,7 @@ namespace campanhabrinquedo.webapi
                 .AddTransient<IPadrinhoRepositorio, PadrinhoRepositorio>()
                 .AddTransient<IResponsavelRepositorio, ResponsavelRepositorio>()
                 //services
-                .AddTransient<IUsuarioService, UsuarioService>();
+                .AddScoped<IUsuarioService, UsuarioService>();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace campanhabrinquedo.repositorio
             if (!context.Usuario.Any())
             {
                 var usuario = new Usuario("Marcelo Lopes da Silva", "marcelo.lopesdasilva@gmail.com", "123456");
+                usuario.IncluiDataCadastro();
                 context.Usuario.Add(usuario);
             }
 
