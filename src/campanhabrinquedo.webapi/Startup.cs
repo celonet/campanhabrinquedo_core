@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Text;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,10 +14,8 @@ using campanhabrinquedo.service.Services;
 using campanhabrinquedo.domain.Repositorios;
 using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System;
 using campanhabrinquedo.webapi.Middleware;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 
 namespace campanhabrinquedo.webapi
@@ -128,7 +128,8 @@ namespace campanhabrinquedo.webapi
                 .AddTransient<IPadrinhoRepositorio, PadrinhoRepositorio>()
                 .AddTransient<IResponsavelRepositorio, ResponsavelRepositorio>()
                 //services
-                .AddScoped<IUsuarioService, UsuarioService>();
+                .AddTransient<IUsuarioService, UsuarioService>()
+                .AddTransient<IComunidadeService, ComunidadeService>();
         }
     }
 }

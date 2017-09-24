@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace campanhabrinquedo.webapi.Controllers
 {
+    [Route("api/[controller]")]
     public class ComunidadeController : Controller
     {
         private IComunidadeService _service;
