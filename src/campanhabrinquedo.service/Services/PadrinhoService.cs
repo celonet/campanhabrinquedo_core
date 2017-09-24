@@ -1,4 +1,4 @@
-namespace campanhabrinquedo.service
+namespace campanhabrinquedo.service.Services
 {
     using campanhabrinquedo.domain.Services;
     

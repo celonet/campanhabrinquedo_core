@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace campanhabrinquedo.webapi.Controllers
 {
+    [Route("api/[controller]")]
     public class PadrinhoController : Controller
     {
         private IPadrinhoService _service;

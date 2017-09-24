@@ -19,5 +19,11 @@ namespace campanhabrinquedo.webapi.Controllers
         {
             return _service.ListaComunidades();
         }
+
+        [HttpGet("{id}")]
+        public Comunidade Get(string id)
+        {
+            return null;
+        }
     }
 }

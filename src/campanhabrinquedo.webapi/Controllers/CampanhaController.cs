@@ -7,6 +7,7 @@ using campanhabrinquedo.domain.Services;
 
 namespace campanhabrinquedo.webapi.Controllers
 {
+    [Route("api/[controller]")]
     public class CampanhaController : Controller
     {
         private ICampanhaService _service;
