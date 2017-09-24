@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using campanhabrinquedo.domain.Services;
 
 namespace campanhabrinquedo.webapi.Controllers
 {
     public class CampanhaController : Controller
     {
-        public IActionResult Index()
+        private ICampanhaService _service;
+
+        public CampanhaController(ICampanhaService service)
         {
-            return View();
+            _service = service;
         }
     }
 }
