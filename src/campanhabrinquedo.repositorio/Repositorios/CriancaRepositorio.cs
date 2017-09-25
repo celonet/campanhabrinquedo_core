@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entidades;
 using campanhabrinquedo.domain.Repositorios;
-using campanhabrinquedo.domain.Repositorios.Base;
 
 namespace campanhabrinquedo.repositorio.Repositorios
 {
@@ -15,38 +14,38 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context = context;
         }
 
-        void Delete<Crianca>.Delete(Guid entidadeId)
+        void domain.Actions.Delete<Crianca>.Delete(Guid entidadeId)
         {
             throw new NotImplementedException();
         }
 
-        Crianca Search<Crianca>.FindByExpression(Func<Crianca, bool> expression)
+        Crianca domain.Actions.Search<Crianca>.FindByExpression(Func<Crianca, bool> expression)
         {
             throw new NotImplementedException();
         }
 
-        Crianca Search<Crianca>.FindById(Guid entidadeId)
+        Crianca domain.Actions.Search<Crianca>.FindById(Guid entidadeId)
         {
             throw new NotImplementedException();
         }
 
-        void Insert<Crianca>.Insert(Crianca entidade)
+        void domain.Actions.Insert<Crianca>.Insert(Crianca entidade)
         {
             _context.Crianca.Add(entidade);
             _context.SaveChanges();
         }
 
-        IEnumerable<Crianca> Search<Crianca>.List()
+        IEnumerable<Crianca> domain.Actions.Search<Crianca>.List()
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<Crianca> Search<Crianca>.List(Func<Crianca, bool> expression)
+        IEnumerable<Crianca> domain.Actions.Search<Crianca>.List(Func<Crianca, bool> expression)
         {
             throw new NotImplementedException();
         }
 
-        void Update<Crianca>.Update(Crianca entidade)
+        void domain.Actions.Update<Crianca>.Update(Crianca entidade)
         {
             throw new NotImplementedException();
         }

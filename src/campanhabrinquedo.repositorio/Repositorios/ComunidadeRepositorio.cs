@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entidades;
 using campanhabrinquedo.domain.Repositorios;
-using campanhabrinquedo.domain.Repositorios.Base;
+using campanhabrinquedo.domain.Actions;
 
 namespace campanhabrinquedo.repositorio.Repositorios
 {
@@ -16,7 +16,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context = context;
         }
 
-        void Delete<Comunidade>.Delete(Guid entidadeId)
+        void domain.Actions.Delete<Comunidade>.Delete(Guid entidadeId)
         {
             var comunidade = _context.Comunidade.FirstOrDefault(_ => _.ComunidadeId == entidadeId);
             if (comunidade != null)
@@ -26,33 +26,33 @@ namespace campanhabrinquedo.repositorio.Repositorios
             }
         }
 
-        Comunidade Search<Comunidade>.FindByExpression(Func<Comunidade, bool> expression)
+        Comunidade domain.Actions.Search<Comunidade>.FindByExpression(Func<Comunidade, bool> expression)
         {
             return _context.Comunidade.Find(expression);
         }
 
-        Comunidade Search<Comunidade>.FindById(Guid entidadeId)
+        Comunidade domain.Actions.Search<Comunidade>.FindById(Guid entidadeId)
         {
             return _context.Comunidade.FirstOrDefault(Comunidade => Comunidade.ComunidadeId == entidadeId);
         }
 
-        void Insert<Comunidade>.Insert(Comunidade entidade)
+        void domain.Actions.Insert<Comunidade>.Insert(Comunidade entidade)
         {
             _context.Comunidade.Add(entidade);
             _context.SaveChanges();
         }
 
-        IEnumerable<Comunidade> Search<Comunidade>.List()
+        IEnumerable<Comunidade> domain.Actions.Search<Comunidade>.List()
         {
             return _context.Comunidade;
         }
 
-        IEnumerable<Comunidade> Search<Comunidade>.List(Func<Comunidade, bool> expression)
+        IEnumerable<Comunidade> domain.Actions.Search<Comunidade>.List(Func<Comunidade, bool> expression)
         {
             return _context.Comunidade.Where(expression);
         }
 
-        void Update<Comunidade>.Update(Comunidade entidade)
+        void domain.Actions.Update<Comunidade>.Update(Comunidade entidade)
         {
             _context.Comunidade.Update(entidade);
         }

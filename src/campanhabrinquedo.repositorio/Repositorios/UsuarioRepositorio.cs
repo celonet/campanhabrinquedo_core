@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entidades;
 using campanhabrinquedo.domain.Repositorios;
-using campanhabrinquedo.domain.Repositorios.Base;
 
 namespace campanhabrinquedo.repositorio.Repositorios
 {
@@ -16,7 +15,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context = context;
         }
 
-        void Delete<Usuario>.Delete(Guid entidadeId)
+        void domain.Actions.Delete<Usuario>.Delete(Guid entidadeId)
         {
             var usuario = _context.Usuario.FirstOrDefault(_ => _.UsuarioId == entidadeId);
             if(usuario != null) {
@@ -25,33 +24,33 @@ namespace campanhabrinquedo.repositorio.Repositorios
             }
         }
 
-        Usuario Search<Usuario>.FindByExpression(Func<Usuario, bool> expression)
+        Usuario domain.Actions.Search<Usuario>.FindByExpression(Func<Usuario, bool> expression)
         {
             return _context.Usuario.FirstOrDefault(expression);
         }
 
-        Usuario Search<Usuario>.FindById(Guid entidadeId)
+        Usuario domain.Actions.Search<Usuario>.FindById(Guid entidadeId)
         {
             return _context.Usuario.FirstOrDefault(_ => _.UsuarioId == entidadeId);
         }
 
-        void Insert<Usuario>.Insert(Usuario entidade)
+        void domain.Actions.Insert<Usuario>.Insert(Usuario entidade)
         {
             _context.Usuario.Add(entidade);
             _context.SaveChanges();
         }
 
-        IEnumerable<Usuario> Search<Usuario>.List()
+        IEnumerable<Usuario> domain.Actions.Search<Usuario>.List()
         {
             return _context.Usuario.ToList();
         }
 
-        IEnumerable<Usuario> Search<Usuario>.List(Func<Usuario, bool> expression)
+        IEnumerable<Usuario> domain.Actions.Search<Usuario>.List(Func<Usuario, bool> expression)
         {
             return _context.Usuario.Where(expression);
         }
 
-        void Update<Usuario>.Update(Usuario entidade)
+        void domain.Actions.Update<Usuario>.Update(Usuario entidade)
         {
             _context.Usuario.Update(entidade);
         }

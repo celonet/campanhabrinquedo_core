@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entidades;
 using campanhabrinquedo.domain.Repositorios;
-using campanhabrinquedo.domain.Repositorios.Base;
 
 namespace campanhabrinquedo.repositorio.Repositorios
 {
@@ -16,7 +15,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context = context;
         }
 
-        void Delete<Responsavel>.Delete(Guid entidadeId)
+        void domain.Actions.Delete<Responsavel>.Delete(Guid entidadeId)
         {
             var responsavel = _context.Responsavel.FirstOrDefault(_ => _.ResponsavelId == entidadeId);
             if (responsavel != null)
@@ -26,33 +25,33 @@ namespace campanhabrinquedo.repositorio.Repositorios
             }
         }
 
-        Responsavel Search<Responsavel>.FindByExpression(Func<Responsavel, bool> expression)
+        Responsavel domain.Actions.Search<Responsavel>.FindByExpression(Func<Responsavel, bool> expression)
         {
             return _context.Responsavel.Find(expression);
         }
 
-        Responsavel Search<Responsavel>.FindById(Guid entidadeId)
+        Responsavel domain.Actions.Search<Responsavel>.FindById(Guid entidadeId)
         {
             return _context.Responsavel.FirstOrDefault(_ => _.ResponsavelId == entidadeId);
         }
 
-        void Insert<Responsavel>.Insert(Responsavel entidade)
+        void domain.Actions.Insert<Responsavel>.Insert(Responsavel entidade)
         {
             _context.Responsavel.Add(entidade);
             _context.SaveChanges();
         }
 
-        IEnumerable<Responsavel> Search<Responsavel>.List()
+        IEnumerable<Responsavel> domain.Actions.Search<Responsavel>.List()
         {
             return _context.Responsavel;
         }
 
-        IEnumerable<Responsavel> Search<Responsavel>.List(Func<Responsavel, bool> expression)
+        IEnumerable<Responsavel> domain.Actions.Search<Responsavel>.List(Func<Responsavel, bool> expression)
         {
             return _context.Responsavel.Where(expression);
         }
 
-        void Update<Responsavel>.Update(Responsavel entidade)
+        void domain.Actions.Update<Responsavel>.Update(Responsavel entidade)
         {
             _context.Responsavel.Update(entidade);
         }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entidades;
 using campanhabrinquedo.domain.Repositorios;
-using campanhabrinquedo.domain.Repositorios.Base;
 
 namespace campanhabrinquedo.repositorio.Repositorios
 {
@@ -45,7 +44,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
             throw new NotImplementedException();
         }
 
-        void Insert<Padrinho>.Insert(Padrinho entidade)
+        void domain.Actions.Insert<Padrinho>.Insert(Padrinho entidade)
         {
             _context.Padrinho.Add(entidade);
             _context.SaveChanges();
