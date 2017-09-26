@@ -1,48 +1,84 @@
 namespace campanhabrinquedo.service.Services
 {
     using System;
-    using campanhabrinquedo.domain.Entidades;
-    using campanhabrinquedo.domain.Repositorios;
+    using System.Collections.Generic;
+    using campanhabrinquedo.domain.Entities;
+    using campanhabrinquedo.domain.Repositories;
     using campanhabrinquedo.domain.Services;
 
     public class UsuarioService : IUsuarioService
     {
-        private IUsuarioRepositorio _repositorio;
+        private IUsuarioRepository _repository;
 
-        public UsuarioService(IUsuarioRepositorio repositorio)
+        public UsuarioService(IUsuarioRepository repository)
         {
-            _repositorio = repositorio;
+            _repository = repository;
         }
 
-        void IUsuarioService.AlteraUsuario(Usuario usuario)
+        public void Update(Usuario usuario)
         {
-            _repositorio.Update(usuario);
+            _repository.Update(usuario);
         }
 
-        void IUsuarioService.DeletaUsuario(Guid id)
+        public void Delete(Guid entidadeId)
         {
-            _repositorio.Delete(id);
+            _repository.Delete(entidadeId);
         }
 
-        bool IUsuarioService.LogarUsuario(string login, string senha)
+        public bool LogarUsuario(string login, string senha)
         {
-            return _repositorio.FindByExpression(usuario => usuario.Email == login && usuario.Senha == senha) != null;
+            return _repository.FindByExpression(usuario => usuario.Email == login && usuario.Senha == senha) != null;
         }
 
-        void IUsuarioService.RegistraUsuario(Usuario usuario)
+        public void Insert(Usuario usuario)
         {
             usuario.IncluiDataCadastro();
-            _repositorio.Insert(usuario);
+            _repository.Create(usuario);
         }
 
-        Usuario IUsuarioService.RetornaPerfil(Guid usuarioId)
+        public Usuario FindById(Guid usuarioId)
         {
-            return _repositorio.FindById(usuarioId);
+            return _repository.FindById(usuarioId);
         }
 
-        bool IUsuarioService.UsuarioExiste(Usuario usuario)
+        public bool UsuarioExiste(Usuario usuario)
         {
-            return _repositorio.FindByExpression(_ => _.Nome == usuario.Nome && _.Email == usuario.Email) != null;
+            return _repository.FindByExpression(_ => _.Nome == usuario.Nome && _.Email == usuario.Email) != null;
+        }
+
+        public IEnumerable<Usuario> List()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Usuario> List(Func<Usuario, bool> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario FindByExpression(Func<Usuario, bool> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario RetornaPerfil(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegistraUsuario(Usuario usuario)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AlteraUsuario(Usuario usuario)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeletaUsuario(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

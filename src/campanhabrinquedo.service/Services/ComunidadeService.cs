@@ -1,19 +1,21 @@
 namespace campanhabrinquedo.service.Services
 {
-    using System.Linq;
-    using System.Collections.Generic;
-    using campanhabrinquedo.domain.Entidades;
     using campanhabrinquedo.domain.Services;
-    using campanhabrinquedo.domain.Repositorios;
+    using campanhabrinquedo.domain.Repositories;
+    using campanhabrinquedo.domain.Entities;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class ComunidadeService : IComunidadeService
     {
-        private IComunidadeRepositorio _repository;
-        public ComunidadeService(IComunidadeRepositorio repository)
+        private IComunidadeRepository _repository;
+
+        public ComunidadeService(IComunidadeRepository repository)
         {
             _repository = repository;
         }
-        List<Comunidade> IComunidadeService.ListaComunidades()
+
+        public List<Comunidade> ListaComunidades()
         {
             return _repository.List().ToList();
         }

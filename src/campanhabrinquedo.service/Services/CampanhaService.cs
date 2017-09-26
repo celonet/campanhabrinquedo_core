@@ -1,9 +1,15 @@
+using campanhabrinquedo.domain.Services;
+using campanhabrinquedo.domain.Repositories;
+
 namespace campanhabrinquedo.service.Services
 {
-    using campanhabrinquedo.domain.Services;
-
     public class CampanhaService : ICampanhaService
     {
+        private ICampanhaRepository _repositorio;
 
+        public CampanhaService(ICampanhaRepository repositorio)
+        {
+            _repositorio = repositorio;
+        }
     }
 }

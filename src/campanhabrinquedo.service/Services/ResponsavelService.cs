@@ -4,6 +4,6 @@ namespace campanhabrinquedo.service.Services
 
     public class ResponsavelService : IResponsavelService
     {
-        
+      
     }
 }
