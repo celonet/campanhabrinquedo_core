@@ -1,6 +1,6 @@
 namespace campanhabrinquedo.tests
 {       
-    using campanhabrinquedo.domain.Entidades;
+    using campanhabrinquedo.domain.Entities;
     using FluentAssertions;
     using System;
     using Xunit;

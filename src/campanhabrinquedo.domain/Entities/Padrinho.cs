@@ -1,9 +1,8 @@
-namespace campanhabrinquedo.domain.Entidades
+namespace campanhabrinquedo.domain.Entities
 {
     using System;
-    public class Padrinho
+    public class Padrinho : EntitieBase
     {
-        public Guid PadrinhoId { get; private set; }
         public string Nome { get; private set; }
         public Comunidade Comunidade { get; private set; }
         public string Telefone { get; private set; }
@@ -13,7 +12,7 @@ namespace campanhabrinquedo.domain.Entidades
 
         public Padrinho(string nome, Comunidade comunidade, string telefone, string celular)
         {
-            this.PadrinhoId = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
             this.Nome = nome;
             this.Comunidade = comunidade;
             this.Telefone = telefone;

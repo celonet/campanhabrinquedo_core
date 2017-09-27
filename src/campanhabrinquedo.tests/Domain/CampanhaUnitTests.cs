@@ -1,4 +1,4 @@
-using campanhabrinquedo.domain.Entidades;
+using campanhabrinquedo.domain.Entities;
 using System;
 using Xunit;
 using FluentAssertions;

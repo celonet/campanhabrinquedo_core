@@ -1,10 +1,9 @@
-namespace campanhabrinquedo.domain.Entidades
+namespace campanhabrinquedo.domain.Entities
 {
     using System;
 
-    public class Usuario
+    public class Usuario : EntitieBase
     {
-        public Guid UsuarioId { get; private set; }
         public string Nome { get; private set; }
         public string Email { get; private set; }
         public string Senha { get; private set; }
@@ -14,7 +13,7 @@ namespace campanhabrinquedo.domain.Entidades
 
         public Usuario(string nome, string email, string senha)
         {
-            this.UsuarioId = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
@@ -22,7 +21,7 @@ namespace campanhabrinquedo.domain.Entidades
 
         public Usuario(Guid id, string nome, string email, string senha)
         {
-            this.UsuarioId = id;
+            this.Id = id;
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;

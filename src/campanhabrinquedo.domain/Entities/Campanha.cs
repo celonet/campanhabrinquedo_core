@@ -1,10 +1,9 @@
 using System;
 
-namespace campanhabrinquedo.domain.Entidades
+namespace campanhabrinquedo.domain.Entities
 {
-    public class Campanha
+    public class Campanha : EntitieBase
     {
-        public Guid CampanhaId { get; private set; }
         public int Ano { get; private set; }
         public string Descricao { get; private set; }
         public int QtdeCriancas { get; private set; }
@@ -13,6 +12,7 @@ namespace campanhabrinquedo.domain.Entidades
 
         public Campanha(int ano, string descricao, int qtdeCriancas)
         {
+            this.Id = Guid.NewGuid();
             this.Ano = ano;
             this.Descricao = descricao;
             this.QtdeCriancas = qtdeCriancas;

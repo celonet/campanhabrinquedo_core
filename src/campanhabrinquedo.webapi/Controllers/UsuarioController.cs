@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using campanhabrinquedo.domain.Entidades;
+using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Services;
-using campanhabrinquedo.repositorio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,33 +17,39 @@ namespace campanhabrinquedo.webapi.Controllers
         }
 
         [HttpGet("{id}")]
-        public Usuario Get(Guid id)
+        public IActionResult Get(Guid id)
         {
-            return _service.RetornaPerfil(id);
+            var usuario = _service.RetornaPerfil(id);
+            if(usuario != null)
+                return new ObjectResult(usuario);
+            
+            return NotFound();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public ObjectResult Post([FromBody]Usuario usuario)
+        public IActionResult Post([FromBody]Usuario usuario)
         {
             if (_service.UsuarioExiste(usuario))
                 return BadRequest("Usuario já existe");
             
             _service.RegistraUsuario(usuario);
             
-            return Ok("Ok");
+            return Ok();
         }
 
         [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody]Usuario usuario)
+        public IActionResult Put(Guid id, [FromBody]Usuario usuario)
         {
             _service.AlteraUsuario(usuario);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
             _service.DeletaUsuario(id);
+            return Ok();
         }
     }
 }

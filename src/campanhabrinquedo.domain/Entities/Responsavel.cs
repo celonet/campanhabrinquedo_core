@@ -1,9 +1,9 @@
-namespace campanhabrinquedo.domain.Entidades
-{
-    using System;
-    public class Responsavel
+using System;
+
+namespace campanhabrinquedo.domain.Entities
+{    
+    public class Responsavel : EntitieBase
     {
-        public Guid ResponsavelId { get; private set; }
         public string Nome { get; private set; }
         public string RG { get; private set; }
 
@@ -11,7 +11,7 @@ namespace campanhabrinquedo.domain.Entidades
 
         public Responsavel(string nome, string rg)
         {
-            this.ResponsavelId = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
             this.Nome = nome;
             this.RG = rg;
         }

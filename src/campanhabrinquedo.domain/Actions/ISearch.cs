@@ -1,14 +1,13 @@
-namespace campanhabrinquedo.domain.Repositorios.Base
+namespace campanhabrinquedo.domain.Actions
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq.Expressions;
-    
-    public interface Search<T> where T : class
+
+    public interface ISearch<T> where T : Entities.EntitieBase
     {
          IEnumerable<T> List();
          IEnumerable<T> List(Func<T, bool> expression);
-         T FindById(Guid entidadeId);
+         T FindById(Guid id);
          T FindByExpression(Func<T, bool> expression);
     }
 }

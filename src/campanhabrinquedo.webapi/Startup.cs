@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using campanhabrinquedo.repositorio;
 using campanhabrinquedo.service.Services;
-using campanhabrinquedo.domain.Repositorios;
 using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
 using campanhabrinquedo.webapi.Middleware;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
+using campanhabrinquedo.domain.Repositories;
 
 namespace campanhabrinquedo.webapi
 {
@@ -87,7 +87,6 @@ namespace campanhabrinquedo.webapi
         {
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddCookie(options => options.SlidingExpiration = true)
                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
@@ -122,11 +121,11 @@ namespace campanhabrinquedo.webapi
         {
             services
                 //repositorios
-                .AddTransient<IUsuarioRepositorio, UsuarioRepositorio>()
-                .AddTransient<IComunidadeRepositorio, ComunidadeRepositorio>()
-                .AddTransient<ICriancaRepositorio, CriancaRepositorio>()
-                .AddTransient<IPadrinhoRepositorio, PadrinhoRepositorio>()
-                .AddTransient<IResponsavelRepositorio, ResponsavelRepositorio>()
+                .AddTransient<IUsuarioRepository, UsuarioRepository>()
+                .AddTransient<IComunidadeRepository, ComunidadeRepository>()
+                .AddTransient<ICriancaRepository, CriancaRepository>()
+                .AddTransient<IPadrinhoRepository, PadrinhoRepository>()
+                .AddTransient<IResponsavelRepository, ResponsavelRepository>()
                 //services
                 .AddTransient<IUsuarioService, UsuarioService>()
                 .AddTransient<IComunidadeService, ComunidadeService>()

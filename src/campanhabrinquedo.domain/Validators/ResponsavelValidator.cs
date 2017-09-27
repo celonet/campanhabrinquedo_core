@@ -1,9 +1,8 @@
 namespace campanhabrinquedo.domain.Validators
 {
-    using campanhabrinquedo.domain.Entidades;
+    using campanhabrinquedo.domain.Entities;
     using FluentValidation;
-    using System;
-    
+
     public class ResponsavelValidator : AbstractValidator<Responsavel>
     {
         public ResponsavelValidator()

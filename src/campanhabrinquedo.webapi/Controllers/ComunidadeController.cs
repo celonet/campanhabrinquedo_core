@@ -1,7 +1,6 @@
-using campanhabrinquedo.domain.Entidades;
 using campanhabrinquedo.domain.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 
 namespace campanhabrinquedo.webapi.Controllers
 {
@@ -15,15 +14,23 @@ namespace campanhabrinquedo.webapi.Controllers
             _service = service;
         }
 
-        public List<Comunidade> Get()
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            return _service.ListaComunidades();
+            var comunidades = _service.ListaComunidades();
+            if(comunidades.Count > 0)
+                return new ObjectResult(comunidades);            
+            return NotFound();
         }
 
         [HttpGet("{id}")]
-        public Comunidade Get(string id)
+        public IActionResult Get(Guid id)
         {
-            return null;
+            var comunidade = _service.RetornaComunidadePorId(id);
+            if(comunidade != null)
+                return new ObjectResult(comunidade);
+            
+            return NotFound();
         }
     }
 }

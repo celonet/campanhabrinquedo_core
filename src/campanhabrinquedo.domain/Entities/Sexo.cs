@@ -1,4 +1,4 @@
-namespace campanhabrinquedo.domain.Entidades
+namespace campanhabrinquedo.domain.Entities
 {
     public enum Sexo
     {

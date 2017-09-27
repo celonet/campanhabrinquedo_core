@@ -5,6 +5,7 @@ namespace campanhabrinquedo.service.Services
     using campanhabrinquedo.domain.Entities;
     using System.Collections.Generic;
     using System.Linq;
+    using System;
 
     public class ComunidadeService : IComunidadeService
     {
@@ -18,6 +19,11 @@ namespace campanhabrinquedo.service.Services
         public List<Comunidade> ListaComunidades()
         {
             return _repository.List().ToList();
+        }
+
+        public Comunidade RetornaComunidadePorId(Guid id)
+        {
+            return _repository.FindById(id);
         }
     }
 }

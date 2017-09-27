@@ -1,7 +1,7 @@
 namespace campanhabrinquedo.tests.Validators
 {
     using Xunit;
-    using campanhabrinquedo.domain.Entidades;
+    using campanhabrinquedo.domain.Entities;
     using campanhabrinquedo.domain.Validators;
     using FluentValidation.TestHelper;
 
