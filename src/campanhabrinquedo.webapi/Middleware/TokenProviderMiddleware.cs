@@ -37,9 +37,15 @@ namespace campanhabrinquedo.webapi.Middleware
 
         private async Task GenerateToken(HttpContext context)
         {
-            var request = context.Request.Form;
-            string username = request["username"];
-            string password = request["password"];
+            string username = context.Request.Form["username"];
+            string password = context.Request.Form["password"];
+
+            if (string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(password))
+            {
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync("Invalid username or password");
+                return;
+            }
 
             var result = _usuarioService.LogarUsuario(username, password);
             if (result)
