@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace campanhabrinquedo.repositorio.Repositorios
 {
@@ -23,7 +24,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public void Delete(Guid id)
         {
-            var comunidade = _context.Comunidade.FirstOrDefault(_ => _.Id == id);
+            var comunidade = _context.Comunidade.Find(id);
             if (comunidade != null)
             {
                 _context.Comunidade.Remove(comunidade);
@@ -33,12 +34,12 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public Comunidade FindByExpression(Func<Comunidade, bool> expression)
         {
-            return _context.Comunidade.Find(expression);
+            return _context.Comunidade.FirstOrDefault(expression);
         }
 
         public Comunidade FindById(Guid id)
         {
-            return _context.Comunidade.FirstOrDefault(Comunidade => Comunidade.Id == id);
+            return _context.Comunidade.Find(id);
         }
 
         public IEnumerable<Comunidade> List()
@@ -53,8 +54,16 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public void Update(Comunidade entidade)
         {
-            _context.Comunidade.Update(entidade);
-            _context.SaveChanges();
+            try
+            {
+                _context.Attach(entidade);
+                _context.Entry(entidade).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

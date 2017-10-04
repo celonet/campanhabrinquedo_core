@@ -20,9 +20,9 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Get(Guid id)
         {
             var usuario = _service.RetornaPerfil(id);
-            if(usuario != null)
+            if (usuario != null)
                 return new ObjectResult(usuario);
-            
+
             return NotFound();
         }
 
@@ -32,10 +32,10 @@ namespace campanhabrinquedo.webapi.Controllers
         {
             if (_service.UsuarioExiste(usuario))
                 return BadRequest("Usuario já existe");
-            
+
             _service.RegistraUsuario(usuario);
-            
-            return Ok();
+
+            return Created(new Uri(Url.Link("Usuario", new { id = usuario.Id })), new { id = usuario.Id });
         }
 
         [HttpPut("{id}")]

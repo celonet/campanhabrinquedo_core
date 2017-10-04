@@ -25,5 +25,30 @@ namespace campanhabrinquedo.service.Services
         {
             return _repository.FindById(id);
         }
+
+        public bool InsereComunidade(Comunidade comunidade)
+        {
+            if (!ExisteComunidade(comunidade))
+            {
+                _repository.Create(comunidade);
+                return true;
+            }
+            return false;
+        }
+
+        private bool ExisteComunidade(Comunidade comunidade)
+        {
+            return _repository.FindByExpression(_ => _.Nome == comunidade.Nome && _.Bairro == comunidade.Bairro) != null;
+        }
+
+        public void AlteraComunidade(Comunidade comunidade)
+        {
+            _repository.Update(comunidade);
+        }
+
+        public void DeletaComunidade(Guid id)
+        {
+            _repository.Delete(id);
+        }
     }
 }

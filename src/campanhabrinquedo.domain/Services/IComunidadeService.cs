@@ -8,5 +8,8 @@ namespace campanhabrinquedo.domain.Services
     {
         List<Comunidade> ListaComunidades();
         Comunidade RetornaComunidadePorId(Guid id);
+        bool InsereComunidade(Comunidade comunidade);
+        void AlteraComunidade(Comunidade comunidade);
+        void DeletaComunidade(Guid id);
     }
 }

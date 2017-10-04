@@ -133,6 +133,7 @@ namespace campanhabrinquedo.webapi
                 .AddTransient<ICampanhaService, CampanhaService>()
                 .AddTransient<IPadrinhoService, PadrinhoService>()
                 .AddTransient<IResponsavelService, ResponsavelService>();
+
         }
     }
 }
