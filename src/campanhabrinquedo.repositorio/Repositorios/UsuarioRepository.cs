@@ -29,7 +29,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public void Delete(Guid id)
         {
-            var usuario = _context.Usuario.FirstOrDefault(_ => _.Id == id);
+            var usuario = _context.Usuario.Find(id);
             if (usuario != null)
             {
                 _context.Usuario.Remove(usuario);
@@ -44,7 +44,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public Usuario FindById(Guid id)
         {
-            return _context.Usuario.FirstOrDefault(_ => _.Id == id);
+            return _context.Usuario.Find(id);
         }
 
         public IEnumerable<Usuario> List()

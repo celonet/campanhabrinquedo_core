@@ -16,9 +16,21 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context = context;
         }
 
+        public void Create(Padrinho entitie)
+        {
+            _context.Padrinho.Add(entitie);
+            _context.SaveChanges();
+        }
+
+        public void Update(Padrinho entidade)
+        {
+            _context.Padrinho.Update(entidade);
+            _context.SaveChanges();
+        }
+
         public void Delete(Guid id)
         {
-            var padrinho = _context.Padrinho.FirstOrDefault(_ => _.Id == id);
+            var padrinho = _context.Padrinho.Find(id);
             if (padrinho != null)
             {
                 _context.Remove(padrinho);
@@ -33,7 +45,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public Padrinho FindById(Guid id)
         {
-            return _context.Padrinho.FirstOrDefault(_ => _.Id == id);
+            return _context.Padrinho.Find(id);
         }
 
         public IEnumerable<Padrinho> List()
@@ -44,23 +56,6 @@ namespace campanhabrinquedo.repositorio.Repositorios
         public IEnumerable<Padrinho> List(Func<Padrinho, bool> expression)
         {
             return _context.Padrinho.Where(expression);
-        }
-
-        public void Update(Padrinho entidade)
-        {
-            _context.Padrinho.Update(entidade);
-            _context.SaveChanges();
-        }
-
-        void Create(Padrinho entitie)
-        {
-            _context.Padrinho.Add(entitie);
-            _context.SaveChanges();
-        }
-
-        void ICreate<Padrinho>.Create(Padrinho entitie)
-        {
-            throw new NotImplementedException();
         }
     }
 }

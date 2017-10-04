@@ -21,9 +21,15 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context.SaveChanges();
         }
 
+        public void Update(Crianca entidade)
+        {
+            _context.Crianca.Update(entidade);
+            _context.SaveChanges();
+        }
+
         public void Delete(Guid id)
         {
-            var crianca = _context.Crianca.FirstOrDefault(_ => _.Id == id);
+            var crianca = _context.Crianca.Find(id);
             if (crianca != null)
             {
                 _context.Crianca.Remove(crianca);
@@ -38,7 +44,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public Crianca FindById(Guid entidadeId)
         {
-            return _context.Crianca.FirstOrDefault(_ => _.Id == entidadeId);
+            return _context.Crianca.Find(entidadeId);
         }
 
         public IEnumerable<Crianca> List()
@@ -49,12 +55,6 @@ namespace campanhabrinquedo.repositorio.Repositorios
         public IEnumerable<Crianca> List(Func<Crianca, bool> expression)
         {
             return _context.Crianca.Where(expression);
-        }
-
-        public void Update(Crianca entidade)
-        {
-            _context.Crianca.Update(entidade);
-            _context.SaveChanges();
         }
     }
 }

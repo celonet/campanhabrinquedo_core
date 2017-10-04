@@ -22,6 +22,20 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context.SaveChanges();
         }
 
+        public void Update(Comunidade entidade)
+        {
+            try
+            {
+                _context.Attach(entidade);
+                _context.Entry(entidade).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public void Delete(Guid id)
         {
             var comunidade = _context.Comunidade.Find(id);
@@ -50,20 +64,6 @@ namespace campanhabrinquedo.repositorio.Repositorios
         public IEnumerable<Comunidade> List(Func<Comunidade, bool> expression)
         {
             return _context.Comunidade.Where(expression);
-        }
-
-        public void Update(Comunidade entidade)
-        {
-            try
-            {
-                _context.Attach(entidade);
-                _context.Entry(entidade).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-            }
         }
     }
 }

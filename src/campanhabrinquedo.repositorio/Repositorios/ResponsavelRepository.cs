@@ -29,7 +29,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public void Delete(Guid id)
         {
-            var responsavel = _context.Responsavel.FirstOrDefault(_ => _.Id == id);
+            var responsavel = _context.Responsavel.Find(id);
             if (responsavel != null)
             {
                 _context.Responsavel.Remove(responsavel);
@@ -39,12 +39,12 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public Responsavel FindByExpression(Func<Responsavel, bool> expression)
         {
-            return _context.Responsavel.Find(expression);
+            return _context.Responsavel.FirstOrDefault(expression);
         }
 
         public Responsavel FindById(Guid id)
         {
-            return _context.Responsavel.FirstOrDefault(_ => _.Id == id);
+            return _context.Responsavel.Find(id);
         }
 
         public IEnumerable<Responsavel> List()

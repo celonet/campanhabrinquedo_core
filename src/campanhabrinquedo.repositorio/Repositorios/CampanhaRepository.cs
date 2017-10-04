@@ -21,10 +21,16 @@ namespace campanhabrinquedo.repositorio.Repositorios
             _context.SaveChanges();
         }
 
+        public void Update(Campanha entidade)
+        {
+            _context.Campanha.Update(entidade);
+            _context.SaveChanges();
+        }
+
         public void Delete(Guid entidadeId)
         {
-            var campanha = _context.Campanha.FirstOrDefault(_ => _.Id == entidadeId);
-            if(campanha != null)
+            var campanha = _context.Campanha.Find(entidadeId);
+            if (campanha != null)
             {
                 _context.Campanha.Remove(campanha);
                 _context.SaveChanges();
@@ -38,7 +44,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
 
         public Campanha FindById(Guid entidadeId)
         {
-            return _context.Campanha.FirstOrDefault(campanha => campanha.Id == entidadeId);
+            return _context.Campanha.Find(entidadeId);
         }
 
         public IEnumerable<Campanha> List()
@@ -49,12 +55,6 @@ namespace campanhabrinquedo.repositorio.Repositorios
         public IEnumerable<Campanha> List(Func<Campanha, bool> expression)
         {
             return _context.Campanha.Where(expression);
-        }
-
-        public void Update(Campanha entidade)
-        {
-            _context.Campanha.Update(entidade);
-            _context.SaveChanges();
         }
     }
 }
