@@ -14,7 +14,7 @@ namespace campanhabrinquedo.domain.Entities
 
         protected Crianca() { }
 
-        public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool Impresso, bool especial)
+        public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool impresso, bool especial)
         {
             this.Id = Guid.NewGuid();
             this.Nome = nome;
@@ -22,7 +22,7 @@ namespace campanhabrinquedo.domain.Entities
             this.Sexo = sexo;
             this.Comunidade = comunidade;
             this.Responsavel = responsavel;
-            this.Impresso = Impresso;
+            this.Impresso = impresso;
             this.Especial = especial;
         }
 

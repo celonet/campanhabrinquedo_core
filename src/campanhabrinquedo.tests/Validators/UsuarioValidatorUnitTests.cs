@@ -1,14 +1,14 @@
 namespace campanhabrinquedo.tests.Validators
 {
     using Xunit;
-    using campanhabrinquedo.domain.Entities;
-    using campanhabrinquedo.domain.Validators;
+    using domain.Entities;
+    using domain.Validators;
     using FluentValidation.TestHelper;
 
     public class UsuarioValidatorUnitTests
     {
-        private UsuarioValidator _validator;
-        private Usuario _usuario;
+        private readonly UsuarioValidator _validator;
+        private readonly Usuario _usuario;
 
         public UsuarioValidatorUnitTests()
         {

@@ -11,16 +11,17 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using campanhabrinquedo.service.Services;
 using campanhabrinquedo.domain.Services;
-using campanhabrinquedo.webapi.Middleware;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.repository;
 using campanhabrinquedo.repository.Repositories;
+using campanhabrinquedo.webapi.Extensions;
+using campanhabrinquedo.webapi.Model;
 
 namespace campanhabrinquedo.webapi
 {
-    public partial class Startup
+    public class Startup
     {
         private readonly string _secretKey;
         private readonly string _issuer;

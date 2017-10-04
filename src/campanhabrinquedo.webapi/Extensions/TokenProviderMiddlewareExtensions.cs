@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using campanhabrinquedo.webapi.Middleware;
+using campanhabrinquedo.webapi.Model;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 
-namespace campanhabrinquedo.webapi.Middleware
+namespace campanhabrinquedo.webapi.Extensions
 {
     public static class TokenProviderMiddlewareExtensions
     {
