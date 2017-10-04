@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace campanhabrinquedo.repositorio.Migrations
+namespace campanhabrinquedo.repository.Migrations
 {
     public partial class Refactor : Migration
     {
