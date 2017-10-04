@@ -1,7 +1,7 @@
-using Microsoft.EntityFrameworkCore;
 using campanhabrinquedo.domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace campanhabrinquedo.repositorio
+namespace campanhabrinquedo.repository
 {
     public class CampanhaBrinquedoContext : DbContext
     {
@@ -12,27 +12,51 @@ namespace campanhabrinquedo.repositorio
         public DbSet<Responsavel> Responsavel { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
-        public CampanhaBrinquedoContext(DbContextOptions<CampanhaBrinquedoContext> options) : base(options) { }
+        public CampanhaBrinquedoContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Campanha>().ToTable("Campanha");
-            modelBuilder.Entity<Campanha>().HasKey(c => c.Id);
+            modelBuilder.Entity<Campanha>()
+                .ToTable("Campanha")
+                .HasKey(c => c.Id);
 
-            modelBuilder.Entity<Usuario>().ToTable("Usuario");
-            modelBuilder.Entity<Usuario>().HasKey(c => c.Id);
+            modelBuilder.Entity<Campanha>()
+                .Property(_ => _.DataCadastro).IsRequired();
 
-            modelBuilder.Entity<Comunidade>().ToTable("Comunidade");
-            modelBuilder.Entity<Comunidade>().HasKey(c => c.Id);
+            modelBuilder.Entity<Usuario>()
+                .ToTable("Usuario")
+                .HasKey(c => c.Id);
 
-            modelBuilder.Entity<Crianca>().ToTable("Crianca");
-            modelBuilder.Entity<Crianca>().HasKey(c => c.Id);
+            modelBuilder.Entity<Usuario>()
+                .Property(_ => _.DataCadastro).IsRequired();
 
-            modelBuilder.Entity<Padrinho>().ToTable("Padrinho");
-            modelBuilder.Entity<Padrinho>().HasKey(c => c.Id);
+            modelBuilder.Entity<Comunidade>()
+                .ToTable("Comunidade")
+                .HasKey(c => c.Id);
 
-            modelBuilder.Entity<Responsavel>().ToTable("Responsavel");
-            modelBuilder.Entity<Responsavel>().HasKey(c => c.Id);
+            modelBuilder.Entity<Comunidade>()
+                .Property(_ => _.DataCadastro).IsRequired();
+
+            modelBuilder.Entity<Crianca>()
+                .ToTable("Crianca")
+                .HasKey(c => c.Id);
+
+            modelBuilder.Entity<Crianca>()
+                .Property(_ => _.DataCadastro).IsRequired();
+
+            modelBuilder.Entity<Padrinho>()
+                .ToTable("Padrinho")
+                .HasKey(c => c.Id);
+
+            modelBuilder.Entity<Padrinho>()
+                .Property(_ => _.DataCadastro).IsRequired();
+
+            modelBuilder.Entity<Responsavel>()
+                .ToTable("Responsavel")
+                .HasKey(c => c.Id);
+
+            modelBuilder.Entity<Responsavel>()
+                .Property(_ => _.DataCadastro).IsRequired();
         }
     }
 }

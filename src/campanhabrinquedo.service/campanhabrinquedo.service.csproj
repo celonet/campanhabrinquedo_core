@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\campanhabrinquedo.domain\campanhabrinquedo.domain.csproj" />
-    <ProjectReference Include="..\campanhabrinquedo.repositorio\campanhabrinquedo.repository.csproj" />
+    <ProjectReference Include="..\campanhabrinquedo.repository\campanhabrinquedo.repository.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
