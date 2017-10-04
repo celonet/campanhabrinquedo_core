@@ -1,12 +1,12 @@
-namespace campanhabrinquedo.tests
-{
-    using campanhabrinquedo.domain.Entidades;
-    using FluentAssertions;
-    using Xunit;
+using campanhabrinquedo.domain.Entities;
+using FluentAssertions;
+using Xunit;
 
+namespace campanhabrinquedo.tests.Domain
+{
     public class CriancaUnitTests
     {
-        private Crianca _crianca;
+        private readonly Crianca _crianca;
 
         public CriancaUnitTests()
         {

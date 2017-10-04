@@ -1,48 +1,48 @@
 namespace campanhabrinquedo.service.Services
 {
     using System;
-    using campanhabrinquedo.domain.Entidades;
-    using campanhabrinquedo.domain.Repositorios;
-    using campanhabrinquedo.domain.Services;
+    using domain.Entities;
+    using domain.Repositories;
+    using domain.Services;
 
     public class UsuarioService : IUsuarioService
     {
-        private IUsuarioRepositorio _repositorio;
+        private readonly IUsuarioRepository _repository;
 
-        public UsuarioService(IUsuarioRepositorio repositorio)
+        public UsuarioService(IUsuarioRepository repository)
         {
-            _repositorio = repositorio;
+            _repository = repository;
         }
 
-        void IUsuarioService.AlteraUsuario(Usuario usuario)
+        public bool LogarUsuario(string login, string senha)
         {
-            _repositorio.Update(usuario);
+            return _repository.FindByExpression(usuario => usuario.Email == login && usuario.Senha == senha) != null;
         }
 
-        void IUsuarioService.DeletaUsuario(Guid id)
+        public bool UsuarioExiste(Usuario usuario)
         {
-            _repositorio.Delete(id);
+            return _repository.FindByExpression(_ => _.Nome == usuario.Nome && _.Email == usuario.Email) != null;
         }
 
-        bool IUsuarioService.LogarUsuario(string login, string senha)
+        public Usuario RetornaPerfil(Guid usuarioId)
         {
-            return _repositorio.FindByExpression(usuario => usuario.Email == login && usuario.Senha == senha) != null;
+            return _repository.FindById(usuarioId);
         }
 
-        void IUsuarioService.RegistraUsuario(Usuario usuario)
+        public void RegistraUsuario(Usuario usuario)
         {
             usuario.IncluiDataCadastro();
-            _repositorio.Insert(usuario);
+            _repository.Create(usuario);
         }
 
-        Usuario IUsuarioService.RetornaPerfil(Guid usuarioId)
+        public void AlteraUsuario(Usuario usuario)
         {
-            return _repositorio.FindById(usuarioId);
+            _repository.Update(usuario);
         }
 
-        bool IUsuarioService.UsuarioExiste(Usuario usuario)
+        public void DeletaUsuario(Guid usuarioId)
         {
-            return _repositorio.FindByExpression(_ => _.Nome == usuario.Nome && _.Email == usuario.Email) != null;
+            _repository.Delete(usuarioId);
         }
     }
 }

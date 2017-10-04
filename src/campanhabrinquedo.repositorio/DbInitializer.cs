@@ -1,8 +1,8 @@
-using campanhabrinquedo.domain.Entidades;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using campanhabrinquedo.domain.Entities;
 
-namespace campanhabrinquedo.repositorio
+namespace campanhabrinquedo.repository
 {
     public static class DbInitializer
     {

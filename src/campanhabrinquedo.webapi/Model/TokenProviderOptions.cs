@@ -1,7 +1,7 @@
-using Microsoft.IdentityModel.Tokens;
 using System;
+using Microsoft.IdentityModel.Tokens;
 
-namespace campanhabrinquedo.webapi.Middleware
+namespace campanhabrinquedo.webapi.Model
 {   
     public class TokenProviderOptions
     {

@@ -1,9 +1,9 @@
 namespace campanhabrinquedo.service.Services
 {
-    using campanhabrinquedo.domain.Services;
+    using domain.Services;
 
     public class ResponsavelService : IResponsavelService
     {
-        
+      
     }
 }

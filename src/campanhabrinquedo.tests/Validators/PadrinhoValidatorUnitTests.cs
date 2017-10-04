@@ -1,14 +1,14 @@
 namespace campanhabrinquedo.tests.Validators
 {
     using Xunit;
-    using campanhabrinquedo.domain.Entidades;
-    using campanhabrinquedo.domain.Validators;
+    using domain.Entities;
+    using domain.Validators;
     using FluentValidation.TestHelper;
 
     public class PadrinhoValidatorUnitTests
     {
-        private PadrinhoValidator _validator;
-        private Padrinho _padrinho;
+        private readonly PadrinhoValidator _validator;
+        private readonly Padrinho _padrinho;
 
         public PadrinhoValidatorUnitTests()
         {

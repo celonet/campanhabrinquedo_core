@@ -1,9 +1,9 @@
-using campanhabrinquedo.domain.Entidades;
 using System;
-using Xunit;
+using campanhabrinquedo.domain.Entities;
 using FluentAssertions;
+using Xunit;
 
-namespace campanhabrinquedo.tests
+namespace campanhabrinquedo.tests.Domain
 {
     public class CampanhaUnitTests
     {

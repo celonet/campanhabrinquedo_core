@@ -1,6 +1,6 @@
 namespace campanhabrinquedo.domain.Validators
 {
-    using campanhabrinquedo.domain.Entidades;
+    using Entities;
     using FluentValidation;
     using System;
 

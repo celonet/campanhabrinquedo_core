@@ -1,7 +1,6 @@
 namespace campanhabrinquedo.domain.Validators
 {
-    using System;
-    using campanhabrinquedo.domain.Entidades;
+    using Entities;
     using FluentValidation;
 
     public class ComunidadeValidator : AbstractValidator<Comunidade>
