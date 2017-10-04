@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
+using campanhabrinquedo.repository;
 
 namespace campanhabrinquedo.repositorio.Migrations
 {

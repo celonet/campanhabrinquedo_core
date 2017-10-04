@@ -8,13 +8,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
-using campanhabrinquedo.repository;
 
 namespace campanhabrinquedo.repositorio.Migrations
 {
     [DbContext(typeof(CampanhaBrinquedoContext))]
-    [Migration("20170923164144_Initial")]
-    partial class Initial
+    [Migration("20170927032622_Refactor")]
+    partial class Refactor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +22,9 @@ namespace campanhabrinquedo.repositorio.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Campanha", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Campanha", b =>
                 {
-                    b.Property<Guid>("CampanhaId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("Ano");
@@ -34,28 +33,28 @@ namespace campanhabrinquedo.repositorio.Migrations
 
                     b.Property<int>("QtdeCriancas");
 
-                    b.HasKey("CampanhaId");
+                    b.HasKey("Id");
 
                     b.ToTable("Campanha");
                 });
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Comunidade", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Comunidade", b =>
                 {
-                    b.Property<Guid>("ComunidadeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Bairro");
 
                     b.Property<string>("Nome");
 
-                    b.HasKey("ComunidadeId");
+                    b.HasKey("Id");
 
                     b.ToTable("Comunidade");
                 });
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Crianca", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Crianca", b =>
                 {
-                    b.Property<Guid>("CriancaId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid?>("ComunidadeId");
@@ -72,7 +71,7 @@ namespace campanhabrinquedo.repositorio.Migrations
 
                     b.Property<int>("Sexo");
 
-                    b.HasKey("CriancaId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ComunidadeId");
 
@@ -81,9 +80,9 @@ namespace campanhabrinquedo.repositorio.Migrations
                     b.ToTable("Crianca");
                 });
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Padrinho", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Padrinho", b =>
                 {
-                    b.Property<Guid>("PadrinhoId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Celular");
@@ -94,30 +93,30 @@ namespace campanhabrinquedo.repositorio.Migrations
 
                     b.Property<string>("Telefone");
 
-                    b.HasKey("PadrinhoId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ComunidadeId");
 
                     b.ToTable("Padrinho");
                 });
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Responsavel", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Responsavel", b =>
                 {
-                    b.Property<Guid>("ResponsavelId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Nome");
 
                     b.Property<string>("RG");
 
-                    b.HasKey("ResponsavelId");
+                    b.HasKey("Id");
 
                     b.ToTable("Responsavel");
                 });
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Usuario", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Usuario", b =>
                 {
-                    b.Property<Guid>("UsuarioId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DataCadastro");
@@ -128,25 +127,25 @@ namespace campanhabrinquedo.repositorio.Migrations
 
                     b.Property<string>("Senha");
 
-                    b.HasKey("UsuarioId");
+                    b.HasKey("Id");
 
                     b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Crianca", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Crianca", b =>
                 {
-                    b.HasOne("campanhabrinquedo.domain.Entidades.Comunidade", "Comunidade")
+                    b.HasOne("campanhabrinquedo.domain.Entities.Comunidade", "Comunidade")
                         .WithMany()
                         .HasForeignKey("ComunidadeId");
 
-                    b.HasOne("campanhabrinquedo.domain.Entidades.Responsavel", "Responsavel")
+                    b.HasOne("campanhabrinquedo.domain.Entities.Responsavel", "Responsavel")
                         .WithMany()
                         .HasForeignKey("ResponsavelId");
                 });
 
-            modelBuilder.Entity("campanhabrinquedo.domain.Entidades.Padrinho", b =>
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.Padrinho", b =>
                 {
-                    b.HasOne("campanhabrinquedo.domain.Entidades.Comunidade", "Comunidade")
+                    b.HasOne("campanhabrinquedo.domain.Entities.Comunidade", "Comunidade")
                         .WithMany()
                         .HasForeignKey("ComunidadeId");
                 });

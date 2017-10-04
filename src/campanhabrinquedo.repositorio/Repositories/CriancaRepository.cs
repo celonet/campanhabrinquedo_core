@@ -1,14 +1,14 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Repositories;
 
-namespace campanhabrinquedo.repositorio.Repositorios
+namespace campanhabrinquedo.repository.Repositories
 {
     public class CriancaRepository : ICriancaRepository
     {
-        private CampanhaBrinquedoContext _context;
+        private readonly CampanhaBrinquedoContext _context;
 
         public CriancaRepository(CampanhaBrinquedoContext context)
         {
@@ -30,11 +30,9 @@ namespace campanhabrinquedo.repositorio.Repositorios
         public void Delete(Guid id)
         {
             var crianca = _context.Crianca.Find(id);
-            if (crianca != null)
-            {
-                _context.Crianca.Remove(crianca);
-                _context.SaveChanges();
-            }
+            if (crianca == null) return;
+            _context.Crianca.Remove(crianca);
+            _context.SaveChanges();
         }
 
         public Crianca FindByExpression(Func<Crianca, bool> expression)

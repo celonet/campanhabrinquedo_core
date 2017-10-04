@@ -3,5 +3,5 @@ using campanhabrinquedo.domain.Actions;
 
 namespace campanhabrinquedo.domain.Repositories
 {
-    public interface IResponsavelRepository : ICreate<Responsavel>, IUpdate<Responsavel>, IDelete<Responsavel>, ISearch<Responsavel> { }
+    public interface IResponsavelRepository : ICreate<Responsavel>, IUpdate<Responsavel>, IDelete, ISearch<Responsavel> { }
 }

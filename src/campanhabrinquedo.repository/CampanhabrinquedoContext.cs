@@ -1,7 +1,7 @@
-using campanhabrinquedo.domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using campanhabrinquedo.domain.Entities;
 
-namespace campanhabrinquedo.repository
+namespace campanhabrinquedo.repositorio
 {
     public class CampanhaBrinquedoContext : DbContext
     {
@@ -12,7 +12,7 @@ namespace campanhabrinquedo.repository
         public DbSet<Responsavel> Responsavel { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
-        public CampanhaBrinquedoContext(DbContextOptions options) : base(options) { }
+        public CampanhaBrinquedoContext(DbContextOptions<CampanhaBrinquedoContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -3,5 +3,5 @@ using campanhabrinquedo.domain.Actions;
 
 namespace campanhabrinquedo.domain.Repositories
 {
-    public interface ICriancaRepository : ICreate<Crianca>, IUpdate<Crianca>, IDelete<Crianca>, ISearch<Crianca> { }
+    public interface ICriancaRepository : ICreate<Crianca>, IUpdate<Crianca>, IDelete, ISearch<Crianca> { }
 }

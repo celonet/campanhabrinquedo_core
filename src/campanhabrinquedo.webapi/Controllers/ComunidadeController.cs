@@ -1,6 +1,5 @@
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Services;
-using campanhabrinquedo.domain.Validators;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -9,13 +8,11 @@ namespace campanhabrinquedo.webapi.Controllers
     [Route("api/[controller]")]
     public class ComunidadeController : Controller
     {
-        private IComunidadeService _service;
-        private ComunidadeValidator _validator;
+        private readonly IComunidadeService _service;
 
         public ComunidadeController(IComunidadeService service)
         {
             _service = service;
-            _validator = new ComunidadeValidator();
         }
 
         [HttpGet]
@@ -39,26 +36,15 @@ namespace campanhabrinquedo.webapi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Comunidade comunidade)
         {
-            var result = _validator.Validate(comunidade);
-            if (result.IsValid)
-            {
-                if (_service.InsereComunidade(comunidade))
-                    return Ok();
-                return BadRequest("Comunidade já existe!");
-            }
-            return BadRequest(result.Errors);
+            if (_service.InsereComunidade(comunidade))
+                return Ok();
+            return BadRequest("Comunidade já existe!");
         }
 
         [HttpPut]
         public IActionResult Put([FromBody]Comunidade comunidade)
         {
-            var result = _validator.Validate(comunidade);
-            if (result.IsValid)
-            {
-                _service.AlteraComunidade(comunidade);
-                return Ok();
-            }
-            return StatusCode(500);
+            return _service.AlteraComunidade(comunidade) ? Ok() : StatusCode(500);
         }
 
         [HttpDelete("{id}")]

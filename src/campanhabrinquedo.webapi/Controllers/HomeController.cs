@@ -6,8 +6,9 @@ namespace campanhabrinquedo.webapi.Controllers
     public class HomeController : Controller
     {
         [HttpGet]
-        public IActionResult Get(){
-            return new ObjectResult("Bem vindo a Campanha do Brinquedo API");
+        public IActionResult Get()
+        {
+            return Ok("Bem vindo a Campanha do Brinquedo API");
         }
     }
 }

@@ -1,15 +1,15 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace campanhabrinquedo.repositorio.Repositorios
+namespace campanhabrinquedo.repository.Repositories
 {
     public class ComunidadeRepository : IComunidadeRepository
     {
-        private CampanhaBrinquedoContext _context;
+        private readonly CampanhaBrinquedoContext _context;
 
         public ComunidadeRepository(CampanhaBrinquedoContext context)
         {
@@ -30,7 +30,7 @@ namespace campanhabrinquedo.repositorio.Repositorios
                 _context.Entry(entidade).State = EntityState.Modified;
                 _context.SaveChanges();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -39,11 +39,9 @@ namespace campanhabrinquedo.repositorio.Repositorios
         public void Delete(Guid id)
         {
             var comunidade = _context.Comunidade.Find(id);
-            if (comunidade != null)
-            {
-                _context.Comunidade.Remove(comunidade);
-                _context.SaveChanges();
-            }
+            if (comunidade == null) return;
+            _context.Comunidade.Remove(comunidade);
+            _context.SaveChanges();
         }
 
         public Comunidade FindByExpression(Func<Comunidade, bool> expression)

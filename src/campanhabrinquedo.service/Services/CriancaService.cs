@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Services;
 using campanhabrinquedo.domain.Repositories;
 

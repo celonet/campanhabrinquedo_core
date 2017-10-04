@@ -1,14 +1,14 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Repositories;
 
-namespace campanhabrinquedo.repositorio.Repositorios
+namespace campanhabrinquedo.repository.Repositories
 {
     public class CampanhaRepository : ICampanhaRepository
     {
-        private CampanhaBrinquedoContext _context;
+        private readonly CampanhaBrinquedoContext _context;
 
         public CampanhaRepository(CampanhaBrinquedoContext context)
         {

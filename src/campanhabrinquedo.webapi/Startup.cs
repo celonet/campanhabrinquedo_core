@@ -9,23 +9,23 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using campanhabrinquedo.repositorio;
 using campanhabrinquedo.service.Services;
-using campanhabrinquedo.repositorio.Repositorios;
 using campanhabrinquedo.domain.Services;
 using campanhabrinquedo.webapi.Middleware;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using campanhabrinquedo.domain.Repositories;
+using campanhabrinquedo.repository;
+using campanhabrinquedo.repository.Repositories;
 
 namespace campanhabrinquedo.webapi
 {
     public partial class Startup
     {
-        private string _secretKey;
-        private string _issuer;
-        private string _audience;
-        private SymmetricSecurityKey _signingKey;
+        private readonly string _secretKey;
+        private readonly string _issuer;
+        private readonly string _audience;
+        private readonly SymmetricSecurityKey _signingKey;
 
         public IHostingEnvironment Environment { get; set; }
 
@@ -37,8 +37,8 @@ namespace campanhabrinquedo.webapi
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
 
@@ -133,7 +133,6 @@ namespace campanhabrinquedo.webapi
                 .AddTransient<ICampanhaService, CampanhaService>()
                 .AddTransient<IPadrinhoService, PadrinhoService>()
                 .AddTransient<IResponsavelService, ResponsavelService>();
-
         }
     }
 }

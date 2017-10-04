@@ -1,7 +1,7 @@
 namespace campanhabrinquedo.domain.Actions
 {
     using System;
-    public interface IDelete<T> where T : Entities.EntitieBase
+    public interface IDelete
     {
         void Delete(Guid id);
     }

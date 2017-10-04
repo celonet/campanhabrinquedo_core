@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace campanhabrinquedo.repository
+namespace campanhabrinquedo.repositorio
 {
-    internal class CampanhaBrinquedoContextFactory : IDesignTimeDbContextFactory<CampanhaBrinquedoContext>
+    class CampanhaBrinquedoContextFactory : IDesignTimeDbContextFactory<CampanhaBrinquedoContext>
     {
         public CampanhaBrinquedoContext CreateDbContext(string[] args)
         {
