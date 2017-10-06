@@ -24,16 +24,14 @@ namespace campanhabrinquedo.repository.Repositories
 
         public void Update(Comunidade entidade)
         {
-            try
-            {
-                _context.Attach(entidade);
-                _context.Entry(entidade).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
-            catch (Exception)
-            {
+            var entry = _context.Entry(entidade);
 
-            }
+            if (entry.State == EntityState.Detached)
+                _context.Attach(entidade);
+
+            entry.State = EntityState.Modified;
+
+            _context.SaveChanges();
         }
 
         public void Delete(Guid id)
