@@ -9,6 +9,13 @@ namespace campanhabrinquedo.domain.Entities
 
         protected Comunidade() { }
 
+        public Comunidade(Guid id, string nome, string bairro)
+        {
+            this.Id = id;
+            this.Nome = nome;
+            this.Bairro = bairro;
+        }
+
         public Comunidade(string nome, string bairro)
         {
             this.Id = Guid.NewGuid();

@@ -1,6 +1,7 @@
-namespace campanhabrinquedo.domain.Actions
+using System;
+
+namespace campanhabrinquedo.domain.Interfaces.Actions
 {
-    using System;
     public interface IDelete
     {
         void Delete(Guid id);

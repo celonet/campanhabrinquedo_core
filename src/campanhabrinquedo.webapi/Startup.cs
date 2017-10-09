@@ -9,15 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using campanhabrinquedo.service.Services;
-using campanhabrinquedo.domain.Services;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
-using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.repository;
-using campanhabrinquedo.repository.Repositories;
 using campanhabrinquedo.webapi.Extensions;
 using campanhabrinquedo.webapi.Model;
+using campanhabrinquedo.repository.Configurations;
+using campanhabrinquedo.ioc;
 
 namespace campanhabrinquedo.webapi
 {
@@ -120,20 +118,7 @@ namespace campanhabrinquedo.webapi
 
         private static void RegisterService(IServiceCollection services)
         {
-            services
-                //repositorios
-                .AddTransient<IUsuarioRepository, UsuarioRepository>()
-                .AddTransient<IComunidadeRepository, ComunidadeRepository>()
-                .AddTransient<ICriancaRepository, CriancaRepository>()
-                .AddTransient<IPadrinhoRepository, PadrinhoRepository>()
-                .AddTransient<IResponsavelRepository, ResponsavelRepository>()
-                //services
-                .AddTransient<IUsuarioService, UsuarioService>()
-                .AddTransient<IComunidadeService, ComunidadeService>()
-                .AddTransient<ICriancaService, CriancaService>()
-                .AddTransient<ICampanhaService, CampanhaService>()
-                .AddTransient<IPadrinhoService, PadrinhoService>()
-                .AddTransient<IResponsavelService, ResponsavelService>();
+            ContainerBootStrapper.RegisterServices(services);
         }
     }
 }

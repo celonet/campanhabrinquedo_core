@@ -1,8 +1,8 @@
-namespace campanhabrinquedo.domain.Actions
-{
-    using System;
-    using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
+namespace campanhabrinquedo.domain.Interfaces.Actions
+{
     public interface ISearch<out T> where T : Entities.EntitieBase
     {
          IEnumerable<T> List();

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\campanhabrinquedo.domain\campanhabrinquedo.domain.csproj" />
+    <ProjectReference Include="..\campanhabrinquedo.repository\campanhabrinquedo.repository.csproj" />
+    <ProjectReference Include="..\campanhabrinquedo.service\campanhabrinquedo.service.csproj" />
+  </ItemGroup>
+
+</Project>

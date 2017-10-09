@@ -47,7 +47,10 @@ namespace campanhabrinquedo.service.Services
         {
             var result = _validator.Validate(comunidade);
             if (!result.IsValid) return false;
-            _repository.Update(comunidade);
+
+            var c = new Comunidade(comunidade.Id, comunidade.Nome, comunidade.Bairro);
+            c.IncluiDataCadastro();
+            _repository.Update(c);
             return true;
         }
 
