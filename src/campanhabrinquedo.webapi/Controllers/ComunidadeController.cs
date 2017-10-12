@@ -2,26 +2,32 @@ using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using campanhabrinquedo.Application.ViewModel;
 
 namespace campanhabrinquedo.webapi.Controllers
 {
     [Route("api/[controller]")]
     public class ComunidadeController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IComunidadeService _service;
 
-        public ComunidadeController(IComunidadeService service)
+        public ComunidadeController(IMapper mapper, IComunidadeService service)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
             var comunidades = _service.ListaComunidades();
-            if (comunidades.Count > 0)
-                return new ObjectResult(comunidades);
-            return NotFound();
+            if (!comunidades.Any()) return NotFound();
+            var comunidadesViewModel = comunidades.ProjectTo<ComunidadeViewModel>();
+            return new ObjectResult(comunidadesViewModel);
         }
 
         [HttpGet("{id}")]
@@ -29,22 +35,24 @@ namespace campanhabrinquedo.webapi.Controllers
         {
             var comunidade = _service.RetornaComunidadePorId(id);
             if (comunidade != null)
-                return new ObjectResult(comunidade);
+                return new ObjectResult(_mapper.Map<ComunidadeViewModel>(comunidade));
             return NotFound();
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Comunidade comunidade)
+        public IActionResult Post([FromBody]ComunidadeViewModel comunidadeViewModel)
         {
-            if (_service.InsereComunidade(comunidade))
-                return Ok();
-            return BadRequest("Comunidade já existe!");
+            var comunidade = _mapper.Map<Comunidade>(comunidadeViewModel);
+            _service.InsereComunidade(comunidade);
+            return Created("", comunidadeViewModel);
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody]Comunidade comunidade)
+        public IActionResult Put([FromBody]ComunidadeViewModel comunidadeViewModel)
         {
-            return _service.AlteraComunidade(comunidade) ? Ok() : StatusCode(500);
+            var comunidade = _mapper.Map<Comunidade>(comunidadeViewModel);
+            _service.AlteraComunidade(comunidade);
+            return Ok();
         }
 
         [HttpDelete("{id}")]

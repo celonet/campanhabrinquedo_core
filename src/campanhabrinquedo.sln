@@ -1,18 +1,28 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "campanhabrinquedo.domain", "campanhabrinquedo.domain\campanhabrinquedo.domain.csproj", "{8704363C-7EDD-489D-A395-6ED1CAF4A332}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "campanhabrinquedo.webapi", "campanhabrinquedo.webapi\campanhabrinquedo.webapi.csproj", "{B165254A-29C3-4F73-89C3-C8263A1F6180}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "campanhabrinquedo.service", "campanhabrinquedo.service\campanhabrinquedo.service.csproj", "{8E07ACE0-848B-4877-A07C-F685B28315C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "campanhabrinquedo.Application", "campanhabrinquedo.service\campanhabrinquedo.Application.csproj", "{8E07ACE0-848B-4877-A07C-F685B28315C3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "campanhabrinquedo.tests", "campanhabrinquedo.tests\campanhabrinquedo.tests.csproj", "{BE1FCE38-9293-4D03-87AF-663A429E68BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "campanhabrinquedo.repository", "campanhabrinquedo.repository\campanhabrinquedo.repository.csproj", "{472B8651-1464-4D7F-889F-02953094E8F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "campanhabrinquedo.ioc", "campanhabrinquedo.ioc\campanhabrinquedo.ioc.csproj", "{A2E8BD5C-F58F-4A0E-9518-9CF2125559F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "campanhabrinquedo.ioc", "campanhabrinquedo.ioc\campanhabrinquedo.ioc.csproj", "{A2E8BD5C-F58F-4A0E-9518-9CF2125559F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfraEstructure", "InfraEstructure", "{E4E4A87F-3C8B-4A16-9602-EFE6286B70C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F8F44833-648E-486F-A31F-C6CC6D4C958D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{AE3A8B81-77F7-4FCC-90D3-678299A9082D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DC0D1659-EC14-4363-BC7B-D5F3FB65D66A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{23E54C25-1ABC-4C0B-9960-951D60AFC355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +109,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8704363C-7EDD-489D-A395-6ED1CAF4A332} = {AE3A8B81-77F7-4FCC-90D3-678299A9082D}
+		{B165254A-29C3-4F73-89C3-C8263A1F6180} = {DC0D1659-EC14-4363-BC7B-D5F3FB65D66A}
+		{8E07ACE0-848B-4877-A07C-F685B28315C3} = {23E54C25-1ABC-4C0B-9960-951D60AFC355}
+		{BE1FCE38-9293-4D03-87AF-663A429E68BA} = {F8F44833-648E-486F-A31F-C6CC6D4C958D}
+		{472B8651-1464-4D7F-889F-02953094E8F1} = {E4E4A87F-3C8B-4A16-9602-EFE6286B70C0}
+		{A2E8BD5C-F58F-4A0E-9518-9CF2125559F7} = {E4E4A87F-3C8B-4A16-9602-EFE6286B70C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86612EED-6DC6-4576-9B92-C6E2CEB790A5}

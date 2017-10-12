@@ -1,9 +1,12 @@
 ﻿using campanhabrinquedo.domain.Entities;
-using campanhabrinquedo.domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
+using campanhabrinquedo.domain.Interfaces;
 
 namespace campanhabrinquedo.repository.Repositories
 {
@@ -35,19 +38,24 @@ namespace campanhabrinquedo.repository.Repositories
             return DbSet.FirstOrDefault(expression);
         }
 
+        public Task<T> FindByExpressionAsync(Expression<Func<T, bool>> expression)
+        {
+            return DbSet.FirstOrDefaultAsync(expression);
+        }
+
         public T FindById(Guid id)
         {
             return DbSet.Find(id);
         }
 
-        public IEnumerable<T> List()
+        public IQueryable<T> List()
         {
             return DbSet;
         }
 
-        public IEnumerable<T> List(Func<T, bool> expression)
+        public IQueryable<T> List(Func<T, bool> expression)
         {
-            return DbSet.Where(expression);
+            return DbSet.Where(expression).AsQueryable();
         }
 
         public void Update(T entitie)

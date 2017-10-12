@@ -1,7 +1,7 @@
-using campanhabrinquedo.domain.Services;
 using campanhabrinquedo.domain.Repositories;
+using campanhabrinquedo.domain.Services;
 
-namespace campanhabrinquedo.service.Services
+namespace campanhabrinquedo.Application.Services
 {
     public class CampanhaService : ICampanhaService
     {

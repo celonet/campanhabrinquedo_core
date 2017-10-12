@@ -1,7 +1,8 @@
-﻿using campanhabrinquedo.domain.Repositories;
+﻿using AutoMapper;
+using campanhabrinquedo.Application.Services;
+using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.domain.Services;
 using campanhabrinquedo.repository.Repositories;
-using campanhabrinquedo.service.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace campanhabrinquedo.ioc
@@ -11,19 +12,22 @@ namespace campanhabrinquedo.ioc
         public static void RegisterServices(IServiceCollection services)
         {
             services
-               //repositorios
-               .AddTransient<IUsuarioRepository, UsuarioRepository>()
-               .AddTransient<IComunidadeRepository, ComunidadeRepository>()
-               .AddTransient<ICriancaRepository, CriancaRepository>()
-               .AddTransient<IPadrinhoRepository, PadrinhoRepository>()
-               .AddTransient<IResponsavelRepository, ResponsavelRepository>()
-               //services
-               .AddTransient<IUsuarioService, UsuarioService>()
-               .AddTransient<IComunidadeService, ComunidadeService>()
-               .AddTransient<ICriancaService, CriancaService>()
-               .AddTransient<ICampanhaService, CampanhaService>()
-               .AddTransient<IPadrinhoService, PadrinhoService>()
-               .AddTransient<IResponsavelService, ResponsavelService>();
+                //Application
+                .AddSingleton(Mapper.Configuration)
+                .AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService))
+                //repositorios
+                .AddSingleton<IUsuarioRepository, UsuarioRepository>()
+                .AddSingleton<IComunidadeRepository, ComunidadeRepository>()
+                .AddSingleton<ICriancaRepository, CriancaRepository>()
+                .AddSingleton<IPadrinhoRepository, PadrinhoRepository>()
+                .AddSingleton<IResponsavelRepository, ResponsavelRepository>()
+                //services
+                .AddScoped<IUsuarioService, UsuarioService>()
+                .AddScoped<IComunidadeService, ComunidadeService>()
+                .AddScoped<ICriancaService, CriancaService>()
+                .AddScoped<ICampanhaService, CampanhaService>()
+                .AddScoped<IPadrinhoService, PadrinhoService>()
+                .AddScoped<IResponsavelService, ResponsavelService>();
         }
     }
 }

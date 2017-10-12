@@ -18,7 +18,6 @@ namespace campanhabrinquedo.tests.Domain
             _senha = "123456";
         }
 
-
         [Fact]
         public void NovaInstanciaComId()
         {

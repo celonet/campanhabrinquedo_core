@@ -9,7 +9,7 @@ namespace campanhabrinquedo.domain.Entities
 
         public void IncluiDataCadastro()
         {
-            this.DataCadastro = DateTime.Now;
+            DataCadastro = DateTime.Now;
         }
     }
 }

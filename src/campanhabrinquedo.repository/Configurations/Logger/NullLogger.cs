@@ -17,7 +17,7 @@ namespace campanhabrinquedo.repository.Configurations.Logger
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            //não faz nada
+
         }
     }
 }
