@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using campanhabrinquedo.repository;
 using campanhabrinquedo.ioc;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace campanhabrinquedo.webapi
 {
@@ -52,6 +54,28 @@ namespace campanhabrinquedo.webapi
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
+            services.AddSwaggerGen(_ =>
+            {
+                _.SwaggerDoc("v1",
+                    new Info
+                    {
+                        Title = "Api da Campanha do Brinquedo",
+                        Version = "v1",
+                        Description = "Api para acesso a Campanha do Brinquedo",
+                        Contact = new Contact
+                        {
+                            Name = "Marcelo Lopes da Silva Aguiar",
+                            Email = "marcelo.lopesdasilva@gmail.com",
+                            Url = "https://github.com/celonet"
+                        }
+                    }
+                );
+                var pathApplication = PlatformServices.Default.Application.ApplicationBasePath;
+                var applicationName = PlatformServices.Default.Application.ApplicationName;
+                var pathXmlDoc = Path.Combine(pathApplication, $"{applicationName}.xml");
+                _.IncludeXmlComments(pathXmlDoc);
+            });
+
             services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
 
             ConfigureAuthentication(services);
@@ -78,6 +102,12 @@ namespace campanhabrinquedo.webapi
 
             app.UseAuthentication();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Campanha do Brinquedo");
+            });
         }
 
         private void ConfigureAuthentication(IServiceCollection services)
