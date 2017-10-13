@@ -29,7 +29,7 @@ namespace campanhabrinquedo.webapi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            var usuario = _service.RetornaPerfil(id);
+            var usuario = _service.RetornaPorId(id);
             if (usuario != null)
                 return new ObjectResult(usuario);
 
@@ -40,10 +40,10 @@ namespace campanhabrinquedo.webapi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Usuario usuario)
         {
-            if (_service.UsuarioExiste(usuario))
+            if (_service.Existe(usuario))
                 return BadRequest("Usuario já existe");
 
-            _service.RegistraUsuario(usuario);
+            _service.Insere(usuario);
 
             return Created(new Uri(Url.Link("Usuario", new { id = usuario.Id })), new { id = usuario.Id });
         }
@@ -51,14 +51,14 @@ namespace campanhabrinquedo.webapi.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, [FromBody]Usuario usuario)
         {
-            _service.AlteraUsuario(usuario);
+            _service.Altera(usuario);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            _service.DeletaUsuario(id);
+            _service.Deleta(id);
             return Ok();
         }
 
@@ -114,3 +114,4 @@ namespace campanhabrinquedo.webapi.Controllers
         }
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using campanhabrinquedo.Application.Services;
+using campanhabrinquedo.domain.Interfaces;
 using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.domain.Services;
 using campanhabrinquedo.repository.Repositories;
@@ -21,6 +22,7 @@ namespace campanhabrinquedo.ioc
                 .AddSingleton<ICriancaRepository, CriancaRepository>()
                 .AddSingleton<IPadrinhoRepository, PadrinhoRepository>()
                 .AddSingleton<IResponsavelRepository, ResponsavelRepository>()
+                .AddSingleton(typeof(IRepository<>), typeof(Repository<>))
                 //services
                 .AddScoped<IUsuarioService, UsuarioService>()
                 .AddScoped<IComunidadeService, ComunidadeService>()

@@ -1,15 +1,19 @@
+using System;
+using System.Linq;
+using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.domain.Services;
 
 namespace campanhabrinquedo.Application.Services
 {
-    public class CampanhaService : ICampanhaService
+    public class CampanhaService : ServiceAction<Campanha>, ICampanhaService
     {
-        private ICampanhaRepository _repositorio;
+        public CampanhaService(ICampanhaRepository repository)
+            : base(repository) { }
 
-        public CampanhaService(ICampanhaRepository repositorio)
+        public override bool Existe(Campanha entity)
         {
-            _repositorio = repositorio;
+            return Repository.FindByExpression(_ => _.Ano == entity.Ano) != null;
         }
     }
 }

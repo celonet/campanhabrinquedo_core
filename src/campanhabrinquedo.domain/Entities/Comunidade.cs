@@ -1,8 +1,9 @@
 using System;
+using campanhabrinquedo.domain.Validators;
 
 namespace campanhabrinquedo.domain.Entities
 {
-    public class Comunidade : EntitieBase
+    public class Comunidade : EntityBase
     {
         public string Nome { get; private set; }
         public string Bairro { get; private set; }
@@ -21,6 +22,12 @@ namespace campanhabrinquedo.domain.Entities
             this.Id = Guid.NewGuid();
             this.Nome = nome;
             this.Bairro = bairro;
+        }
+
+        public override bool IsValid()
+        {
+            var validationResult = new ComunidadeValidator().Validate(this);
+            return validationResult.IsValid;
         }
     }
 }

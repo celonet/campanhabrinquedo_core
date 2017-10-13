@@ -1,8 +1,9 @@
 using System;
+using campanhabrinquedo.domain.Validators;
 
 namespace campanhabrinquedo.domain.Entities
 {
-    public class Crianca : EntitieBase
+    public class Crianca : EntityBase
     {
         public string Nome { get; private set; }
         public string Idade { get; private set; }
@@ -13,6 +14,18 @@ namespace campanhabrinquedo.domain.Entities
         public bool Especial { get; private set; }
 
         protected Crianca() { }
+
+        public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel)
+        {
+            this.Id = Guid.NewGuid();
+            this.Nome = nome;
+            this.Idade = idade;
+            this.Sexo = sexo;
+            this.Comunidade = comunidade;
+            this.Responsavel = responsavel;
+            this.Impresso = false;
+            this.Especial = false;
+        }
 
         public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool impresso, bool especial)
         {
@@ -34,6 +47,12 @@ namespace campanhabrinquedo.domain.Entities
         public void EhEspecial()
         {
             this.Especial = true;
+        }
+
+        public override bool IsValid()
+        {
+            var validation = new CriancaValidator().Validate(this);
+            return validation.IsValid;
         }
     }
 }

@@ -10,7 +10,7 @@ using campanhabrinquedo.domain.Interfaces;
 
 namespace campanhabrinquedo.repository.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : EntitieBase
+    public class Repository<T> : IRepository<T> where T : EntityBase
     {
         private readonly CampanhaBrinquedoContext _context;
         protected readonly DbSet<T> DbSet;
