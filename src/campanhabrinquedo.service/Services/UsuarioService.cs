@@ -1,10 +1,11 @@
-namespace campanhabrinquedo.service.Services
-{
-    using System;
-    using domain.Entities;
-    using domain.Repositories;
-    using domain.Services;
+using System;
+using System.Threading.Tasks;
+using campanhabrinquedo.domain.Entities;
+using campanhabrinquedo.domain.Repositories;
+using campanhabrinquedo.domain.Services;
 
+namespace campanhabrinquedo.Application.Services
+{
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioRepository _repository;
@@ -14,9 +15,10 @@ namespace campanhabrinquedo.service.Services
             _repository = repository;
         }
 
-        public bool LogarUsuario(string login, string senha)
+        public async Task<bool> LogarUsuario(string login, string senha)
         {
-            return _repository.FindByExpression(usuario => usuario.Email == login && usuario.Senha == senha) != null;
+            var usuarioExiste = await _repository.FindByExpressionAsync(usuario => usuario.Email == login && usuario.Senha == senha);
+            return usuarioExiste != null;
         }
 
         public bool UsuarioExiste(Usuario usuario)

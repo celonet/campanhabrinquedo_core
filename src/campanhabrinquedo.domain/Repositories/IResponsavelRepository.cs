@@ -1,7 +1,7 @@
 using campanhabrinquedo.domain.Entities;
-using campanhabrinquedo.domain.Actions;
+using campanhabrinquedo.domain.Interfaces;
 
 namespace campanhabrinquedo.domain.Repositories
 {
-    public interface IResponsavelRepository : ICreate<Responsavel>, IUpdate<Responsavel>, IDelete, ISearch<Responsavel> { }
+    public interface IResponsavelRepository : IRepository<Responsavel> { }
 }

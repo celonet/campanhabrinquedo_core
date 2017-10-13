@@ -1,15 +1,15 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using campanhabrinquedo.domain.Entities;
 
 namespace campanhabrinquedo.domain.Services
 {
     public interface IComunidadeService
     {
-        List<Comunidade> ListaComunidades();
+        IQueryable<Comunidade> ListaComunidades();
         Comunidade RetornaComunidadePorId(Guid id);
-        bool InsereComunidade(Comunidade comunidade);
-        bool AlteraComunidade(Comunidade comunidade);
+        void InsereComunidade(Comunidade comunidade);
+        void AlteraComunidade(Comunidade comunidade);
         void DeletaComunidade(Guid id);
     }
 }

@@ -7,6 +7,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.0.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.0" />
@@ -17,7 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\campanhabrinquedo.domain\campanhabrinquedo.domain.csproj" />
-    <ProjectReference Include="..\campanhabrinquedo.repositorio\campanhabrinquedo.repository.csproj" />
-    <ProjectReference Include="..\campanhabrinquedo.service\campanhabrinquedo.service.csproj" />
+    <ProjectReference Include="..\campanhabrinquedo.ioc\campanhabrinquedo.ioc.csproj" />
+    <ProjectReference Include="..\campanhabrinquedo.service\campanhabrinquedo.Application.csproj" />
   </ItemGroup>
 </Project>

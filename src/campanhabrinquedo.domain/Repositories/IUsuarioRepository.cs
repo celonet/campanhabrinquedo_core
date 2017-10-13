@@ -1,7 +1,7 @@
 using campanhabrinquedo.domain.Entities;
-using campanhabrinquedo.domain.Actions;
+using campanhabrinquedo.domain.Interfaces;
 
 namespace campanhabrinquedo.domain.Repositories
 {
-    public interface IUsuarioRepository : ICreate<Usuario>, IUpdate<Usuario>, IDelete, ISearch<Usuario> { }
+    public interface IUsuarioRepository : IRepository<Usuario> { }
 }

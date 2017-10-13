@@ -1,13 +1,13 @@
-namespace campanhabrinquedo.service.Services
-{
-    using domain.Services;
-    using domain.Repositories;
-    using domain.Entities;
-    using domain.Validators;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using campanhabrinquedo.domain.Entities;
+using campanhabrinquedo.domain.Repositories;
+using campanhabrinquedo.domain.Services;
+using campanhabrinquedo.domain.Validators;
 
+namespace campanhabrinquedo.Application.Services
+{
     public class ComunidadeService : IComunidadeService
     {
         private readonly IComunidadeRepository _repository;
@@ -19,9 +19,9 @@ namespace campanhabrinquedo.service.Services
             _validator = new ComunidadeValidator();
         }
 
-        public List<Comunidade> ListaComunidades()
+        public IQueryable<Comunidade> ListaComunidades()
         {
-            return _repository.List().ToList();
+            return _repository.List();
         }
 
         public Comunidade RetornaComunidadePorId(Guid id)
@@ -29,13 +29,12 @@ namespace campanhabrinquedo.service.Services
             return _repository.FindById(id);
         }
 
-        public bool InsereComunidade(Comunidade comunidade)
+        public void InsereComunidade(Comunidade comunidade)
         {
             var result = _validator.Validate(comunidade);
-            if (!result.IsValid) return false;
-            if (ExisteComunidade(comunidade)) return false;
+            if (!result.IsValid) return;
+            if (ExisteComunidade(comunidade)) return;
             _repository.Create(comunidade);
-            return true;
         }
 
         private bool ExisteComunidade(Comunidade comunidade)
@@ -43,12 +42,13 @@ namespace campanhabrinquedo.service.Services
             return _repository.FindByExpression(_ => _.Nome == comunidade.Nome && _.Bairro == comunidade.Bairro) != null;
         }
 
-        public bool AlteraComunidade(Comunidade comunidade)
+        public void AlteraComunidade(Comunidade comunidade)
         {
             var result = _validator.Validate(comunidade);
-            if (!result.IsValid) return false;
+            if (!result.IsValid) return;
+
+            comunidade.IncluiDataCadastro();
             _repository.Update(comunidade);
-            return true;
         }
 
         public void DeletaComunidade(Guid id)

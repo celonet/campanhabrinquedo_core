@@ -1,7 +1,7 @@
 using campanhabrinquedo.domain.Entities;
-using campanhabrinquedo.domain.Actions;
+using campanhabrinquedo.domain.Interfaces;
 
 namespace campanhabrinquedo.domain.Repositories
 {
-    public interface IPadrinhoRepository : ICreate<Padrinho>, IUpdate<Padrinho>, IDelete, ISearch<Padrinho> { }
+    public interface IPadrinhoRepository : IRepository<Padrinho> { }
 }

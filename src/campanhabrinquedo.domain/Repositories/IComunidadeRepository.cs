@@ -1,7 +1,7 @@
 using campanhabrinquedo.domain.Entities;
-using campanhabrinquedo.domain.Actions;
+using campanhabrinquedo.domain.Interfaces;
 
 namespace campanhabrinquedo.domain.Repositories
 {
-    public interface IComunidadeRepository : ICreate<Comunidade>, IUpdate<Comunidade>, IDelete, ISearch<Comunidade> { }
+    public interface IComunidadeRepository : IRepository<Comunidade> { }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Text;
+using AutoMapper;
+using campanhabrinquedo.Application.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,15 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using campanhabrinquedo.service.Services;
-using campanhabrinquedo.domain.Services;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Options;
-using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.repository;
-using campanhabrinquedo.repository.Repositories;
-using campanhabrinquedo.webapi.Extensions;
-using campanhabrinquedo.webapi.Model;
+using campanhabrinquedo.ioc;
 
 namespace campanhabrinquedo.webapi
 {
@@ -26,36 +23,26 @@ namespace campanhabrinquedo.webapi
         private readonly string _secretKey;
         private readonly string _issuer;
         private readonly string _audience;
-        private readonly SymmetricSecurityKey _signingKey;
-
-        public IHostingEnvironment Environment { get; set; }
 
         public IConfigurationRoot Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
-            Environment = env;
-
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", false, true)
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
 
-            _secretKey = Configuration["TokenAuthentication:SecretKey"];
-            _audience = Configuration["TokenAuthentication:Audience"];
-            _issuer = Configuration["TokenAuthentication:Issuer"];
-            _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secretKey));
+            _secretKey = Configuration["JwtIssuerOptions:SecretKey"];
+            _audience = Configuration["JwtIssuerOptions:Audience"];
+            _issuer = Configuration["JwtIssuerOptions:Issuer"];
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureOrm(services);
-
-            RegisterService(services);
-
-            ConfigureAuthentication(services);
 
             services.AddMvc(config =>
             {
@@ -64,24 +51,33 @@ namespace campanhabrinquedo.webapi
                     .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+
+            services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
+
+            ConfigureAuthentication(services);
+
+            RegisterService(services);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, CampanhaBrinquedoContext dbContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+            {
+                loggerFactory.AddDebug();
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseCors(c =>
+            {
+                c.AllowAnyHeader();
+                c.AllowAnyMethod();
+                c.AllowAnyOrigin();
+            });
 
             app.UseAuthentication();
-
-            app.UseJWTTokenProviderMiddleware(Options.Create(new TokenProviderOptions
-            {
-                Audience = _audience,
-                Issuer = _issuer,
-                SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256)
-            }));
             app.UseMvc();
-
-            DbInitializer.Initialize(dbContext);
         }
 
         private void ConfigureAuthentication(IServiceCollection services)
@@ -120,20 +116,7 @@ namespace campanhabrinquedo.webapi
 
         private static void RegisterService(IServiceCollection services)
         {
-            services
-                //repositorios
-                .AddTransient<IUsuarioRepository, UsuarioRepository>()
-                .AddTransient<IComunidadeRepository, ComunidadeRepository>()
-                .AddTransient<ICriancaRepository, CriancaRepository>()
-                .AddTransient<IPadrinhoRepository, PadrinhoRepository>()
-                .AddTransient<IResponsavelRepository, ResponsavelRepository>()
-                //services
-                .AddTransient<IUsuarioService, UsuarioService>()
-                .AddTransient<IComunidadeService, ComunidadeService>()
-                .AddTransient<ICriancaService, CriancaService>()
-                .AddTransient<ICampanhaService, CampanhaService>()
-                .AddTransient<IPadrinhoService, PadrinhoService>()
-                .AddTransient<IResponsavelService, ResponsavelService>();
+            ContainerBootStrapper.RegisterServices(services);
         }
     }
 }

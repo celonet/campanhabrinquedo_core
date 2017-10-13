@@ -1,8 +1,8 @@
-namespace campanhabrinquedo.service.Services
-{
-    using domain.Services;
-    using domain.Repositories;
+using campanhabrinquedo.domain.Repositories;
+using campanhabrinquedo.domain.Services;
 
+namespace campanhabrinquedo.Application.Services
+{
     public class PadrinhoService : IPadrinhoService
     {
         private IPadrinhoRepository _repository;

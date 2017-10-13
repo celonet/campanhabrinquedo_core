@@ -7,7 +7,6 @@ namespace campanhabrinquedo.domain.Entities
         public string Nome { get; private set; }
         public string Email { get; private set; }
         public string Senha { get; private set; }
-        public DateTime DataCadastro { get; private set; }
 
         protected Usuario() { }
 
@@ -25,11 +24,6 @@ namespace campanhabrinquedo.domain.Entities
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
-        }
-
-        public void IncluiDataCadastro()
-        {
-            this.DataCadastro = DateTime.Now;
         }
     }
 }
