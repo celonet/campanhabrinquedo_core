@@ -103,6 +103,7 @@ namespace campanhabrinquedo.webapi
             });
             app.UseMvc();          
         }
+
         private void ConfigureAuthentication(IServiceCollection services)
         {
             services

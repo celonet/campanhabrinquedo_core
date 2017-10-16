@@ -1,8 +1,9 @@
 using campanhabrinquedo.domain.Validators;
 
+using System;
+
 namespace campanhabrinquedo.domain.Entities
-{
-    using System;
+{    
     public class Padrinho : EntityBase
     {
         public string Nome { get; private set; }
@@ -12,9 +13,26 @@ namespace campanhabrinquedo.domain.Entities
 
         protected Padrinho() { }
 
+        public Padrinho(string nome, Comunidade comunidade, string telefone)
+        {
+            this.Id = Guid.NewGuid();
+            this.Nome = nome;
+            this.Comunidade = comunidade;
+            this.Telefone = telefone;
+        }
+
         public Padrinho(string nome, Comunidade comunidade, string telefone, string celular)
         {
             this.Id = Guid.NewGuid();
+            this.Nome = nome;
+            this.Comunidade = comunidade;
+            this.Telefone = telefone;
+            this.Celular = celular;
+        }
+
+        public Padrinho(Guid id, string nome, Comunidade comunidade, string telefone, string celular)
+        {
+            this.Id = id;
             this.Nome = nome;
             this.Comunidade = comunidade;
             this.Telefone = telefone;

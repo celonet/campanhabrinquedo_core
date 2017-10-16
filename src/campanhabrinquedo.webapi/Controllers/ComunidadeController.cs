@@ -22,7 +22,7 @@ namespace campanhabrinquedo.webapi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Get()
         {
             var comunidades = _service.Lista();
             if (!comunidades.Any()) return NotFound();
