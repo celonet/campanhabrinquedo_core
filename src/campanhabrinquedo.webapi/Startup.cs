@@ -16,7 +16,6 @@ using Microsoft.IdentityModel.Tokens;
 using campanhabrinquedo.repository;
 using campanhabrinquedo.ioc;
 using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace campanhabrinquedo.webapi
 {
