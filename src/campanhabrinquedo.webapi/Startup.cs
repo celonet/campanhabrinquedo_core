@@ -70,10 +70,6 @@ namespace campanhabrinquedo.webapi
                         }
                     }
                 );
-                var pathApplication = PlatformServices.Default.Application.ApplicationBasePath;
-                var applicationName = PlatformServices.Default.Application.ApplicationName;
-                var pathXmlDoc = Path.Combine(pathApplication, $"{applicationName}.xml");
-                _.IncludeXmlComments(pathXmlDoc);
             });
 
             services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
@@ -101,15 +97,13 @@ namespace campanhabrinquedo.webapi
             });
 
             app.UseAuthentication();
-            app.UseMvc();
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Campanha do Brinquedo");
             });
+            app.UseMvc();          
         }
-
         private void ConfigureAuthentication(IServiceCollection services)
         {
             services

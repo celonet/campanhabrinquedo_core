@@ -62,18 +62,6 @@ namespace campanhabrinquedo.webapi.Controllers
             return Ok();
         }
 
-        public async Task<IActionResult> Login([FromBody] LoginViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(model);
-
-            var result = await _service.LogarUsuario(model.Usuario, model.Senha);
-            if (!result)
-                return BadRequest(model);
-
-            return Ok(model);
-        }
-
         [AllowAnonymous]
         [HttpPost]
         [Route("token")]
