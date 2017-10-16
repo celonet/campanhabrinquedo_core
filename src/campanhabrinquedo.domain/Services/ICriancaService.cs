@@ -1,4 +1,6 @@
+using campanhabrinquedo.domain.Entities;
+
 namespace campanhabrinquedo.domain.Services
 {
-    public interface ICriancaService { }
+    public interface ICriancaService : IServiceActions<Crianca> { }
 }

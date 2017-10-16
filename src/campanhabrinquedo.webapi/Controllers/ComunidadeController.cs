@@ -24,7 +24,7 @@ namespace campanhabrinquedo.webapi.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var comunidades = _service.ListaComunidades();
+            var comunidades = _service.Lista();
             if (!comunidades.Any()) return NotFound();
             var comunidadesViewModel = comunidades.ProjectTo<ComunidadeViewModel>();
             return new ObjectResult(comunidadesViewModel);
@@ -33,7 +33,7 @@ namespace campanhabrinquedo.webapi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            var comunidade = _service.RetornaComunidadePorId(id);
+            var comunidade = _service.RetornaPorId(id);
             if (comunidade != null)
                 return new ObjectResult(_mapper.Map<ComunidadeViewModel>(comunidade));
             return NotFound();
@@ -43,7 +43,7 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Post([FromBody]ComunidadeViewModel comunidadeViewModel)
         {
             var comunidade = _mapper.Map<Comunidade>(comunidadeViewModel);
-            _service.InsereComunidade(comunidade);
+            _service.Insere(comunidade);
             return Created("", comunidadeViewModel);
         }
 
@@ -51,14 +51,14 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Put([FromBody]ComunidadeViewModel comunidadeViewModel)
         {
             var comunidade = _mapper.Map<Comunidade>(comunidadeViewModel);
-            _service.AlteraComunidade(comunidade);
+            _service.Altera(comunidade);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            _service.DeletaComunidade(id);
+            _service.Deleta(id);
             return Ok();
         }
     }

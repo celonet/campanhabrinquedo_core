@@ -1,7 +1,9 @@
+using campanhabrinquedo.domain.Validators;
+
 namespace campanhabrinquedo.domain.Entities
 {
     using System;
-    public class Padrinho : EntitieBase
+    public class Padrinho : EntityBase
     {
         public string Nome { get; private set; }
         public Comunidade Comunidade { get; private set; }
@@ -17,6 +19,12 @@ namespace campanhabrinquedo.domain.Entities
             this.Comunidade = comunidade;
             this.Telefone = telefone;
             this.Celular = celular;
+        }
+
+        public override bool IsValid()
+        {
+            var validation = new PadrinhoValidator().Validate(this);
+            return validation.IsValid;
         }
     }
 }

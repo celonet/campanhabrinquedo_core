@@ -1,8 +1,10 @@
+using campanhabrinquedo.domain.Validators;
+
 namespace campanhabrinquedo.domain.Entities
 {
     using System;
 
-    public class Usuario : EntitieBase
+    public class Usuario : EntityBase
     {
         public string Nome { get; private set; }
         public string Email { get; private set; }
@@ -24,6 +26,12 @@ namespace campanhabrinquedo.domain.Entities
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
+        }
+
+        public override bool IsValid()
+        {
+            var validation = new UsuarioValidator().Validate(this);
+            return validation.IsValid;
         }
     }
 }

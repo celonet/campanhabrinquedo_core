@@ -1,8 +1,9 @@
 using System;
+using campanhabrinquedo.domain.Validators;
 
 namespace campanhabrinquedo.domain.Entities
 {    
-    public class Responsavel : EntitieBase
+    public class Responsavel : EntityBase
     {
         public string Nome { get; private set; }
         public string RG { get; private set; }
@@ -14,6 +15,12 @@ namespace campanhabrinquedo.domain.Entities
             this.Id = Guid.NewGuid();
             this.Nome = nome;
             this.RG = rg;
+        }
+
+        public override bool IsValid()
+        {
+            var validation = new ResponsavelValidator().Validate(this);
+            return validation.IsValid;
         }
     }
 }

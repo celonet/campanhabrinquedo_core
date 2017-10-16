@@ -22,4 +22,7 @@
     <ProjectReference Include="..\campanhabrinquedo.repository\campanhabrinquedo.repository.csproj" />
     <ProjectReference Include="..\campanhabrinquedo.service\campanhabrinquedo.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Application\AutoMapper\" />
+  </ItemGroup>
 </Project>

@@ -1,15 +1,22 @@
+using System;
+using System.Linq;
+using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.domain.Services;
 
 namespace campanhabrinquedo.Application.Services
 {
-    public class PadrinhoService : IPadrinhoService
+    public class PadrinhoService : ServiceAction<Padrinho>, IPadrinhoService
     {
-        private IPadrinhoRepository _repository;
-
         public PadrinhoService(IPadrinhoRepository repository)
+            : base(repository) { }
+
+        public override bool Existe(Padrinho entity)
         {
-            _repository = repository;
+            return Repository.FindByExpression(_ =>
+                _.Nome == entity.Nome &&
+                _.Comunidade == entity.Comunidade
+            ) != null;
         }
     }
 }
