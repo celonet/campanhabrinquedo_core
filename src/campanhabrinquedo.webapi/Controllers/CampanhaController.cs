@@ -14,7 +14,7 @@ namespace campanhabrinquedo.webapi.Controllers
     {
         private readonly IMapper _mapper;
 
-        private ICampanhaService _service;
+        private readonly ICampanhaService _service;
 
         public CampanhaController(IMapper mapper, ICampanhaService service)
         {
