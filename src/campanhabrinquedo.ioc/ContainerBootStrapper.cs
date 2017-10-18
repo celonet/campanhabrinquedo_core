@@ -18,6 +18,7 @@ namespace campanhabrinquedo.ioc
                 .AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService))
                 //repositorios
                 .AddSingleton<IUsuarioRepository, UsuarioRepository>()
+                .AddSingleton<ICampanhaRepository, CampanhaRepository>()
                 .AddSingleton<IComunidadeRepository, ComunidadeRepository>()
                 .AddSingleton<ICriancaRepository, CriancaRepository>()
                 .AddSingleton<IPadrinhoRepository, PadrinhoRepository>()
@@ -25,6 +26,7 @@ namespace campanhabrinquedo.ioc
                 .AddSingleton(typeof(IRepository<>), typeof(Repository<>))
                 //services
                 .AddScoped<IUsuarioService, UsuarioService>()
+                .AddScoped<ICampanhaService, CampanhaService>()
                 .AddScoped<IComunidadeService, ComunidadeService>()
                 .AddScoped<ICriancaService, CriancaService>()
                 .AddScoped<ICampanhaService, CampanhaService>()
