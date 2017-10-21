@@ -42,16 +42,19 @@ namespace campanhabrinquedo.webapi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]CriancaViewModel criancaViewModel)
         {
+            if (criancaViewModel == null) return BadRequest();
             var crianca = _mapper.Map<Crianca>(criancaViewModel);
-            _service.Insere(crianca);
+            if(_service.Insere(crianca) == null)
+                return BadRequest(criancaViewModel);
             return Created("", criancaViewModel);
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody]CriancaViewModel CriancaViewModel)
+        public IActionResult Put([FromBody]CriancaViewModel criancaViewModel)
         {
-            var crianca = _mapper.Map<Crianca>(CriancaViewModel);
-            _service.Altera(crianca);
+            var crianca = _mapper.Map<Crianca>(criancaViewModel);
+            if(_service.Altera(crianca) == null)
+                return  BadRequest(criancaViewModel);
             return Ok();
         }
 

@@ -43,7 +43,8 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Post([FromBody]ResponsavelViewModel responsavelViewModel)
         {
             var responsavel = _mapper.Map<Responsavel>(responsavelViewModel);
-            _service.Insere(responsavel);
+            if(_service.Insere(responsavel) != null)
+                return BadRequest(responsavelViewModel);
             return Created("", responsavelViewModel);
         }
 
@@ -51,7 +52,8 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Put([FromBody]ResponsavelViewModel responsavelViewModel)
         {
             var responsavel = _mapper.Map<Responsavel>(responsavelViewModel);
-            _service.Altera(responsavel);
+            if(_service.Altera(responsavel) != null)
+                return BadRequest(responsavelViewModel);
             return Ok();
         }
 

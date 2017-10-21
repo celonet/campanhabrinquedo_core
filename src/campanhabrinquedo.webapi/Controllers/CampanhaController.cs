@@ -44,7 +44,8 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Post([FromBody]CampanhaViewModel campanhaViewModel)
         {
             var campanha = _mapper.Map<Campanha>(campanhaViewModel);
-            _service.Insere(campanha);
+            if(_service.Insere(campanha) == null)
+                return BadRequest(campanhaViewModel);
             return Created("", campanhaViewModel);
         }
 
@@ -52,7 +53,8 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Put([FromBody]CampanhaViewModel campanhaViewModel)
         {
             var campanha = _mapper.Map<Campanha>(campanhaViewModel);
-            _service.Altera(campanha);
+            if(_service.Altera(campanha) == null)
+                return BadRequest(campanhaViewModel);
             return Ok();
         }
 

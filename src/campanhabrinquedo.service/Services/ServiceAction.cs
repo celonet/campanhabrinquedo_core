@@ -15,11 +15,13 @@ namespace campanhabrinquedo.Application.Services
             Repository = repository;
         }
 
-        public void Altera(T entity)
+        public T Altera(T entity)
         {
-            if (!entity.IsValid()) return;
+            if (!entity.IsValid()) return null;
             
             Repository.Update(entity);
+
+            return entity;
         }
 
         public void Deleta(Guid id)
@@ -29,12 +31,14 @@ namespace campanhabrinquedo.Application.Services
 
         public abstract bool Existe(T entity);
 
-        public void Insere(T entity)
+        public T Insere(T entity)
         {
-            if (!entity.IsValid()) return;
-            if (Existe(entity)) return;
+            if (!entity.IsValid()) return null;
+            if (Existe(entity)) return null;
 
             Repository.Create(entity);
+
+            return entity;
         }
 
         public IQueryable<T> Lista()

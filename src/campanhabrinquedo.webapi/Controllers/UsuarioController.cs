@@ -47,7 +47,8 @@ namespace campanhabrinquedo.webapi.Controllers
             if (_service.Existe(usuario))
                 return BadRequest("Usuario já existe");
 
-            _service.Insere(usuario);
+            if(_service.Insere(usuario) != null)
+                return BadRequest(usuarioViewModel);
 
             return Created("Usuario", usuario);
         }
@@ -56,7 +57,8 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Put(Guid id, [FromBody]UsuarioViewModel usuarioViewModel)
         {
             var usuario = _mapper.Map<Usuario>(usuarioViewModel);
-            _service.Altera(usuario);
+            if(_service.Altera(usuario) != null)
+                return BadRequest(usuarioViewModel);
             return Ok();
         }
 

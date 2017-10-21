@@ -6,8 +6,8 @@ namespace campanhabrinquedo.domain.Services
 {
     public interface IServiceActions<T> where T : EntityBase
     {
-        void Insere(T entity);
-        void Altera(T entity);
+        T Insere(T entity);
+        T Altera(T entity);
         void Deleta(Guid id);
         T RetornaPorId(Guid id);
         IQueryable<T> Lista();

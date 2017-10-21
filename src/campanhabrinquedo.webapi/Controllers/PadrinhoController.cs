@@ -26,8 +26,8 @@ namespace campanhabrinquedo.webapi.Controllers
         {
             var padrinho = _service.Lista();
             if (!padrinho.Any()) return NotFound();
-            var PadrinhoViewModel = padrinho.ProjectTo<PadrinhoViewModel>();
-            return new ObjectResult(PadrinhoViewModel);
+            var padrinhoViewModel = padrinho.ProjectTo<PadrinhoViewModel>();
+            return new ObjectResult(padrinhoViewModel);
         }
 
         [HttpGet("{id}")]
@@ -40,18 +40,20 @@ namespace campanhabrinquedo.webapi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]PadrinhoViewModel PadrinhoViewModel)
+        public IActionResult Post([FromBody]PadrinhoViewModel padrinhoViewModel)
         {
-            var padrinho = _mapper.Map<Padrinho>(PadrinhoViewModel);
-            _service.Insere(padrinho);
-            return Created("", PadrinhoViewModel);
+            var padrinho = _mapper.Map<Padrinho>(padrinhoViewModel);
+            if(_service.Insere(padrinho) == null)
+                return  BadRequest(padrinhoViewModel);
+            return Created("", padrinhoViewModel);
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody]PadrinhoViewModel PadrinhoViewModel)
+        public IActionResult Put([FromBody]PadrinhoViewModel padrinhoViewModel)
         {
-            var padrinho = _mapper.Map<Padrinho>(PadrinhoViewModel);
-            _service.Altera(padrinho);
+            var padrinho = _mapper.Map<Padrinho>(padrinhoViewModel);
+            if(_service.Altera(padrinho) != null)
+                return BadRequest(padrinhoViewModel);
             return Ok();
         }
 
