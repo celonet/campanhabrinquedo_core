@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using campanhabrinquedo.Application.ViewModel;
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Services;
@@ -19,11 +20,13 @@ namespace campanhabrinquedo.webapi.Controllers
     {
         private readonly IUsuarioService _service;
         private readonly TokenProviderOptions _options;
+        private readonly IMapper _mapper;
 
-        public UsuarioController(IUsuarioService service)
+        public UsuarioController(IMapper mapper, IUsuarioService service)
         {
             _service = service;
             _options = new TokenProviderOptions();
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
@@ -38,20 +41,24 @@ namespace campanhabrinquedo.webapi.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Post([FromBody]Usuario usuario)
+        public IActionResult Post([FromBody]UsuarioViewModel usuarioViewModel)
         {
+            var usuario = _mapper.Map<Usuario>(usuarioViewModel);
             if (_service.Existe(usuario))
                 return BadRequest("Usuario já existe");
 
-            _service.Insere(usuario);
+            if(_service.Insere(usuario) != null)
+                return BadRequest(usuarioViewModel);
 
-            return Created(new Uri(Url.Link("Usuario", new { id = usuario.Id })), new { id = usuario.Id });
+            return Created("Usuario", usuario);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody]Usuario usuario)
+        public IActionResult Put(Guid id, [FromBody]UsuarioViewModel usuarioViewModel)
         {
-            _service.Altera(usuario);
+            var usuario = _mapper.Map<Usuario>(usuarioViewModel);
+            if(_service.Altera(usuario) != null)
+                return BadRequest(usuarioViewModel);
             return Ok();
         }
 
@@ -97,7 +104,7 @@ namespace campanhabrinquedo.webapi.Controllers
             return Ok(new
             {
                 access_token = encodedJwt,
-                expires_in = (int) _options.Expiration.TotalSeconds
+                expires_in = (int)_options.Expiration.TotalSeconds
             });
         }
     }

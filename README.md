@@ -3,7 +3,7 @@
 ## curl comand
 
 ```#!/bin/bash
- curl -method POST -body 'username=TEST&password=TEST123' -uri http://localhost:5000/api/token
+ curl -Method POST -body '{"usuario":"user","senha":"password"}' -uri http://localhost:5000/api/usuario/token -ContentType application/json
 ```
 
 ## Up docker Data Server
@@ -29,3 +29,17 @@ dotnet add package [PackageName]
 ```#!/bin/bash
  dotnet sln [solutionname.sln] add [project.csproj]
 ```
+
+## Documentation of api
+
+<http://localhost:5000/swagger/>
+
+## Technology
+
+* [.NET Core](https://www.microsoft.com/net/core)
+* [Swagger](https://swagger.io/)
+* [Docker](https://www.docker.com/)
+* [Sql Server](https://www.microsoft.com/en-us/sql-server/sql-server-2017)
+* [Entity Framework Core](https://docs.microsoft.com/en-us/ef/#pivot=efcore)
+* [Auto Mapper](http://automapper.org/)
+* [FluentValidation](https://github.com/JeremySkinner/FluentValidation)

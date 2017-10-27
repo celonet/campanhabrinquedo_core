@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Repositories;
 using campanhabrinquedo.domain.Services;

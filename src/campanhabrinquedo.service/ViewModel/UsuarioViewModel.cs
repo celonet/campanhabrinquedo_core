@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 
 namespace campanhabrinquedo.Application.ViewModel
 {
-    public class LoginViewModel
+    public class UsuarioViewModel
     {
         public Guid Id { get; set; }
-        public string Usuario { get; set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
         public string Senha { get; set; }
     }
 }

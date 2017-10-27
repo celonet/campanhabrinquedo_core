@@ -27,6 +27,14 @@ namespace campanhabrinquedo.domain.Entities
             this.QtdeCriancas = qtdeCriancas;
         }
 
+        public Campanha(Guid id, int ano, string descricao, int qtdeCriancas)
+        {
+            this.Id = id;
+            this.Ano = ano;
+            this.Descricao = descricao;
+            this.QtdeCriancas = qtdeCriancas;
+        }
+
         public void IncrementaQuantidadeCriancas()
         {
             this.QtdeCriancas++;

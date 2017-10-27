@@ -17,6 +17,13 @@ namespace campanhabrinquedo.domain.Entities
             this.RG = rg;
         }
 
+        public Responsavel(Guid id, string nome, string rg)
+        {
+            this.Id = id;
+            this.Nome = nome;
+            this.RG = rg;
+        }
+
         public override bool IsValid()
         {
             var validation = new ResponsavelValidator().Validate(this);
