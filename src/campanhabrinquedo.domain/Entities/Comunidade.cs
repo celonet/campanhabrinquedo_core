@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using campanhabrinquedo.domain.Entities.Relationships;
 using campanhabrinquedo.domain.Validators;
 
 namespace campanhabrinquedo.domain.Entities
@@ -7,6 +9,8 @@ namespace campanhabrinquedo.domain.Entities
     {
         public string Nome { get; private set; }
         public string Bairro { get; private set; }
+        public ICollection<ComunidadeCrianca> Criancas { get; private set; }
+        public ICollection<ComunidadePadrinho> Padrinhos { get; private set; }
 
         protected Comunidade() { }
 
