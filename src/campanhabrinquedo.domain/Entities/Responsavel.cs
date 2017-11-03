@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using campanhabrinquedo.domain.Entities.Relationships;
 using campanhabrinquedo.domain.Validators;
 
 namespace campanhabrinquedo.domain.Entities
@@ -7,6 +9,8 @@ namespace campanhabrinquedo.domain.Entities
     {
         public string Nome { get; private set; }
         public string RG { get; private set; }
+
+        public ICollection<ResponsavelCrianca> Criancas { get; private set; } 
 
         protected Responsavel() { }
 
