@@ -36,6 +36,8 @@ namespace campanhabrinquedo.Application.Services
             if (!entity.IsValid()) return null;
             if (Existe(entity)) return null;
 
+            entity.IncluiDataCadastro();
+
             Repository.Create(entity);
 
             return entity;

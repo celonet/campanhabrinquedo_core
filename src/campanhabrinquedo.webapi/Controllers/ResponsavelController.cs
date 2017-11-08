@@ -13,7 +13,7 @@ namespace campanhabrinquedo.webapi.Controllers
     public class ResponsavelController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IResponsavelService _service ;
+        private readonly IResponsavelService _service;
 
         public ResponsavelController(IMapper mapper, IResponsavelService service)
         {
@@ -21,7 +21,7 @@ namespace campanhabrinquedo.webapi.Controllers
             _mapper = mapper;
         }
 
-          [HttpGet]
+        [HttpGet]
         public IActionResult Get()
         {
             var responsavel = _service.Lista();
@@ -43,7 +43,7 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Post([FromBody]ResponsavelViewModel responsavelViewModel)
         {
             var responsavel = _mapper.Map<Responsavel>(responsavelViewModel);
-            if(_service.Insere(responsavel) != null)
+            if (_service.Insere(responsavel) != null)
                 return BadRequest(responsavelViewModel);
             return Created("", responsavelViewModel);
         }
@@ -52,7 +52,7 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Put([FromBody]ResponsavelViewModel responsavelViewModel)
         {
             var responsavel = _mapper.Map<Responsavel>(responsavelViewModel);
-            if(_service.Altera(responsavel) != null)
+            if (_service.Altera(responsavel) != null)
                 return BadRequest(responsavelViewModel);
             return Ok();
         }

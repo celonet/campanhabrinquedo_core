@@ -53,30 +53,14 @@ namespace campanhabrinquedo.webapi
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            services.AddSwaggerGen(_ =>
-            {
-                _.SwaggerDoc("v1",
-                    new Info
-                    {
-                        Title = "Api da Campanha do Brinquedo",
-                        Version = "v1",
-                        Description = "Api para acesso a Campanha do Brinquedo",
-                        Contact = new Contact
-                        {
-                            Name = "Marcelo Lopes da Silva Aguiar",
-                            Email = "marcelo.lopesdasilva@gmail.com",
-                            Url = "https://github.com/celonet"
-                        }
-                    }
-                );
-            });
+            RegisterSwaggerService(services);
 
             services.AddAutoMapper(typeof(AutoMapperConfig).Assembly);
 
             ConfigureAuthentication(services);
 
             RegisterService(services);
-        }
+        }        
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -102,6 +86,27 @@ namespace campanhabrinquedo.webapi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Campanha do Brinquedo");
             });
             app.UseMvc();          
+        }
+
+        private static void RegisterSwaggerService(IServiceCollection services)
+        {
+            services.AddSwaggerGen(_ =>
+            {
+                _.SwaggerDoc("v1",
+                    new Info
+                    {
+                        Title = "Api da Campanha do Brinquedo",
+                        Version = "v1",
+                        Description = "Api para acesso a Campanha do Brinquedo",
+                        Contact = new Contact
+                        {
+                            Name = "Marcelo Lopes da Silva Aguiar",
+                            Email = "marcelo.lopesdasilva@gmail.com",
+                            Url = "https://github.com/celonet"
+                        }
+                    }
+                );
+            });
         }
 
         private void ConfigureAuthentication(IServiceCollection services)
