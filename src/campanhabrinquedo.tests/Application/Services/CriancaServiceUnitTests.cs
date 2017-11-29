@@ -11,8 +11,8 @@ namespace campanhabrinquedo.tests.Application.Services
         {
             Repository = Substitute.For<ICriancaRepository>();
             Service = new CriancaService((ICriancaRepository)Repository);
-            Entity = new Crianca("Marcelo", "10", Sexo.Masculino, new Comunidade("Bairro Test", "Comunidade Test"), new Responsavel("Marcelo", "11111111111"));
-            EntityInvalid = new Crianca("", "", Sexo.Masculino, new Comunidade("", ""), new Responsavel("", ""));
+            Entity = new Crianca("Marcelo", "10", "8", "23", Sexo.Masculino, new Comunidade("Bairro Test", "Comunidade Test"), new Responsavel("Marcelo", "11111111111"));
+            EntityInvalid = new Crianca("", "", "", "", Sexo.Masculino, new Comunidade("", ""), new Responsavel("", ""));
         }
     }
 }

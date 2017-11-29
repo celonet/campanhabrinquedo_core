@@ -33,6 +33,7 @@ namespace campanhabrinquedo.Application.Services
 
         public T Insere(T entity)
         {
+            if (entity == null) return null;
             if (!entity.IsValid()) return null;
             if (Existe(entity)) return null;
 

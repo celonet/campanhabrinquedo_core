@@ -7,6 +7,8 @@ namespace campanhabrinquedo.domain.Entities
     {
         public string Nome { get; private set; }
         public string Idade { get; private set; }
+        public string Roupa { get; private set; }
+        public string Calcado { get; private set; }
         public Sexo Sexo { get; private set; }
         public Comunidade Comunidade { get; private set; }
         public Responsavel Responsavel { get; private set; }
@@ -15,11 +17,13 @@ namespace campanhabrinquedo.domain.Entities
 
         protected Crianca() { }
 
-        public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel)
+        public Crianca(string nome, string idade, string roupa, string calcado, Sexo sexo, Comunidade comunidade, Responsavel responsavel)
         {
             this.Id = Guid.NewGuid();
             this.Nome = nome;
             this.Idade = idade;
+            this.Roupa = roupa;
+            this.Calcado = calcado;
             this.Sexo = sexo;
             this.Comunidade = comunidade;
             this.Responsavel = responsavel;
@@ -27,11 +31,13 @@ namespace campanhabrinquedo.domain.Entities
             this.Especial = false;
         }
 
-        public Crianca(string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool impresso, bool especial)
+        public Crianca(string nome, string idade, string roupa, string calcado, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool impresso, bool especial)
         {
             this.Id = Guid.NewGuid();
             this.Nome = nome;
             this.Idade = idade;
+            this.Roupa = roupa;
+            this.Calcado = calcado;
             this.Sexo = sexo;
             this.Comunidade = comunidade;
             this.Responsavel = responsavel;
@@ -39,11 +45,13 @@ namespace campanhabrinquedo.domain.Entities
             this.Especial = especial;
         }
 
-        public Crianca(Guid id, string nome, string idade, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool impresso, bool especial)
+        public Crianca(Guid id, string nome, string idade, string roupa, string calcado, Sexo sexo, Comunidade comunidade, Responsavel responsavel, bool impresso, bool especial)
         {
             this.Id = id;
             this.Nome = nome;
             this.Idade = idade;
+            this.Roupa = roupa;
+            this.Calcado = calcado;
             this.Sexo = sexo;
             this.Comunidade = comunidade;
             this.Responsavel = responsavel;

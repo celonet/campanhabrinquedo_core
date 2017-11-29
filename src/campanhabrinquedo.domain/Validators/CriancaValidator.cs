@@ -11,6 +11,8 @@ namespace campanhabrinquedo.domain.Validators
                 .NotEmpty().WithMessage("Nome obrigatório!");
             RuleFor(crianca => crianca.Idade)
                 .NotEmpty().WithMessage("Idade Obrigatória!");
+            RuleFor(crianca => crianca.Roupa)
+                .NotEmpty().WithMessage("Tamanho de roupa obrigatório!");
             RuleFor(crianca => crianca.Comunidade)
                 .NotNull()
                 .SetValidator(new ComunidadeValidator());

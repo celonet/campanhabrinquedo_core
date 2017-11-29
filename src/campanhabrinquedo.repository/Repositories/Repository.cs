@@ -19,8 +19,9 @@ namespace campanhabrinquedo.repository.Repositories
             DbSet = _context.Set<T>();
         }
 
-        public void Create(T entitie)
+        public virtual void Create(T entitie)
         {
+            DbSet.Attach(entitie);
             DbSet.Add(entitie);
             _context.SaveChanges();
         }

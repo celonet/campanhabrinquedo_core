@@ -13,6 +13,10 @@ namespace campanhabrinquedo.repository.Mappings
                 .HasMaxLength(150)
                 .IsRequired();
             builder
+                .Property(p => p.Roupa)
+                .HasMaxLength(150)
+                .IsRequired();
+            builder
                 .Property(p => p.Idade)
                 .HasMaxLength(150)
                 .IsRequired();

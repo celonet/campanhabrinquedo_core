@@ -13,5 +13,7 @@ namespace campanhabrinquedo.Application.ViewModel
         public ResponsavelViewModel Responsavel { get; set; }
         public bool Impresso { get; set; }
         public bool Especial { get; set; }
+        public string Roupa { get; set; }
+        public string Calcado { get; set; }
     }
 }
