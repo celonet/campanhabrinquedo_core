@@ -14,7 +14,7 @@ namespace campanhabrinquedo.repository.Mappings
                 .IsRequired();
             builder
                 .Property(p => p.RG)
-                .HasMaxLength(15)
+                .HasMaxLength(50)
                 .IsRequired();
         }
     }
