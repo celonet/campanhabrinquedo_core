@@ -32,6 +32,7 @@ namespace campanhabrinquedo.repository
             modelBuilder.ApplyConfiguration(new ComunidadeCriancaMap());
             modelBuilder.ApplyConfiguration(new ComunidadePadrinhoMap());
             modelBuilder.ApplyConfiguration(new ResponsavelCriancaMap());
+            modelBuilder.ApplyConfiguration(new PadrinhoCriancaMap());
 
             base.OnModelCreating(modelBuilder);
         }
