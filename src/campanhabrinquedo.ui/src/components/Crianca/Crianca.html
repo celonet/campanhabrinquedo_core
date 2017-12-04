@@ -1,0 +1,19 @@
+<div>
+    <h1>Criança</h1>
+
+    <table>
+        <thead>
+            <th>Nome</th>
+        </thead>
+        <tbody>
+            <tr v-for="crianca in criancas" :key="crianca.id">
+                <td>{{crianca.nome}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <ul>
+        <li v-for="crianca in criancas">
+            {{crianca.nome}}
+        </li>
+    </ul> -->
+</div>

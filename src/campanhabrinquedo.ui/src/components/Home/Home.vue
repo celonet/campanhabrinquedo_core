@@ -2,7 +2,13 @@
 export default {
   template: require("./Home.html"),
   data() {
-    return {};
+    return {
+      campanha: 2017,
+      qtdeCriancas: 0,
+      qtdePadrinhos: 0,
+      qtdeResponsaveis: 0,
+      qtdeComunidades: 0,
+    };
   }
 };
 </script>

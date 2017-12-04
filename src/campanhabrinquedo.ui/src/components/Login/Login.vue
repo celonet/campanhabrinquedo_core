@@ -1,7 +1,6 @@
 <script>
 export default {
   template: require("./Login.html"),
-  name: "login",
   data() {
     return {
       loader: false,
@@ -10,33 +9,29 @@ export default {
       password: ""
     };
   },
-  beforeCreate() {
-    if (store.state.isLogged) {
-      router.push("/");
-    }
-  },
+  beforeCreate() {},
   methods: {
-    //     login() {
-    //       this.loader = true;
-    //       this.infoError = false;
-    //       this.$http
-    //         .post("https://your-api-url.com/login", {
-    //           email: this.email,
-    //           password: this.password
-    //         })
-    //         .then(
-    //           response => {
-    //             localStorage.setItem("token", response.body.token);
-    //             // store.commit("LOGIN_USER");
-    //             router.push("/");
-    //           },
-    //           () => {
-    //             this.infoError = true;
-    //             this.loader = false;
-    //             this.password = "";
-    //           }
-    //         );
-    //     }
+    login() {
+      this.loader = true;
+      this.infoError = false;
+      this.$http
+        .post("http://localhost:5000/api/usuario/token", {
+          usuario: this.email,
+          senha: this.password
+        })
+        .then(
+          response => {
+            localStorage.setItem("token", response.body.access_token);
+            this.$router.push({ name: "home" });
+          },
+          err => {
+            this.infoError = true;
+            this.loader = false;
+            this.password = "";
+            console.log(err);
+          }
+        );
+    }
   }
 };
 </script>
