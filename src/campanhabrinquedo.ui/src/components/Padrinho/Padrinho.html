@@ -1,3 +1,39 @@
 <div>
-    <h1>Padrinho</h1>
+    <div>
+        <md-table-card>
+            <md-toolbar>
+                <h1 class="md-title">Padrinho</h1>
+                <md-button class="md-icon-button">
+                    <md-icon>filter_list</md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button">
+                    <md-icon>search</md-icon>
+                </md-button>
+            </md-toolbar>
+
+            <md-table md-sort="nome" md-sort-type="desc" @select="onSelect" @sort="onSort">
+                <md-table-header>
+                    <md-table-row>
+                        <md-table-head md-sort-by="nome">Nome</md-table-head>
+                        <md-table-head md-sort-by="comunidade">Comunidade</md-table-head>
+                        <md-table-head md-sort-by="telefone">Telefone</md-table-head>
+                        <md-table-head md-sort-by="celular">Celular</md-table-head>
+                    </md-table-row>
+                </md-table-header>
+
+                <md-table-body>
+                    <md-table-row v-for="padrinho in padrinhos" :key="padrinho.id" :md-item="padrinho" md-auto-select md-selection>
+                        <md-table-cell> {{ padrinho.nome }} </md-table-cell>
+                        <md-table-cell> {{ padrinho.comunidade.nome }} </md-table-cell>
+                        <md-table-cell> {{ padrinho.telefone }} </md-table-cell>
+                        <md-table-cell> {{ padrinho.celular }} </md-table-cell>
+                    </md-table-row>
+                </md-table-body>
+            </md-table>
+
+            <md-table-pagination md-size="5" md-total="10" md-page="1" md-label="Rows" md-separator="of" :md-page-options="[5, 10, 25, 50]"
+                @pagination="onPagination"></md-table-pagination>
+        </md-table-card>
+    </div>
 </div>
