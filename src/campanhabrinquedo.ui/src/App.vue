@@ -1,7 +1,7 @@
 <template>
   <div id="app">
    <toolbar-menu :rotas="routes" />
-    <transition name="pagina">
+    <transition name="pagina" class="container">
       <router-view></router-view>
     </transition>
   </div>
@@ -25,8 +25,9 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  background-color: #f6f6f6;
+
+h2 {
+  margin: 0;
 }
 
 .pagina-enter-active,
@@ -37,4 +38,14 @@ body {
 .pagina-leave-active {
   opacity: 0;
 }
+
+
+
+html, body, nav {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
 </style>
