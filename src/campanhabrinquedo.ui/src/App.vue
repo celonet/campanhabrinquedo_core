@@ -1,10 +1,11 @@
 <template>
   <div id="app">
    <toolbar-menu :rotas="routes" />
-    <transition name="pagina" class="container">
+   <div class="container">
+    <transition name="pagina">
       <router-view></router-view>
     </transition>
-  </div>
+   </div>
   </div>
 </template>
 
@@ -18,14 +19,13 @@ export default {
   name: "app",
   data() {
     return {
-       routes: routes.filter(route => route.menu)
+      routes: routes.filter(route => route.menu)
     };
   }
 };
 </script>
 
 <style lang="scss">
-
 h2 {
   margin: 0;
 }
@@ -39,13 +39,12 @@ h2 {
   opacity: 0;
 }
 
-
-
-html, body, nav {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
+html,
+body,
+nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
 }
-
 </style>

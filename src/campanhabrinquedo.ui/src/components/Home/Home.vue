@@ -1,6 +1,14 @@
 <script>
+import Image from './../Shared/Image/Image.vue';
+import HomeCard from './HomeCard/HomeCard.vue';
+
 export default {
+
   template: require("./Home.html"),
+  components: {
+    "my-image": Image,
+    "home-card": HomeCard
+  },
   data() {
     return {
       campanha: 2017,
