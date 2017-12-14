@@ -7,7 +7,7 @@ import Responsavel from './components/Responsavel/Responsavel.vue';
 import Crianca from './components/Crianca/Crianca.vue';
 
 export const routes = [
-    { path: '*', name: 'login', component: Login, title: 'Login', menu: true },
+    { path: '/login', name: 'login', component: Login, title: 'Login', menu: true },
     { path: '', name: 'home', component: Home, title: 'Home', menu: true },
     { path: '/campanha', name: 'campanha', component: Campanha, title: 'Campanha', menu: true },
     { path: '/comunidade', name: "comunidade", component: Comunidade, title: 'Comunidade', menu: true },

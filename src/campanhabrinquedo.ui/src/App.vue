@@ -17,6 +17,12 @@ export default {
     "toolbar-menu": Menu
   },
   name: "app",
+  created() {
+    var token = localStorage.getItem("token");
+    if (!token) {
+      this.$router.push({ name: "login" });
+    }
+  },
   data() {
     return {
       routes: routes.filter(route => route.menu)

@@ -1,12 +1,10 @@
-<div>
-    <md-layout md-align="center" md-vertical-align="center">
-        <md-card>
-            <md-card-header>
-                <md-card-header-text>
-                    Login
-                    <div class="info info-error" v-if="infoError">Login failed. Please try again.</div>
-                </md-card-header-text>
-                <md-card-content>
+<div class="container">
+    <div class="row">
+        <div class="card horizontal">
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="card-title"> Login </div>
+                    <div class="card-subhead info info-error" v-if="infoError">Login failed. Please try again.</div>
                     <form class="form form-login" @submit.prevent="login()">
                         <div :class="{'is-waiting': loader}">
                             <div class="form-block">
@@ -16,15 +14,14 @@
                             <div class="form-block">
                                 <input v-model.trim="password" class="field" name="password" type="password" placeholder="Password" required>
                             </div>
-
-                            <div class="form-block form__actions">
-                                <router-link to="/password-reset">Lost your password?</router-link>
-                                <button class="button button--green form__submit">Login</button>
-                            </div>
                         </div>
                     </form>
-                </md-card-content>
-            </md-card-header>
-        </md-card>
-    </md-layout>
+                </div>
+                <div class="card-action">
+                    <router-link to="/password-reset">Lost your password?</router-link>
+                    <button class="button button--green form__submit">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

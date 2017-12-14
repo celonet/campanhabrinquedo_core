@@ -19,16 +19,12 @@ const router = new VueRouter({
 });
 
 Vue.http.interceptors.push((req, next) => {
-  if (localStorage.length == 0) {
-    next(function (response) {
-      if (response.status == 401) {
-        router.push({ name: 'login' });
-      }
-    });
-  } else {
-    var token = localStorage.getItem('token');
+  var token = localStorage.getItem('token');
+  if (token) {
     req.headers.set('Authorization', `bearer ${token}`);
     next();
+  } else {
+    router.push({ name: 'login' });
   }
 });
 
