@@ -1,18 +1,18 @@
 <template>
-<nav>
-  <div class="nav-wrapper  indigo accent-2">
-    <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large">
-      <i class="material-icons">menu</i>
-    </a>
-    <h2 class="md-title">Campanha do Brinquedo</h2>
+  <nav>
+    <div class="nav-wrapper  indigo accent-2">
+      <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large">
+        <i class="material-icons">menu</i>
+      </a>
+      <h2 class="md-title">Campanha do Brinquedo</h2>
 
-    <ul class="side-nav grey darken-2" id="mobile-demo">
-      <li class="blue" v-for="rota in rotas" :key="rota.name">
-        <router-link :to="rota.path || '/'">{{rota.title}}</router-link>
-      </li>
-    </ul>
-  </div>
-</nav>  
+      <ul class="side-nav grey darken-2" id="mobile-demo">
+        <li class="blue" v-for="rota in rotas" :key="rota.name">
+          <router-link :to="rota.path || '/'">{{rota.title}}</router-link>
+        </li>
+      </ul>
+    </div>
+  </nav>  
 </template>
 
 <script>
@@ -36,6 +36,9 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+nav {
+  margin-bottom: 40px;
+}
 .side-nav li > a {
   padding: 0 16px;
 }

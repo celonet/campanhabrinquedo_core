@@ -1,12 +1,9 @@
 <script>
-import Image from './../Shared/Image/Image.vue';
-import HomeCard from './HomeCard/HomeCard.vue';
+import HomeCard from "./HomeCard/HomeCard.vue";
 
 export default {
-
   template: require("./Home.html"),
   components: {
-    "my-image": Image,
     "home-card": HomeCard
   },
   data() {
@@ -15,7 +12,7 @@ export default {
       qtdeCriancas: 0,
       qtdePadrinhos: 0,
       qtdeResponsaveis: 0,
-      qtdeComunidades: 0,
+      qtdeComunidades: 0
     };
   }
 };
