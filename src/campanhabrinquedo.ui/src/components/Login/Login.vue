@@ -1,26 +1,32 @@
 <script>
+import UsuarioService from "./../../domain/usuarioService";
+
 export default {
   template: require("./Login.html"),
   data() {
     return {
       loader: false,
       infoError: false,
+      messageError: "",
       email: "",
       password: ""
     };
   },
-  beforeCreate() {},
+  created() {
+    this.usuarioService = new UsuarioService(this.$resource);
+  },
   methods: {
     login() {
       this.loader = true;
       this.infoError = false;
-      this.$http
-        .post("http://localhost:5000/api/usuario/token", {
+      this.usuarioService
+        .login({
           usuario: this.email,
           senha: this.password
         })
         .then(
           response => {
+            console.log(response);
             localStorage.setItem("token", response.body.access_token);
             this.$router.push({ name: "home" });
           },
@@ -28,7 +34,7 @@ export default {
             this.infoError = true;
             this.loader = false;
             this.password = "";
-            console.log(err);
+            this.messageError = err.message;
           }
         );
     }

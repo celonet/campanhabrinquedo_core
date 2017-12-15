@@ -5,7 +5,7 @@
         <div class="card-stacked">
           <div class="card-content">
             <div class="card-title"> Login </div>
-            <div class="card-subhead info info-error" v-if="infoError">Login failed. Please try again.</div>
+            <div class="card-subhead info info-error" v-if="infoError">{{ messageError }}</div>
             <div :class="{'is-waiting': loader}">
               <div class="form-block">
                 <input v-model.trim="email" class="field" name="email" type="email" placeholder="E-mail address" required>
