@@ -7,7 +7,6 @@ using AutoMapper;
 using campanhabrinquedo.Application.ViewModel;
 using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Services;
-using campanhabrinquedo.webapi.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,13 +18,11 @@ namespace campanhabrinquedo.webapi.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioService _service;
-        private readonly TokenProviderOptions _options;
         private readonly IMapper _mapper;
 
         public UsuarioController(IMapper mapper, IUsuarioService service)
         {
             _service = service;
-            _options = new TokenProviderOptions();
             _mapper = mapper;
         }
 
@@ -47,7 +44,7 @@ namespace campanhabrinquedo.webapi.Controllers
             if (_service.Existe(usuario))
                 return BadRequest("Usuario já existe");
 
-            if(_service.Insere(usuario) != null)
+            if (_service.Insere(usuario) != null)
                 return BadRequest(usuarioViewModel);
 
             return Created("Usuario", usuario);
@@ -57,7 +54,7 @@ namespace campanhabrinquedo.webapi.Controllers
         public IActionResult Put(Guid id, [FromBody]UsuarioViewModel usuarioViewModel)
         {
             var usuario = _mapper.Map<Usuario>(usuarioViewModel);
-            if(_service.Altera(usuario) != null)
+            if (_service.Altera(usuario) != null)
                 return BadRequest(usuarioViewModel);
             return Ok();
         }
@@ -79,32 +76,33 @@ namespace campanhabrinquedo.webapi.Controllers
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            var secretKey = config["JwtIssuerOptions:SecretKey"];
-
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             var result = await _service.LogarUsuario(model.Usuario, model.Senha);
 
-            if (!result) return BadRequest("Invalid username or password");
+            if (!result)
+                return BadRequest("Invalid username or password");
 
+            var secretKey = config["JwtIssuerOptions:SecretKey"];
+            var tokenExpiration = TimeSpan.FromSeconds(config.GetValue<int>("JwtIssuerOptions:Expiration"));
+            var issuer = config["JwtIssuerOptions:Issuer"];
+            var audience = config["JwtIssuerOptions:Audience"];
             var now = DateTime.UtcNow;
-
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
-
             var jwt = new JwtSecurityToken(
-                config["JwtIssuerOptions:Issuer"],
-                config["JwtIssuerOptions:Audience"],
+                issuer,
+                audience,
                 notBefore: now,
-                expires: now.Add(_options.Expiration),
-                signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256));
+                expires: now.Add(tokenExpiration),
+                signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
+            );
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
             return Ok(new
             {
                 access_token = encodedJwt,
-                expires_in = (int)_options.Expiration.TotalSeconds
+                expires_in = (int)tokenExpiration.TotalSeconds
             });
         }
     }

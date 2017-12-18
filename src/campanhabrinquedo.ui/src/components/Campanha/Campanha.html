@@ -1,0 +1,19 @@
+<div>
+  <h1 class="md-title">Campanha</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Ano</th>
+        <th>Descrição</th>
+        <th>Qtde</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="campanha in campanhas" :key="campanha.id">
+        <td> {{ campanha.ano }} </td>
+        <td> {{ campanha.descricao }} </td>
+        <td> {{ campanha.qtdeCriancas }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

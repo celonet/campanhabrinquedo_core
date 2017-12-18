@@ -1,0 +1,21 @@
+<div>
+  <h1 class="md-title">Padrinho</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Comunidade</th>
+        <th>Telefone</th>
+        <th>Celular</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="padrinho in padrinhos" :key="padrinho.id">
+        <td> {{ padrinho.nome }} </td>
+        <td> {{ padrinho.comunidade.nome }} </td>
+        <td> {{ padrinho.telefone }} </td>
+        <td> {{ padrinho.celular }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

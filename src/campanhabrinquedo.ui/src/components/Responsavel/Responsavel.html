@@ -1,0 +1,17 @@
+<div>
+  <h1 class="md-title">Responsavel</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>RG</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="responsavel in responsaveis" :key="responsavel.id">
+        <td> {{ responsavel.nome }} </td>
+        <td> {{ responsavel.rg }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

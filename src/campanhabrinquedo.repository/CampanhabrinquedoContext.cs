@@ -32,6 +32,7 @@ namespace campanhabrinquedo.repository
             modelBuilder.ApplyConfiguration(new ComunidadeCriancaMap());
             modelBuilder.ApplyConfiguration(new ComunidadePadrinhoMap());
             modelBuilder.ApplyConfiguration(new ResponsavelCriancaMap());
+            modelBuilder.ApplyConfiguration(new PadrinhoCriancaMap());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -39,9 +40,7 @@ namespace campanhabrinquedo.repository
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;");
-            }
         }   
     }
 }

@@ -6,8 +6,11 @@ namespace campanhabrinquedo.Application.Services
 {
     public class PadrinhoService : ServiceAction<Padrinho>, IPadrinhoService
     {
-        public PadrinhoService(IPadrinhoRepository repository)
-            : base(repository) { }
+        private IComunidadeService _comunidadeService;
+        public PadrinhoService(IPadrinhoRepository repository, IComunidadeService comunidadeService)
+            : base(repository) {
+            _comunidadeService = comunidadeService;
+        }
 
         public override bool Existe(Padrinho entity)
         {

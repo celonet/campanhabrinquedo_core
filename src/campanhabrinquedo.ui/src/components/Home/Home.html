@@ -1,0 +1,24 @@
+<div class="home">
+
+  <div class="row">
+    <div class="search">
+      <input type="text" placeholder="Consulte uma criança" @input="filtro = $event.target.value">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m6 l3">
+      <home-card :qtde="qtdeCriancas" titulo="Crianças"></home-card>
+    </div>
+    <div class="col s12 m6 l3">
+      <home-card :qtde="qtdePadrinhos" titulo="Padrinhos"></home-card>
+    </div>
+    <div class="col s12 m6 l3">
+      <home-card :qtde="qtdeResponsaveis" titulo="Responsaveis"></home-card>
+    </div>
+    <div class="col s12 m6 l3">
+      <home-card :qtde="qtdeComunidades" titulo="Comunidades"></home-card>
+    </div>
+  </div>
+
+</div>

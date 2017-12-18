@@ -1,6 +1,7 @@
 using campanhabrinquedo.domain.Validators;
 
 using System;
+using System.Collections.Generic;
 
 namespace campanhabrinquedo.domain.Entities
 {    
@@ -10,6 +11,8 @@ namespace campanhabrinquedo.domain.Entities
         public Comunidade Comunidade { get; private set; }
         public string Telefone { get; private set; }
         public string Celular { get; private set; }
+
+        public ICollection<PadrinhoCrianca> Criancas { get; private set; }
 
         protected Padrinho() { }
 

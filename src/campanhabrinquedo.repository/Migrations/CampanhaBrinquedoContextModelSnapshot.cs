@@ -18,7 +18,7 @@ namespace campanhabrinquedo.repository.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("campanhabrinquedo.domain.Entities.Campanha", b =>
@@ -66,6 +66,8 @@ namespace campanhabrinquedo.repository.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Calcado");
+
                     b.Property<Guid?>("ComunidadeId");
 
                     b.Property<DateTime>("DataCadastro");
@@ -83,6 +85,10 @@ namespace campanhabrinquedo.repository.Migrations
                         .HasMaxLength(150);
 
                     b.Property<Guid?>("ResponsavelId");
+
+                    b.Property<string>("Roupa")
+                        .IsRequired()
+                        .HasMaxLength(150);
 
                     b.Property<int>("Sexo");
 
@@ -119,6 +125,19 @@ namespace campanhabrinquedo.repository.Migrations
                     b.HasIndex("ComunidadeId");
 
                     b.ToTable("Padrinho");
+                });
+
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.PadrinhoCrianca", b =>
+                {
+                    b.Property<Guid>("PadrinhoId");
+
+                    b.Property<Guid>("CriancaId");
+
+                    b.HasKey("PadrinhoId", "CriancaId");
+
+                    b.HasIndex("CriancaId");
+
+                    b.ToTable("PadrinhoCrianca");
                 });
 
             modelBuilder.Entity("campanhabrinquedo.domain.Entities.Relationships.CampanhaCrianca", b =>
@@ -212,7 +231,7 @@ namespace campanhabrinquedo.repository.Migrations
 
                     b.Property<string>("RG")
                         .IsRequired()
-                        .HasMaxLength(15);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -259,6 +278,19 @@ namespace campanhabrinquedo.repository.Migrations
                     b.HasOne("campanhabrinquedo.domain.Entities.Comunidade", "Comunidade")
                         .WithMany()
                         .HasForeignKey("ComunidadeId");
+                });
+
+            modelBuilder.Entity("campanhabrinquedo.domain.Entities.PadrinhoCrianca", b =>
+                {
+                    b.HasOne("campanhabrinquedo.domain.Entities.Crianca", "Crianca")
+                        .WithMany()
+                        .HasForeignKey("CriancaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("campanhabrinquedo.domain.Entities.Padrinho", "Responsavel")
+                        .WithMany("Criancas")
+                        .HasForeignKey("PadrinhoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("campanhabrinquedo.domain.Entities.Relationships.CampanhaCrianca", b =>

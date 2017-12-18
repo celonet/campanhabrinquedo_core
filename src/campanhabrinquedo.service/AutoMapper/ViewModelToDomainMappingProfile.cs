@@ -20,9 +20,9 @@ namespace campanhabrinquedo.Application.AutoMapper
                 .ConstructUsing(c => new Comunidade(c.Id, c.Nome, c.Bairro));
             //Crianca
             CreateMap<CriancaViewModel, Crianca>()
-                .ConstructUsing(c => new Crianca(c.Nome, c.Idade, c.Sexo, Mapper.Map<Comunidade>(c.Comunidade), Mapper.Map<Responsavel>(c.Responsavel)));
+                .ConstructUsing(c => new Crianca(c.Nome, c.Idade, c.Roupa, c.Calcado, c.Sexo, Mapper.Map<Comunidade>(c.Comunidade), Mapper.Map<Responsavel>(c.Responsavel)));
             CreateMap<CriancaViewModel, Crianca>()
-                .ConstructUsing(c => new Crianca(c.Id, c.Nome, c.Idade, c.Sexo, Mapper.Map<Comunidade>(c.Comunidade), Mapper.Map<Responsavel>(c.Responsavel), c.Impresso, c.Especial));
+                .ConstructUsing(c => new Crianca(c.Id, c.Nome, c.Idade, c.Roupa, c.Calcado, c.Sexo, Mapper.Map<Comunidade>(c.Comunidade), Mapper.Map<Responsavel>(c.Responsavel), c.Impresso, c.Especial));
             //Padrinho
             CreateMap<PadrinhoViewModel, Padrinho>()
                 .ConstructUsing(c => new Padrinho(c.Nome, Mapper.Map<Comunidade>(c.Comunidade), c.Telefone));

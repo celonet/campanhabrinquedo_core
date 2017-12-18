@@ -1,0 +1,17 @@
+<div>
+  <h1 class="md-title">Comunidade</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Bairro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="comunidade in comunidades" :key="comunidade.id">
+        <td> {{ comunidade.nome }} </td>
+        <td> {{ comunidade.bairro }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

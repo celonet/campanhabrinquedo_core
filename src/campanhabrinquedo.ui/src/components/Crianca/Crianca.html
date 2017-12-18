@@ -1,0 +1,21 @@
+<div>
+  <h1 class="md-title">Criança</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Comunidade</th>
+        <th>Responsavel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="crianca in criancas" :key="crianca.id">
+        <td> {{ crianca.nome }} </td>
+        <td> {{ crianca.idade }} </td>
+        <td> {{ crianca.comunidade.nome }} </td>
+        <td> {{ crianca.responsavel.nome }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
