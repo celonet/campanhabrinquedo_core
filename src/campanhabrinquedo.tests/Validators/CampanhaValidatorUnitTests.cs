@@ -13,7 +13,7 @@ namespace campanhabrinquedo.tests.Validators
         public CampanhaValidatorUnitTests()
         {
              _validator = new CampanhaValidator();
-            _campanha = new Campanha(2005, "", 0);
+            _campanha = new Campanha(2005, "");
         }    
 
          [Fact]

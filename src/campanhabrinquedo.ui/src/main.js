@@ -22,11 +22,12 @@ Vue.http.interceptors.push((req, next) => {
     req.headers.set('Authorization', `bearer ${token}`);
     next();
   } else {
-    if (response.status == 401) {
-      router.push({
-        name: 'login'
-      });
-    }
+    next();
+    // if (req.status == 401) {
+    //   router.push({
+    //     name: 'login'
+    //   });
+    // }
   }
 });
 

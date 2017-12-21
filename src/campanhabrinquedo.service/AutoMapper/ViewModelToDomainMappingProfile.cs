@@ -12,7 +12,7 @@ namespace campanhabrinquedo.Application.AutoMapper
             CreateMap<CampanhaViewModel, Campanha>()
                 .ConstructUsing(c => new Campanha(c.Ano, c.Descricao));
             CreateMap<CampanhaViewModel, Campanha>()
-                .ConstructUsing(c => new Campanha(c.Id, c.Ano, c.Descricao, c.QtdeCriancas));
+                .ConstructUsing(c => new Campanha(c.Id, c.Ano, c.Descricao));
             //Comunidade
             CreateMap<ComunidadeViewModel, Comunidade>()
                 .ConstructUsing(c => new Comunidade(c.Nome, c.Bairro));

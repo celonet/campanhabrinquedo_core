@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entities.Relationships;
 using campanhabrinquedo.domain.Validators;
+using System.Linq;
 
 namespace campanhabrinquedo.domain.Entities
 {    
@@ -32,6 +33,12 @@ namespace campanhabrinquedo.domain.Entities
         {
             var validation = new ResponsavelValidator().Validate(this);
             return validation.IsValid;
+        }
+
+        public override IList<string> GetErrors()
+        {
+            var validation = new ResponsavelValidator().Validate(this);
+            return validation.Errors.Select(e => e.ErrorMessage).ToList();
         }
     }
 }

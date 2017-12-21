@@ -1,5 +1,5 @@
 <script>
-import UsuarioService from "./../../domain/usuarioService";
+import UsuarioService from "./../../domain/services/usuarioService";
 
 export default {
   template: require("./Login.html"),
@@ -27,7 +27,7 @@ export default {
         .then(
           response => {
             console.log(response);
-            localStorage.setItem("token", response.body.access_token);
+            localStorage.setItem("token", response.access_token);
             this.$router.push({ name: "home" });
           },
           err => {

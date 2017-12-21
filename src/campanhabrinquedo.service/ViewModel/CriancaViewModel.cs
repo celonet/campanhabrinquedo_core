@@ -3,9 +3,8 @@ using campanhabrinquedo.domain.Entities;
 
 namespace campanhabrinquedo.Application.ViewModel
 {
-    public class CriancaViewModel
+    public class CriancaViewModel : ViewModelBase
     {
-        public Guid Id { get; set; }
         public string Nome { get; set; }
         public string Idade { get; set; }
         public Sexo Sexo { get; set; }

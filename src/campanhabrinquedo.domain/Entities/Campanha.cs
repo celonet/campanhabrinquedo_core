@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using campanhabrinquedo.domain.Entities.Relationships;
 using campanhabrinquedo.domain.Validators;
+using System.Linq;
 
 namespace campanhabrinquedo.domain.Entities
 {
@@ -9,7 +10,6 @@ namespace campanhabrinquedo.domain.Entities
     {
         public int Ano { get; private set; }
         public string Descricao { get; private set; }
-        public int QtdeCriancas { get; private set; }
 
         public ICollection<CampanhaCrianca> Criancas { get; private set; }
         public ICollection<CampanhaPadrinho> Padrinhos { get; private set; }
@@ -22,34 +22,25 @@ namespace campanhabrinquedo.domain.Entities
             this.Id = Guid.NewGuid();
             this.Ano = ano;
             this.Descricao = descricao;
-            this.QtdeCriancas = 0;
         }
 
-        public Campanha(int ano, string descricao, int qtdeCriancas)
-        {
-            this.Id = Guid.NewGuid();
-            this.Ano = ano;
-            this.Descricao = descricao;
-            this.QtdeCriancas = qtdeCriancas;
-        }
-
-        public Campanha(Guid id, int ano, string descricao, int qtdeCriancas)
+        public Campanha(Guid id, int ano, string descricao)
         {
             this.Id = id;
             this.Ano = ano;
             this.Descricao = descricao;
-            this.QtdeCriancas = qtdeCriancas;
-        }
-
-        public void IncrementaQuantidadeCriancas()
-        {
-            this.QtdeCriancas++;
         }
 
         public override bool IsValid()
         {
             var validation = new CampanhaValidator().Validate(this);
             return validation.IsValid;
+        }
+
+        public override IList<string> GetErrors()
+        {
+            var validation = new CampanhaValidator().Validate(this);
+            return validation.Errors.Select(e => e.ErrorMessage).ToList();
         }
     }
 }

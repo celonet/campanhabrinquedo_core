@@ -12,9 +12,10 @@ using System;
 namespace campanhabrinquedo.repository.Migrations
 {
     [DbContext(typeof(CampanhaBrinquedoContext))]
-    partial class CampanhaBrinquedoContextModelSnapshot : ModelSnapshot
+    [Migration("20171221020730_RefactorCampanha")]
+    partial class RefactorCampanha
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

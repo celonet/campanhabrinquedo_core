@@ -2,6 +2,7 @@ using campanhabrinquedo.domain.Entities;
 using campanhabrinquedo.domain.Entities.Relationships;
 using campanhabrinquedo.repository.Mappings;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace campanhabrinquedo.repository
 {
@@ -18,6 +19,8 @@ namespace campanhabrinquedo.repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<IList<string>>();
+
             modelBuilder.ApplyConfiguration(new CampanhaMap());
             modelBuilder.ApplyConfiguration(new ComunidadeMap());
             modelBuilder.ApplyConfiguration(new CriancaMap());
@@ -41,6 +44,6 @@ namespace campanhabrinquedo.repository
         {
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;");
-        }   
+        }
     }
 }

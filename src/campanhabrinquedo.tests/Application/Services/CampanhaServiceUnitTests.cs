@@ -13,7 +13,7 @@ namespace campanhabrinquedo.tests.Application.Services
             Repository = Substitute.For<ICampanhaRepository>();
             Service = new CampanhaService((ICampanhaRepository)Repository);
             Entity = new Campanha(DateTime.Now.Year, "Campanha Test");
-            EntityInvalid = new Campanha(2005, "",0);
+            EntityInvalid = new Campanha(2005, "");
         }
     }
 }

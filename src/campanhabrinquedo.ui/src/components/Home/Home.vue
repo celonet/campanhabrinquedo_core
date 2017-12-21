@@ -6,7 +6,9 @@ export default {
   components: {
     "home-card": HomeCard
   },
-  created() {},
+  created() {
+    
+  },
   data() {
     return {
       campanha: 2017,

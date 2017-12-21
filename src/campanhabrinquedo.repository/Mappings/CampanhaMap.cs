@@ -16,7 +16,6 @@ namespace campanhabrinquedo.repository.Mappings
             builder
                 .Property(p => p.Ano)
                 .IsRequired();
-
         }
     }
 }

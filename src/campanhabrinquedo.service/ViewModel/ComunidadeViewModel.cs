@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace campanhabrinquedo.Application.ViewModel
+﻿namespace campanhabrinquedo.Application.ViewModel
 {
-    public class ComunidadeViewModel
+    public class ComunidadeViewModel : ViewModelBase
     {
-        public Guid Id { get; set; }
         public string Nome { get; set; }
         public string Bairro { get; set; }
     }

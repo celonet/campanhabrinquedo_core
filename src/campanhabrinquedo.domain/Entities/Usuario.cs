@@ -3,6 +3,8 @@ using campanhabrinquedo.domain.Validators;
 namespace campanhabrinquedo.domain.Entities
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class Usuario : EntityBase
     {
@@ -32,6 +34,12 @@ namespace campanhabrinquedo.domain.Entities
         {
             var validation = new UsuarioValidator().Validate(this);
             return validation.IsValid;
+        }
+
+        public override IList<string> GetErrors()
+        {
+            var validation = new UsuarioValidator().Validate(this);
+            return validation.Errors.Select(e => e.ErrorMessage).ToList();
         }
     }
 }
